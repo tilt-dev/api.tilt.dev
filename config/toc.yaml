@@ -1,0 +1,31 @@
+parts:
+- name: Core
+  chapters:
+  - name: Cmd
+    group: tilt.dev
+    version: v1alpha1
+  - name: FileWatch
+    group: tilt.dev
+    version: v1alpha1
+  - name: Session
+    group: tilt.dev
+    version: v1alpha1
+    
+- name: Kubernetes
+  chapters:
+  - name: PodLogStream
+    group: tilt.dev
+    version: v1alpha1
+
+- name: Meta
+  chapters:
+  - name: DeleteOptions
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions
+  - name: ListMeta
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta
+  - name: ObjectMeta
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
+  - name: Patch
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.Patch
+  - name: Status
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.Status
