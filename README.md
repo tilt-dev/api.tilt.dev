@@ -22,6 +22,26 @@ The Kubernetes project automates this generation with this Bash script:
 
 https://github.com/kubernetes/kubernetes/blob/master/hack/update-openapi-spec.sh
 
-Currently we generate this by manually following the steps in that script
-(tweaking them for the Tilt API server).
+Currently we generate this by running:
 
+```
+tilt dump openapi > openapi-spec/swagger.json
+```
+
+Then we generate markdown for the api docs with:
+
+```
+make gendocs
+```
+
+This uses Kubernetes' doc generation code to generate pages for each API type.
+
+## Credits
+
+Heavily inspired by https://github.com/kubernetes-sigs/reference-docs
+
+Copyright 2016 The Kubernetes Authors.
+
+Modifications Copyright 2021 Windmill Engineering
+
+Licensed under [the Apache License, Version 2.0](LICENSE)
