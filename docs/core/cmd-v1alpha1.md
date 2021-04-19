@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
@@ -26,13 +27,13 @@ Cmd
 - **kind**: Cmd
 
 
-- **metadata** (<a href="{{< ref "../meta/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
+- **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** (<a href="{{< ref "../core/cmd-v1alpha1#CmdSpec" >}}">CmdSpec</a>)
+- **spec** ([CmdSpec](../core/cmd-v1alpha1#CmdSpec))
 
 
-- **status** (<a href="{{< ref "../core/cmd-v1alpha1#CmdStatus" >}}">CmdStatus</a>)
+- **status** ([CmdStatus](../core/cmd-v1alpha1#CmdStatus))
 
 
 
@@ -63,96 +64,9 @@ CmdSpec defines the desired state of Cmd
   
   Environment variables are layered on top of the environment variables that Tilt runs with.
 
-- **readinessProbe** (Probe)
+- **readinessProbe** ([Probe](../core/probe#Probe))
 
   Periodic probe of service readiness.
-
-  <a name="Probe"></a>
-  *Probe describes a health check to be performed o determine whether it is alive or ready to receive traffic.*
-
-  - **readinessProbe.exec** (ExecAction)
-
-    One and only one of the following should be specified. Exec specifies the action to take.
-
-    <a name="ExecAction"></a>
-    *ExecAction describes a "run in container" action.*
-
-  - **readinessProbe.exec.command** ([]string)
-
-    Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
-
-  - **readinessProbe.failureThreshold** (int32)
-
-    Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-
-  - **readinessProbe.httpGet** (HTTPGetAction)
-
-    HTTPGet specifies the http request to perform.
-
-    <a name="HTTPGetAction"></a>
-    *HTTPGetAction describes an action based on HTTP Get requests.*
-
-  - **readinessProbe.httpGet.port** (int32), required
-
-    Name or number of the port to access on the container. Number must be in the range 1 to 65535.
-
-  - **readinessProbe.httpGet.host** (string)
-
-    Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead.
-
-  - **readinessProbe.httpGet.httpHeaders** ([]HTTPHeader)
-
-    Custom headers to set in the request. HTTP allows repeated headers.
-
-    <a name="HTTPHeader"></a>
-    *HTTPHeader describes a custom header to be used in HTTP probes*
-
-  - **readinessProbe.httpGet.httpHeaders.name** (string), required
-
-    The header field name
-
-  - **readinessProbe.httpGet.httpHeaders.value** (string), required
-
-    The header field value
-
-  - **readinessProbe.httpGet.path** (string)
-
-    Path to access on the HTTP server.
-
-  - **readinessProbe.httpGet.scheme** (string)
-
-    Scheme to use for connecting to the host. Defaults to HTTP.
-
-  - **readinessProbe.initialDelaySeconds** (int32)
-
-    Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
-
-  - **readinessProbe.periodSeconds** (int32)
-
-    How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
-
-  - **readinessProbe.successThreshold** (int32)
-
-    Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
-
-  - **readinessProbe.tcpSocket** (TCPSocketAction)
-
-    TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported
-
-    <a name="TCPSocketAction"></a>
-    *TCPSocketAction describes an action based on opening a socket*
-
-  - **readinessProbe.tcpSocket.port** (int32), required
-
-    Number or name of the port to access on the container. Number must be in the range 1 to 65535.
-
-  - **readinessProbe.tcpSocket.host** (string)
-
-    Optional: Host name to connect to, defaults to the pod IP.
-
-  - **readinessProbe.timeoutSeconds** (int32)
-
-    Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 - **restartOn** (RestartOnSpec)
 
@@ -267,10 +181,10 @@ CmdList
 - **kind**: CmdList
 
 
-- **metadata** (<a href="{{< ref "../meta/list-meta#ListMeta" >}}">ListMeta</a>)
+- **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([]<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>), required
+- **items** ([][Cmd](../core/cmd-v1alpha1#Cmd)), required
 
 
 
@@ -304,14 +218,14 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
 
 ### `get` read status of the specified Cmd
@@ -330,14 +244,14 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
 
 ### `list` list or watch objects of kind Cmd
@@ -380,7 +294,7 @@ GET /apis/tilt.dev/v1alpha1/cmds
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
@@ -411,7 +325,7 @@ GET /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#CmdList" >}}">CmdList</a>): OK
+200 ([CmdList](../core/cmd-v1alpha1#CmdList)): OK
 
 
 ### `create` create a Cmd
@@ -423,35 +337,35 @@ POST /apis/tilt.dev/v1alpha1/cmds
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>, required
+- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
-201 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): Created
+201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
 
-202 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): Accepted
+202 ([Cmd](../core/cmd-v1alpha1#Cmd)): Accepted
 
 
 ### `update` replace the specified Cmd
@@ -468,33 +382,33 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}
   name of the Cmd
 
 
-- **body**: <a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>, required
+- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
-201 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): Created
+201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
 
 
 ### `update` replace status of the specified Cmd
@@ -511,33 +425,33 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
   name of the Cmd
 
 
-- **body**: <a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>, required
+- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
-201 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): Created
+201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
 
 
 ### `patch` partially update the specified Cmd
@@ -554,19 +468,19 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
   name of the Cmd
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -576,14 +490,14 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
 
 ### `patch` partially update status of the specified Cmd
@@ -600,19 +514,19 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
   name of the Cmd
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -622,14 +536,14 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/cmd-v1alpha1#Cmd" >}}">Cmd</a>): OK
+200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
 
 ### `delete` delete a Cmd
@@ -646,14 +560,14 @@ DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
   name of the Cmd
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
@@ -663,7 +577,7 @@ DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -675,9 +589,9 @@ DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 
-202 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): Accepted
+202 ([Status](../meta/status#Status)): Accepted
 
 
 ### `deletecollection` delete collection of Cmd
@@ -689,7 +603,7 @@ DELETE /apis/tilt.dev/v1alpha1/cmds
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
@@ -703,7 +617,7 @@ DELETE /apis/tilt.dev/v1alpha1/cmds
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldSelector** (*in query*): string
@@ -730,7 +644,7 @@ DELETE /apis/tilt.dev/v1alpha1/cmds
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -761,5 +675,5 @@ DELETE /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 

@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
@@ -26,13 +27,13 @@ Session provides introspective data about the status of the Tilt process.
 - **kind**: Session
 
 
-- **metadata** (<a href="{{< ref "../meta/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
+- **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** (<a href="{{< ref "../core/session-v1alpha1#SessionSpec" >}}">SessionSpec</a>)
+- **spec** ([SessionSpec](../core/session-v1alpha1#SessionSpec))
 
 
-- **status** (<a href="{{< ref "../core/session-v1alpha1#SessionStatus" >}}">SessionStatus</a>)
+- **status** ([SessionStatus](../core/session-v1alpha1#SessionStatus))
 
 
 
@@ -190,10 +191,10 @@ SessionList is a list of Session objects.
 - **kind**: SessionList
 
 
-- **metadata** (<a href="{{< ref "../meta/list-meta#ListMeta" >}}">ListMeta</a>)
+- **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([]<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>), required
+- **items** ([][Session](../core/session-v1alpha1#Session)), required
 
 
 
@@ -227,14 +228,14 @@ GET /apis/tilt.dev/v1alpha1/sessions/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
 
 ### `get` read status of the specified Session
@@ -253,14 +254,14 @@ GET /apis/tilt.dev/v1alpha1/sessions/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
 
 ### `list` list or watch objects of kind Session
@@ -303,7 +304,7 @@ GET /apis/tilt.dev/v1alpha1/sessions
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
@@ -334,7 +335,7 @@ GET /apis/tilt.dev/v1alpha1/sessions
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#SessionList" >}}">SessionList</a>): OK
+200 ([SessionList](../core/session-v1alpha1#SessionList)): OK
 
 
 ### `create` create a Session
@@ -346,35 +347,35 @@ POST /apis/tilt.dev/v1alpha1/sessions
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>, required
+- **body**: [Session](../core/session-v1alpha1#Session), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
-201 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): Created
+201 ([Session](../core/session-v1alpha1#Session)): Created
 
-202 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): Accepted
+202 ([Session](../core/session-v1alpha1#Session)): Accepted
 
 
 ### `update` replace the specified Session
@@ -391,33 +392,33 @@ PUT /apis/tilt.dev/v1alpha1/sessions/{name}
   name of the Session
 
 
-- **body**: <a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>, required
+- **body**: [Session](../core/session-v1alpha1#Session), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
-201 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): Created
+201 ([Session](../core/session-v1alpha1#Session)): Created
 
 
 ### `update` replace status of the specified Session
@@ -434,33 +435,33 @@ PUT /apis/tilt.dev/v1alpha1/sessions/{name}/status
   name of the Session
 
 
-- **body**: <a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>, required
+- **body**: [Session](../core/session-v1alpha1#Session), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
-201 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): Created
+201 ([Session](../core/session-v1alpha1#Session)): Created
 
 
 ### `patch` partially update the specified Session
@@ -477,19 +478,19 @@ PATCH /apis/tilt.dev/v1alpha1/sessions/{name}
   name of the Session
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -499,14 +500,14 @@ PATCH /apis/tilt.dev/v1alpha1/sessions/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
 
 ### `patch` partially update status of the specified Session
@@ -523,19 +524,19 @@ PATCH /apis/tilt.dev/v1alpha1/sessions/{name}/status
   name of the Session
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -545,14 +546,14 @@ PATCH /apis/tilt.dev/v1alpha1/sessions/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/session-v1alpha1#Session" >}}">Session</a>): OK
+200 ([Session](../core/session-v1alpha1#Session)): OK
 
 
 ### `delete` delete a Session
@@ -569,14 +570,14 @@ DELETE /apis/tilt.dev/v1alpha1/sessions/{name}
   name of the Session
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
@@ -586,7 +587,7 @@ DELETE /apis/tilt.dev/v1alpha1/sessions/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -598,9 +599,9 @@ DELETE /apis/tilt.dev/v1alpha1/sessions/{name}
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 
-202 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): Accepted
+202 ([Status](../meta/status#Status)): Accepted
 
 
 ### `deletecollection` delete collection of Session
@@ -612,7 +613,7 @@ DELETE /apis/tilt.dev/v1alpha1/sessions
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
@@ -626,7 +627,7 @@ DELETE /apis/tilt.dev/v1alpha1/sessions
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldSelector** (*in query*): string
@@ -653,7 +654,7 @@ DELETE /apis/tilt.dev/v1alpha1/sessions
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -684,5 +685,5 @@ DELETE /apis/tilt.dev/v1alpha1/sessions
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 

@@ -1,0 +1,18 @@
+title: Tilt Dev API Docs
+email: hi@tilt.dev
+description: >-
+  How to interact with the Tilt API Server
+baseurl: ""
+url: "https://api.tilt.dev"
+docsurl: "https://docs.tilt.dev"
+landingurl: "https://tilt.dev"
+blogurl: "https://blog.tilt.dev"
+twitter_username: tilt_dev
+github_username:  tilt-dev
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-inline-svg

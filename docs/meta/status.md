@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: ""
   import: "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -84,7 +85,7 @@ Status is a return value for calls that don't return other objects.
 
   A human-readable description of the status of this operation.
 
-- **metadata** (<a href="{{< ref "../meta/list-meta#ListMeta" >}}">ListMeta</a>)
+- **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
   Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
