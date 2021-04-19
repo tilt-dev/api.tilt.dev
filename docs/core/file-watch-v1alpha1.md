@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
@@ -26,13 +27,13 @@ FileWatch
 - **kind**: FileWatch
 
 
-- **metadata** (<a href="{{< ref "../meta/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
+- **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatchSpec" >}}">FileWatchSpec</a>)
+- **spec** ([FileWatchSpec](../core/file-watch-v1alpha1#FileWatchSpec))
 
 
-- **status** (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatchStatus" >}}">FileWatchStatus</a>)
+- **status** ([FileWatchStatus](../core/file-watch-v1alpha1#FileWatchStatus))
 
 
 
@@ -134,10 +135,10 @@ FileWatchList
 - **kind**: FileWatchList
 
 
-- **metadata** (<a href="{{< ref "../meta/list-meta#ListMeta" >}}">ListMeta</a>)
+- **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([]<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>), required
+- **items** ([][FileWatch](../core/file-watch-v1alpha1#FileWatch)), required
 
 
 
@@ -171,14 +172,14 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
 
 ### `get` read status of the specified FileWatch
@@ -197,14 +198,14 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
 
 ### `list` list or watch objects of kind FileWatch
@@ -247,7 +248,7 @@ GET /apis/tilt.dev/v1alpha1/filewatches
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
@@ -278,7 +279,7 @@ GET /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatchList" >}}">FileWatchList</a>): OK
+200 ([FileWatchList](../core/file-watch-v1alpha1#FileWatchList)): OK
 
 
 ### `create` create a FileWatch
@@ -290,35 +291,35 @@ POST /apis/tilt.dev/v1alpha1/filewatches
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>, required
+- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
-201 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): Created
+201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
 
-202 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): Accepted
+202 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Accepted
 
 
 ### `update` replace the specified FileWatch
@@ -335,33 +336,33 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
   name of the FileWatch
 
 
-- **body**: <a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>, required
+- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
-201 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): Created
+201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
 
 
 ### `update` replace status of the specified FileWatch
@@ -378,33 +379,33 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
   name of the FileWatch
 
 
-- **body**: <a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>, required
+- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
-201 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): Created
+201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
 
 
 ### `patch` partially update the specified FileWatch
@@ -421,19 +422,19 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
   name of the FileWatch
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -443,14 +444,14 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
 
 ### `patch` partially update status of the specified FileWatch
@@ -467,19 +468,19 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
   name of the FileWatch
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -489,14 +490,14 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../core/file-watch-v1alpha1#FileWatch" >}}">FileWatch</a>): OK
+200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
 
 ### `delete` delete a FileWatch
@@ -513,14 +514,14 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
   name of the FileWatch
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
@@ -530,7 +531,7 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -542,9 +543,9 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 
-202 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): Accepted
+202 ([Status](../meta/status#Status)): Accepted
 
 
 ### `deletecollection` delete collection of FileWatch
@@ -556,7 +557,7 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
@@ -570,7 +571,7 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldSelector** (*in query*): string
@@ -597,7 +598,7 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -628,5 +629,5 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 

@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
@@ -30,13 +31,13 @@ Streams logs from a pod on Kubernetes into the core Tilt engine.
 - **kind**: PodLogStream
 
 
-- **metadata** (<a href="{{< ref "../meta/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
+- **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStreamSpec" >}}">PodLogStreamSpec</a>)
+- **spec** ([PodLogStreamSpec](../kubernetes/pod-log-stream-v1alpha1#PodLogStreamSpec))
 
 
-- **status** (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStreamStatus" >}}">PodLogStreamStatus</a>)
+- **status** ([PodLogStreamStatus](../kubernetes/pod-log-stream-v1alpha1#PodLogStreamStatus))
 
 
 
@@ -133,10 +134,10 @@ PodLogStreamList
 - **kind**: PodLogStreamList
 
 
-- **metadata** (<a href="{{< ref "../meta/list-meta#ListMeta" >}}">ListMeta</a>)
+- **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([]<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>), required
+- **items** ([][PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)), required
 
 
 
@@ -170,14 +171,14 @@ GET /apis/tilt.dev/v1alpha1/podlogstreams/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
 
 ### `get` read status of the specified PodLogStream
@@ -196,14 +197,14 @@ GET /apis/tilt.dev/v1alpha1/podlogstreams/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
 
 ### `list` list or watch objects of kind PodLogStream
@@ -246,7 +247,7 @@ GET /apis/tilt.dev/v1alpha1/podlogstreams
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
@@ -277,7 +278,7 @@ GET /apis/tilt.dev/v1alpha1/podlogstreams
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStreamList" >}}">PodLogStreamList</a>): OK
+200 ([PodLogStreamList](../kubernetes/pod-log-stream-v1alpha1#PodLogStreamList)): OK
 
 
 ### `create` create a PodLogStream
@@ -289,35 +290,35 @@ POST /apis/tilt.dev/v1alpha1/podlogstreams
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>, required
+- **body**: [PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
-201 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): Created
+201 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): Created
 
-202 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): Accepted
+202 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): Accepted
 
 
 ### `update` replace the specified PodLogStream
@@ -334,33 +335,33 @@ PUT /apis/tilt.dev/v1alpha1/podlogstreams/{name}
   name of the PodLogStream
 
 
-- **body**: <a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>, required
+- **body**: [PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
-201 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): Created
+201 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): Created
 
 
 ### `update` replace status of the specified PodLogStream
@@ -377,33 +378,33 @@ PUT /apis/tilt.dev/v1alpha1/podlogstreams/{name}/status
   name of the PodLogStream
 
 
-- **body**: <a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>, required
+- **body**: [PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
-201 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): Created
+201 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): Created
 
 
 ### `patch` partially update the specified PodLogStream
@@ -420,19 +421,19 @@ PATCH /apis/tilt.dev/v1alpha1/podlogstreams/{name}
   name of the PodLogStream
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -442,14 +443,14 @@ PATCH /apis/tilt.dev/v1alpha1/podlogstreams/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
 
 ### `patch` partially update status of the specified PodLogStream
@@ -466,19 +467,19 @@ PATCH /apis/tilt.dev/v1alpha1/podlogstreams/{name}/status
   name of the PodLogStream
 
 
-- **body**: <a href="{{< ref "../meta/patch#Patch" >}}">Patch</a>, required
+- **body**: [Patch](../meta/patch#Patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldManager** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#fieldManager" >}}">fieldManager</a>
+  [fieldManager](../common-parameters/common-parameters#fieldManager)
 
 
 - **force** (*in query*): boolean
@@ -488,14 +489,14 @@ PATCH /apis/tilt.dev/v1alpha1/podlogstreams/{name}/status
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 (<a href="{{< ref "../kubernetes/pod-log-stream-v1alpha1#PodLogStream" >}}">PodLogStream</a>): OK
+200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
 
 ### `delete` delete a PodLogStream
@@ -512,14 +513,14 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams/{name}
   name of the PodLogStream
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
@@ -529,7 +530,7 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams/{name}
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -541,9 +542,9 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams/{name}
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 
-202 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): Accepted
+202 ([Status](../meta/status#Status)): Accepted
 
 
 ### `deletecollection` delete collection of PodLogStream
@@ -555,7 +556,7 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams
 #### Parameters
 
 
-- **body**: <a href="{{< ref "../meta/delete-options#DeleteOptions" >}}">DeleteOptions</a>
+- **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
 
   
 
@@ -569,7 +570,7 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams
 
 - **dryRun** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#dryRun" >}}">dryRun</a>
+  [dryRun](../common-parameters/common-parameters#dryRun)
 
 
 - **fieldSelector** (*in query*): string
@@ -596,7 +597,7 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams
 
 - **pretty** (*in query*): string
 
-  <a href="{{< ref "../common-parameters/common-parameters#pretty" >}}">pretty</a>
+  [pretty](../common-parameters/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
@@ -627,5 +628,5 @@ DELETE /apis/tilt.dev/v1alpha1/podlogstreams
 #### Response
 
 
-200 (<a href="{{< ref "../meta/status#Status" >}}">Status</a>): OK
+200 ([Status](../meta/status#Status)): OK
 

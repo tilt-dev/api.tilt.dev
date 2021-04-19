@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-site
+spec:
+  selector:
+    matchLabels:
+      app: api-site
+  template:
+    metadata:
+      labels:
+        app: api-site
+    spec:
+      containers:
+      - name: api-site
+        image: api-site
+        ports:
+        - containerPort: 4000
+          name: http

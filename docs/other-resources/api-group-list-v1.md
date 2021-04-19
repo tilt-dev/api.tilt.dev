@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: "v1"
   import: "k8s.io/apimachinery/pkg/apis/meta/v1"

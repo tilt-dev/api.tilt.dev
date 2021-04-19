@@ -1,4 +1,5 @@
 ---
+layout: api
 api_metadata:
   apiVersion: ""
   import: ""

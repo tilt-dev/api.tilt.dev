@@ -7,24 +7,31 @@ parts:
   - name: FileWatch
     group: tilt.dev
     version: v1alpha1
+    slugname: file-watch
   - name: Session
     group: tilt.dev
     version: v1alpha1
+  - name: Probe
+    key: com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Probe
     
 - name: Kubernetes
   chapters:
   - name: PodLogStream
     group: tilt.dev
     version: v1alpha1
+    slugname: pod-log-stream
 
 - name: Meta
   chapters:
   - name: DeleteOptions
     key: io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions
+    slugname: delete-options
   - name: ListMeta
     key: io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta
+    slugname: list-meta
   - name: ObjectMeta
     key: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
+    slugname: object-meta
   - name: Patch
     key: io.k8s.apimachinery.pkg.apis.meta.v1.Patch
   - name: Status
