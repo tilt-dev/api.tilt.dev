@@ -2,6 +2,8 @@
 
 Reference docs for the Tilt API
 
+https://api.tilt.dev/
+
 ## What
 
 The future of Tilt is a simple model consisting of very few types of building
@@ -13,7 +15,19 @@ layer of that model.
 
 This repository generates the API that the current Tilt server supports.
 
-## openapi-spec
+## How
+
+To run api.tilt.dev locally, run:
+
+```
+tilt up
+```
+
+Tilt will bring up the API in a container.
+
+Commits to the main branch will automatically deploy to api.tilt.dev on Netlify.
+
+## Generating the API
 
 The Tilt API server generates openapi-spec/swagger.json, a complete specification
 of Tilt's API objects.
