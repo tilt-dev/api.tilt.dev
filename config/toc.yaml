@@ -20,6 +20,21 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: pod-log-stream
+  - name: KubernetesDiscovery
+    group: tilt.dev
+    version: v1alpha1
+    slugname: kubernetes-discovery
+    
+- name: Interface
+  chapters:
+  - name: UISession
+    group: tilt.dev
+    version: v1alpha1
+    slugname: ui-session
+  - name: UIResource
+    group: tilt.dev
+    version: v1alpha1
+    slugname: ui-resource
 
 - name: Meta
   chapters:
