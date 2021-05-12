@@ -1,12 +1,13 @@
 ---
 layout: api
+layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "Cmd"
+  kind: "UISession"
 content_type: "api_reference"
-description: "Cmd represents a process on the host machine."
-title: "Cmd v1alpha1"
+description: "UISession represents global status data for rendering the web UI."
+title: "UISession v1alpha1"
 weight: 1
 ---
 
@@ -15,180 +16,163 @@ weight: 1
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## Cmd {#Cmd}
+## UISession {#UISession}
 
-Cmd represents a process on the host machine.
+UISession represents global status data for rendering the web UI.
 
-When the process exits, we will make a best-effort attempt (within OS limitations) to kill any spawned descendant processes.
+Treat this as a legacy data structure that's more intended to make transition easier rather than a robust long-term API.
+
+Per-resource status data should be stored in UIResource.
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: Cmd
+- **kind**: UISession
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([CmdSpec](../core/cmd-v1alpha1#CmdSpec))
+- **spec** ([UISessionSpec](../user-interface/ui-session-v1alpha1#UISessionSpec))
 
 
-- **status** ([CmdStatus](../core/cmd-v1alpha1#CmdStatus))
-
-
-
-
-
-
-## CmdSpec {#CmdSpec}
-
-CmdSpec defines how to run a local command.
-
-<hr>
-
-- **args** ([]string)
-
-  Command-line arguments. Must have length at least 1.
-
-- **dir** (string)
-
-  Process working directory.
-  
-  If the working directory is not specified, the command is run in the default Tilt working directory.
-
-- **env** ([]string)
-
-  Additional variables process environment.
-  
-  Expressed as a C-style array of strings of the form ["KEY1=VALUE1", "KEY2=VALUE2", ...].
-  
-  Environment variables are layered on top of the environment variables that Tilt runs with.
-
-- **readinessProbe** ([Probe](../core/probe#Probe))
-
-  Periodic probe of service readiness.
-
-- **restartOn** (RestartOnSpec)
-
-  Indicates objects that can trigger a restart of this command.
-  
-  When a restart is triggered, Tilt will try to gracefully shutdown any currently running process, waiting for it to exit before starting a new process. If the process doesn't shutdown within the allotted time, Tilt will kill the process abruptly.
-  
-  Restarts can happen even if the command is already done.
-  
-  Logs of the current process after the restart are discarded.
-
-  <a name="RestartOnSpec"></a>
-  *RestartOnSpec indicates the set of objects that can trigger a restart of this object.*
-
-  - **restartOn.fileWatches** ([]string), required
-
-    A list of file watches that can trigger a restart.
+- **status** ([UISessionStatus](../user-interface/ui-session-v1alpha1#UISessionStatus))
 
 
 
 
 
-## CmdStatus {#CmdStatus}
 
-CmdStatus defines the observed state of Cmd
+## UISessionSpec {#UISessionSpec}
 
-Based loosely on ContainerStatus in Kubernetes
+UISessionSpec is an empty struct. UISession is a kludge for making Tilt's internal status readable, not for specifying behavior.
 
 <hr>
 
-- **ready** (boolean)
 
-  Specifies whether the command has passed its readiness probe.
+
+
+
+## UISessionStatus {#UISessionStatus}
+
+UISessionStatus defines the observed state of UISession
+
+<hr>
+
+- **fatalError** (string), required
+
+  A FatalError is an error that forces Tilt to stop its control loop. The API server will stay up and continue to serve the UI, but no further builds will happen.
+
+- **featureFlags** ([]UIFeatureFlag), required
+
+  FeatureFlags reports a list of experimental features that have been enabled.
+
+  <a name="UIFeatureFlag"></a>
+  *Configures Tilt to enable non-default features (e.g., experimental or deprecated).
   
-  Terminating the command does not change its Ready state.
+  The Tilt features controlled by this are generally in an unfinished state, and not yet documented.
   
-  Is always true when no readiness probe is defined.
+  As a Tilt user, you don’t need to worry about this unless something else directs you to (e.g., an experimental feature doc, or a conversation with a Tilt contributor).*
 
-- **running** (CmdStateRunning)
+  - **featureFlags.name** (string), required
 
-  Details about a running process.
+    The name of the flag.
 
-  <a name="CmdStateRunning"></a>
-  *CmdStateRunning is a running state of a local command.*
+  - **featureFlags.value** (boolean), required
 
-  - **running.pid** (int32), required
+    The value of the flag.
 
-    The process id of the command.
+- **needsAnalyticsNudge** (boolean), required
 
-  - **running.startedAt** (MicroTime)
+  NeedsAnalyticsNudge reports whether the UI hasn't opted in or out of analytics, and the UI should nudge them to do so.
 
-    Time at which the command was last started.
+- **runningTiltBuild** (TiltBuild), required
 
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
+  RunningTiltBuild reports the currently running version of tilt that this UI is talking to.
 
-- **terminated** (CmdStateTerminated)
+  <a name="TiltBuild"></a>
+  *Information about the running tilt binary.*
 
-  Details about a terminated process.
+  - **runningTiltBuild.commitSHA** (string), required
 
-  <a name="CmdStateTerminated"></a>
-  *CmdStateTerminated is a terminated state of a local command.*
+    The Git digest of the commit this binary was built at.
 
-  - **terminated.exitCode** (int32), required
+  - **runningTiltBuild.date** (string), required
 
-    Exit status from the last termination of the command
+    A human-readable string representing when the binary was built.
 
-  - **terminated.pid** (int32), required
+  - **runningTiltBuild.dev** (boolean), required
 
-    The process id of the command.
+    Indicates whether this is a development build (true) or an official release (false).
 
-  - **terminated.finishedAt** (MicroTime)
+  - **runningTiltBuild.version** (string), required
 
-    Time at which the command last terminated
+    A semantic version string.
 
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
+- **suggestedTiltVersion** (string), required
 
-  - **terminated.reason** (string)
+  SuggestedTiltVersion tells the UI the recommended version for this user. If the version is different than what's running, the UI may display a prompt to upgrade.
 
-    (brief) reason the process is terminated
+- **tiltCloudSchemeHost** (string), required
 
-  - **terminated.startedAt** (MicroTime)
+  TiltCloudSchemeHost reports the base URL of the Tilt Cloud instance associated with this Tilt process. Usually https://cloud.tilt.dev
 
-    Time at which previous execution of the command started
+- **tiltCloudTeamID** (string), required
 
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
+  TiltCloudTeamID reports the unique team id if the user is signed into TiltCloud and the Tiltfile declares a team.
 
-- **waiting** (CmdStateWaiting)
+- **tiltCloudTeamName** (string), required
 
-  Details about a waiting process.
+  TiltCloudUsername reports the human-readable team name if the user is signed into TiltCloud and the Tiltfile declares a team.
 
-  <a name="CmdStateWaiting"></a>
-  *CmdStateWaiting is a waiting state of a local command.*
+- **tiltCloudUsername** (string), required
 
-  - **waiting.reason** (string)
+  TiltCloudUsername reports the username if the user is signed into TiltCloud.
 
-    (brief) reason the process is not yet running.
+- **tiltStartTime** (Time), required
+
+  The time that this instance of tilt started. Clients can use this to determine if the API server has restarted and all the objects need to be refreshed.
+
+  <a name="Time"></a>
+  *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+
+- **tiltfileKey** (string), required
+
+  An identifier for the Tiltfile that is running. Clients can use this to store data associated with a particular project in LocalStorage or other persistent storage.
+
+- **versionSettings** (VersionSettings), required
+
+  VersionSettings indicates whether version updates have been enabled/disabled from the Tiltfile.
+
+  <a name="VersionSettings"></a>
+  *Information about how the Tilt binary handles updates.*
+
+  - **versionSettings.checkUpdates** (boolean), required
+
+    Whether version updates have been enabled/disabled from the Tiltfile.
 
 
 
 
 
-## CmdList {#CmdList}
+## UISessionList {#UISessionList}
 
-CmdList
+UISessionList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: CmdList
+- **kind**: UISessionList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][Cmd](../core/cmd-v1alpha1#Cmd)), required
+- **items** ([][UISession](../user-interface/ui-session-v1alpha1#UISession)), required
 
 
 
@@ -206,18 +190,18 @@ CmdList
 
 
 
-### `get` read the specified Cmd
+### `get` read the specified UISession
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds/{name}
+GET /apis/tilt.dev/v1alpha1/uisessions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
 - **pretty** (*in query*): string
@@ -229,21 +213,21 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
 
-### `get` read status of the specified Cmd
+### `get` read status of the specified UISession
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
+GET /apis/tilt.dev/v1alpha1/uisessions/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
 - **pretty** (*in query*): string
@@ -255,14 +239,14 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
 
-### `list` list or watch objects of kind Cmd
+### `list` list or watch objects of kind UISession
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds
+GET /apis/tilt.dev/v1alpha1/uisessions
 
 #### Parameters
 
@@ -321,19 +305,19 @@ GET /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 ([CmdList](../core/cmd-v1alpha1#CmdList)): OK
+200 ([UISessionList](../user-interface/ui-session-v1alpha1#UISessionList)): OK
 
 
-### `create` create a Cmd
+### `create` create an UISession
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/cmds
+POST /apis/tilt.dev/v1alpha1/uisessions
 
 #### Parameters
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [UISession](../user-interface/ui-session-v1alpha1#UISession), required
 
   
 
@@ -357,28 +341,28 @@ POST /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): Created
 
-202 ([Cmd](../core/cmd-v1alpha1#Cmd)): Accepted
+202 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): Accepted
 
 
-### `update` replace the specified Cmd
+### `update` replace the specified UISession
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/cmds/{name}
+PUT /apis/tilt.dev/v1alpha1/uisessions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [UISession](../user-interface/ui-session-v1alpha1#UISession), required
 
   
 
@@ -402,26 +386,26 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): Created
 
 
-### `update` replace status of the specified Cmd
+### `update` replace status of the specified UISession
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
+PUT /apis/tilt.dev/v1alpha1/uisessions/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [UISession](../user-interface/ui-session-v1alpha1#UISession), required
 
   
 
@@ -445,23 +429,23 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): Created
 
 
-### `patch` partially update the specified Cmd
+### `patch` partially update the specified UISession
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
+PATCH /apis/tilt.dev/v1alpha1/uisessions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -493,21 +477,21 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
 
-### `patch` partially update status of the specified Cmd
+### `patch` partially update status of the specified UISession
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/uisessions/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -539,21 +523,21 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([UISession](../user-interface/ui-session-v1alpha1#UISession)): OK
 
 
-### `delete` delete a Cmd
+### `delete` delete an UISession
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
+DELETE /apis/tilt.dev/v1alpha1/uisessions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the UISession
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -590,11 +574,11 @@ DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of Cmd
+### `deletecollection` delete collection of UISession
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/cmds
+DELETE /apis/tilt.dev/v1alpha1/uisessions
 
 #### Parameters
 
