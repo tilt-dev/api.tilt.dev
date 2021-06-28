@@ -20,10 +20,22 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: pod-log-stream
+  - name: PortForward
+    group: tilt.dev
+    version: v1alpha1
+    slugname: port-forward
   - name: KubernetesDiscovery
     group: tilt.dev
     version: v1alpha1
     slugname: kubernetes-discovery
+  - name: KubernetesApply
+    group: tilt.dev
+    version: v1alpha1
+    slugname: kubernetes-apply
+  - name: ImageMap
+    group: tilt.dev
+    version: v1alpha1
+    slugname: image-map
     
 - name: Interface
   chapters:
@@ -35,6 +47,10 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: ui-resource
+  - name: UIButton
+    group: tilt.dev
+    version: v1alpha1
+    slugname: ui-button
 
 - name: Meta
   chapters:

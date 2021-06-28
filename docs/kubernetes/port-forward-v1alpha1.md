@@ -3,10 +3,10 @@ layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "FileWatch"
+  kind: "PortForward"
 content_type: "api_reference"
-description: "FileWatch."
-title: "FileWatch v1alpha1"
+description: "PortForward."
+title: "PortForward v1alpha1"
 weight: 2
 ---
 
@@ -15,130 +15,129 @@ weight: 2
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## FileWatch {#FileWatch}
+## PortForward {#PortForward}
 
-FileWatch
+PortForward
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: FileWatch
+- **kind**: PortForward
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([FileWatchSpec](../core/file-watch-v1alpha1#FileWatchSpec))
+- **spec** ([PortForwardSpec](../kubernetes/port-forward-v1alpha1#PortForwardSpec))
 
 
-- **status** ([FileWatchStatus](../core/file-watch-v1alpha1#FileWatchStatus))
-
-
-
-
-
-
-## FileWatchSpec {#FileWatchSpec}
-
-FileWatchSpec defines the desired state of FileWatch
-
-<hr>
-
-- **watchedPaths** ([]string), required
-
-  WatchedPaths are paths of directories or files to watch for changes to. It cannot be empty.
-
-- **ignores** ([]IgnoreDef)
-
-  Ignores are optional rules to filter out a subset of changes matched by WatchedPaths.
-
-  <a name="IgnoreDef"></a>
-  **
-
-  - **ignores.basePath** (string), required
-
-    BasePath is the base path for the patterns. It cannot be empty.
-    
-    If no patterns are specified, everything under it will be recursively ignored.
-
-  - **ignores.patterns** ([]string)
-
-    Patterns are dockerignore style rules. Absolute-style patterns will be rooted to the BasePath.
-    
-    See https://docs.docker.com/engine/reference/builder/#dockerignore-file.
+- **status** ([PortForwardStatus](../kubernetes/port-forward-v1alpha1#PortForwardStatus))
 
 
 
 
 
-## FileWatchStatus {#FileWatchStatus}
 
-FileWatchStatus defines the observed state of FileWatch
+## PortForwardSpec {#PortForwardSpec}
+
+PortForwardSpec defines the desired state of PortForward
 
 <hr>
 
-- **error** (string)
+- **forwards** ([]Forward), required
 
-  Error is set if there is a problem with the filesystem watch. If non-empty, consumers should assume that no filesystem events will be seen and that the file watcher is in a failed state.
+  One or more port forwards to execute on the given pod. Required.
 
-- **fileEvents** ([]FileEvent)
+  <a name="Forward"></a>
+  *Forward defines a port forward to execute on a given pod.*
 
-  FileEvents summarizes batches of file changes (create, modify, or delete) that have been seen in ascending chronological order. Only the most recent 20 events are included.
+  - **forwards.containerPort** (int32), required
 
-  <a name="FileEvent"></a>
+    The port on the Kubernetes pod to connect to. Required.
+
+  - **forwards.host** (string)
+
+    Optional host to bind to on the current machine (localhost by default)
+
+  - **forwards.localPort** (int32)
+
+    The port to expose on the current machine.
+    
+    If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
+
+- **podName** (string), required
+
+  The name of the pod to port forward to/from. Required.
+
+- **namespace** (string)
+
+  The namespace of the pod to port forward to/from. Defaults to the kubecontext default namespace.
+
+
+
+
+
+## PortForwardStatus {#PortForwardStatus}
+
+PortForwardStatus defines the observed state of PortForward
+
+<hr>
+
+- **forwardStatuses** ([]ForwardStatus)
+
+
+  <a name="ForwardStatus"></a>
   **
 
-  - **fileEvents.seenFiles** ([]string), required
+  - **forwardStatuses.addresses** ([]string), required
 
-    SeenFiles is a list of paths which changed (create, modify, or delete).
-
-  - **fileEvents.time** (MicroTime), required
-
-    Time is an approximate timestamp for a batch of file changes.
+    Addresses that the forwarder is bound to.
     
-    This will NOT exactly match any inode attributes (e.g. ctime, mtime) at the filesystem level and is purely informational or for use as an opaque watermark.
+    For example, a `localhost` host will bind to 127.0.0.1 and [::1].
+
+  - **forwardStatuses.containerPort** (int32), required
+
+    ContainerPort is the port in the container being forwarded.
+
+  - **forwardStatuses.localPort** (int32), required
+
+    LocalPort is the port bound to on the system running Tilt.
+
+  - **forwardStatuses.error** (string)
+
+    Error is a human-readable description if a problem was encountered while initializing the forward.
+
+  - **forwardStatuses.startedAt** (MicroTime)
+
+    StartedAt is the time at which the forward was initiated.
+    
+    If the forwarder is not running yet, this will be zero/empty.
 
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
 
-- **lastEventTime** (MicroTime)
-
-  LastEventTime is the timestamp of the most recent file event. It is zero if no events have been seen yet.
-  
-  If the specifics of which files changed are not important, this field can be used as a watermark without needing to inspect FileEvents.
-
-  <a name="MicroTime"></a>
-  *MicroTime is version of Time with microsecond level precision.*
-
-- **monitorStartTime** (MicroTime)
-
-  MonitorStartTime is the timestamp of when filesystem monitor was started. It is zero if the monitor has not been started yet.
-
-  <a name="MicroTime"></a>
-  *MicroTime is version of Time with microsecond level precision.*
 
 
 
 
+## PortForwardList {#PortForwardList}
 
-## FileWatchList {#FileWatchList}
-
-FileWatchList
+PortForwardList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: FileWatchList
+- **kind**: PortForwardList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][FileWatch](../core/file-watch-v1alpha1#FileWatch)), required
+- **items** ([][PortForward](../kubernetes/port-forward-v1alpha1#PortForward)), required
 
 
 
@@ -156,18 +155,18 @@ FileWatchList
 
 
 
-### `get` read the specified FileWatch
+### `get` read the specified PortForward
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches/{name}
+GET /apis/tilt.dev/v1alpha1/portforwards/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
 - **pretty** (*in query*): string
@@ -179,21 +178,21 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
 
-### `get` read status of the specified FileWatch
+### `get` read status of the specified PortForward
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+GET /apis/tilt.dev/v1alpha1/portforwards/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
 - **pretty** (*in query*): string
@@ -205,14 +204,14 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
 
-### `list` list or watch objects of kind FileWatch
+### `list` list or watch objects of kind PortForward
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches
+GET /apis/tilt.dev/v1alpha1/portforwards
 
 #### Parameters
 
@@ -271,19 +270,19 @@ GET /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 ([FileWatchList](../core/file-watch-v1alpha1#FileWatchList)): OK
+200 ([PortForwardList](../kubernetes/port-forward-v1alpha1#PortForwardList)): OK
 
 
-### `create` create a FileWatch
+### `create` create a PortForward
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/filewatches
+POST /apis/tilt.dev/v1alpha1/portforwards
 
 #### Parameters
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [PortForward](../kubernetes/port-forward-v1alpha1#PortForward), required
 
   
 
@@ -307,28 +306,28 @@ POST /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): Created
 
-202 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Accepted
+202 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): Accepted
 
 
-### `update` replace the specified FileWatch
+### `update` replace the specified PortForward
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
+PUT /apis/tilt.dev/v1alpha1/portforwards/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [PortForward](../kubernetes/port-forward-v1alpha1#PortForward), required
 
   
 
@@ -352,26 +351,26 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): Created
 
 
-### `update` replace status of the specified FileWatch
+### `update` replace status of the specified PortForward
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+PUT /apis/tilt.dev/v1alpha1/portforwards/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [PortForward](../kubernetes/port-forward-v1alpha1#PortForward), required
 
   
 
@@ -395,23 +394,23 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): Created
 
 
-### `patch` partially update the specified FileWatch
+### `patch` partially update the specified PortForward
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
+PATCH /apis/tilt.dev/v1alpha1/portforwards/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -443,21 +442,21 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
 
-### `patch` partially update status of the specified FileWatch
+### `patch` partially update status of the specified PortForward
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/portforwards/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -489,21 +488,21 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
 
-### `delete` delete a FileWatch
+### `delete` delete a PortForward
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
+DELETE /apis/tilt.dev/v1alpha1/portforwards/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the PortForward
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -540,11 +539,11 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of FileWatch
+### `deletecollection` delete collection of PortForward
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/filewatches
+DELETE /apis/tilt.dev/v1alpha1/portforwards
 
 #### Parameters
 

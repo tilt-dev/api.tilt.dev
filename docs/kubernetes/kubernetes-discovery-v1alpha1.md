@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "KubernetesDiscovery."
 title: "KubernetesDiscovery v1alpha1"
-weight: 2
+weight: 3
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -125,12 +125,6 @@ KubernetesDiscoveryStatus defines the observed state of KubernetesDiscovery
   The Tilt API representation mirrors the Kubernetes API very closely. Irrelevant data is not included, and some fields might be simplified.
   
   There might also be Tilt-specific status fields.*
-
-  - **pods.baselineRestartCount** (int32), required
-
-    BaselineRestartCount is the number of restarts across all containers before Tilt started observing the Pod.
-    
-    This is used to ignore restarts for a Pod that was already executing before the Tilt daemon started.
 
   - **pods.containers** ([]Container), required
 
@@ -427,13 +421,6 @@ KubernetesDiscoveryStatus defines the observed state of KubernetesDiscovery
     
     Tilt uses this to associate Pods with the build that triggered them.
 
-  - **pods.updateStartedAt** (Time)
-
-    UpdateStartedAt is when Tilt started a deployment update for this Pod.
-
-    <a name="Time"></a>
-    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
-
 - **monitorStartTime** (MicroTime)
 
   MonitorStartTime is the timestamp of when Kubernetes resource discovery was started.
@@ -543,7 +530,7 @@ GET /apis/tilt.dev/v1alpha1/kubernetesdiscoveries
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+  [allowWatchBookmarks](../common-parameters/common-parameters#allowWatchBookmarks)
 
 
 - **continue** (*in query*): string
@@ -588,7 +575,7 @@ GET /apis/tilt.dev/v1alpha1/kubernetesdiscoveries
 
 - **watch** (*in query*): boolean
 
-  Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+  [watch](../common-parameters/common-parameters#watch)
 
 
 
