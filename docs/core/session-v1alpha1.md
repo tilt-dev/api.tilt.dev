@@ -275,7 +275,7 @@ GET /apis/tilt.dev/v1alpha1/sessions
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+  [allowWatchBookmarks](../common-parameters/common-parameters#allowWatchBookmarks)
 
 
 - **continue** (*in query*): string
@@ -320,7 +320,7 @@ GET /apis/tilt.dev/v1alpha1/sessions
 
 - **watch** (*in query*): boolean
 
-  Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+  [watch](../common-parameters/common-parameters#watch)
 
 
 

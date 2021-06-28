@@ -3,11 +3,11 @@ layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "FileWatch"
+  kind: "ImageMap"
 content_type: "api_reference"
-description: "FileWatch."
-title: "FileWatch v1alpha1"
-weight: 2
+description: "ImageMap expresses the mapping from an image reference to a real, pushed image in an image registry that a container runtime can access."
+title: "ImageMap v1alpha1"
+weight: 5
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -15,130 +15,123 @@ weight: 2
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## FileWatch {#FileWatch}
+## ImageMap {#ImageMap}
 
-FileWatch
+ImageMap expresses the mapping from an image reference to a real, pushed image in an image registry that a container runtime can access.
+
+Another way to think about the ImageMap is that ImageMapSpec is a mutable image reference (where the image might not exist yet), but ImageMapStatus is an immutable image reference (where, if an image is specified, it always exists).
+
+ImageMap does not specify how the image is built or who is responsible for building this. But any API that builds images should produce an ImageMap.
+
+For example, a builder that builds to a local image registry might create a map from: 'my-apiserver:dev' to 'localhost:5000/my-apiserver:content-based-label'.
+
+ImageMap doesn't follow the usual Kubernetes-style API semantics (where the Status is the result of running the Spec). It's closer to a ConfigMap. Though the Status does represent a real runtime result (an image in a registry).
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: FileWatch
+- **kind**: ImageMap
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([FileWatchSpec](../core/file-watch-v1alpha1#FileWatchSpec))
+- **spec** ([ImageMapSpec](../kubernetes/image-map-v1alpha1#ImageMapSpec))
 
 
-- **status** ([FileWatchStatus](../core/file-watch-v1alpha1#FileWatchStatus))
-
-
-
-
-
-
-## FileWatchSpec {#FileWatchSpec}
-
-FileWatchSpec defines the desired state of FileWatch
-
-<hr>
-
-- **watchedPaths** ([]string), required
-
-  WatchedPaths are paths of directories or files to watch for changes to. It cannot be empty.
-
-- **ignores** ([]IgnoreDef)
-
-  Ignores are optional rules to filter out a subset of changes matched by WatchedPaths.
-
-  <a name="IgnoreDef"></a>
-  **
-
-  - **ignores.basePath** (string), required
-
-    BasePath is the base path for the patterns. It cannot be empty.
-    
-    If no patterns are specified, everything under it will be recursively ignored.
-
-  - **ignores.patterns** ([]string)
-
-    Patterns are dockerignore style rules. Absolute-style patterns will be rooted to the BasePath.
-    
-    See https://docs.docker.com/engine/reference/builder/#dockerignore-file.
+- **status** ([ImageMapStatus](../kubernetes/image-map-v1alpha1#ImageMapStatus))
 
 
 
 
 
-## FileWatchStatus {#FileWatchStatus}
 
-FileWatchStatus defines the observed state of FileWatch
+## ImageMapSpec {#ImageMapSpec}
+
+ImageMapSpec defines the desired state of ImageMap
 
 <hr>
 
-- **error** (string)
+- **selector** (string), required
 
-  Error is set if there is a problem with the filesystem watch. If non-empty, consumers should assume that no filesystem events will be seen and that the file watcher is in a failed state.
-
-- **fileEvents** ([]FileEvent)
-
-  FileEvents summarizes batches of file changes (create, modify, or delete) that have been seen in ascending chronological order. Only the most recent 20 events are included.
-
-  <a name="FileEvent"></a>
-  **
-
-  - **fileEvents.seenFiles** ([]string), required
-
-    SeenFiles is a list of paths which changed (create, modify, or delete).
-
-  - **fileEvents.time** (MicroTime), required
-
-    Time is an approximate timestamp for a batch of file changes.
-    
-    This will NOT exactly match any inode attributes (e.g. ctime, mtime) at the filesystem level and is purely informational or for use as an opaque watermark.
-
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
-
-- **lastEventTime** (MicroTime)
-
-  LastEventTime is the timestamp of the most recent file event. It is zero if no events have been seen yet.
+  A named image reference.
   
-  If the specifics of which files changed are not important, this field can be used as a watermark without needing to inspect FileEvents.
+  Deployment tools expect this image reference to match an image in the YAML being deployed, and will replace that image reference.
+  
+  By default, this selector will match an image if the names match (tags on both the selector and the matched reference are ignored).
 
-  <a name="MicroTime"></a>
-  *MicroTime is version of Time with microsecond level precision.*
+- **matchExact** (boolean)
 
-- **monitorStartTime** (MicroTime)
+  If specified, then tags on both the selector and the matched reference are used for matching. The selector will only match the reference if the tags match exactly.
 
-  MonitorStartTime is the timestamp of when filesystem monitor was started. It is zero if the monitor has not been started yet.
+- **matchInEnvVars** (boolean)
 
-  <a name="MicroTime"></a>
-  *MicroTime is version of Time with microsecond level precision.*
+  If specified, then the selector will also match any strings in container env variables.
+
+- **overrideArgs** (ImageMapOverrideArgs)
+
+  If specified, the injector will replace the 'args' field in the container when it replaces the image.
+
+  <a name="ImageMapOverrideArgs"></a>
+  *ImageMapArgsOverride defines args to inject when the image is injected. Only applies to types that embed a v1.Container with a Command field.
+  
+  https://pkg.go.dev/k8s.io/api/core/v1#Container*
+
+  - **overrideArgs.args** ([]string), required
+
+    A list of args strings.
+
+- **overrideCommand** (ImageMapOverrideCommand)
+
+  If specified, the injector will replace the 'command' field in the container when it replaces the image.
+
+  <a name="ImageMapOverrideCommand"></a>
+  *ImageMapCommandOverride defines a command to inject when the image is injected. Only applies to types that embed a v1.Container with a Command field.
+  
+  https://pkg.go.dev/k8s.io/api/core/v1#Container*
+
+  - **overrideCommand.command** ([]string), required
+
+    A list of command strings.
 
 
 
 
 
-## FileWatchList {#FileWatchList}
+## ImageMapStatus {#ImageMapStatus}
 
-FileWatchList
+ImageMapStatus defines the observed state of ImageMap
+
+<hr>
+
+- **image** (string), required
+
+  A fully-qualified image reference, including a name and an immutable tag.
+  
+  The image will not necessarily have the same repo URL as the selector. Many Kubernetes clusters let you push to a local registry for local development.
+
+
+
+
+
+## ImageMapList {#ImageMapList}
+
+ImageMapList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: FileWatchList
+- **kind**: ImageMapList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][FileWatch](../core/file-watch-v1alpha1#FileWatch)), required
+- **items** ([][ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)), required
 
 
 
@@ -156,18 +149,18 @@ FileWatchList
 
 
 
-### `get` read the specified FileWatch
+### `get` read the specified ImageMap
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches/{name}
+GET /apis/tilt.dev/v1alpha1/imagemaps/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
 - **pretty** (*in query*): string
@@ -179,21 +172,21 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
 
-### `get` read status of the specified FileWatch
+### `get` read status of the specified ImageMap
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+GET /apis/tilt.dev/v1alpha1/imagemaps/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
 - **pretty** (*in query*): string
@@ -205,14 +198,14 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
 
-### `list` list or watch objects of kind FileWatch
+### `list` list or watch objects of kind ImageMap
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches
+GET /apis/tilt.dev/v1alpha1/imagemaps
 
 #### Parameters
 
@@ -271,19 +264,19 @@ GET /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 ([FileWatchList](../core/file-watch-v1alpha1#FileWatchList)): OK
+200 ([ImageMapList](../kubernetes/image-map-v1alpha1#ImageMapList)): OK
 
 
-### `create` create a FileWatch
+### `create` create an ImageMap
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/filewatches
+POST /apis/tilt.dev/v1alpha1/imagemaps
 
 #### Parameters
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [ImageMap](../kubernetes/image-map-v1alpha1#ImageMap), required
 
   
 
@@ -307,28 +300,28 @@ POST /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): Created
 
-202 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Accepted
+202 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): Accepted
 
 
-### `update` replace the specified FileWatch
+### `update` replace the specified ImageMap
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
+PUT /apis/tilt.dev/v1alpha1/imagemaps/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [ImageMap](../kubernetes/image-map-v1alpha1#ImageMap), required
 
   
 
@@ -352,26 +345,26 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): Created
 
 
-### `update` replace status of the specified FileWatch
+### `update` replace status of the specified ImageMap
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+PUT /apis/tilt.dev/v1alpha1/imagemaps/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [ImageMap](../kubernetes/image-map-v1alpha1#ImageMap), required
 
   
 
@@ -395,23 +388,23 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): Created
 
 
-### `patch` partially update the specified FileWatch
+### `patch` partially update the specified ImageMap
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
+PATCH /apis/tilt.dev/v1alpha1/imagemaps/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -443,21 +436,21 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
 
-### `patch` partially update status of the specified FileWatch
+### `patch` partially update status of the specified ImageMap
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/imagemaps/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -489,21 +482,21 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
 
-### `delete` delete a FileWatch
+### `delete` delete an ImageMap
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
+DELETE /apis/tilt.dev/v1alpha1/imagemaps/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the ImageMap
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -540,11 +533,11 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of FileWatch
+### `deletecollection` delete collection of ImageMap
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/filewatches
+DELETE /apis/tilt.dev/v1alpha1/imagemaps
 
 #### Parameters
 

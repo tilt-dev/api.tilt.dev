@@ -60,11 +60,11 @@ UISessionStatus defines the observed state of UISession
 
 <hr>
 
-- **fatalError** (string), required
+- **fatalError** (string)
 
   A FatalError is an error that forces Tilt to stop its control loop. The API server will stay up and continue to serve the UI, but no further builds will happen.
 
-- **featureFlags** ([]UIFeatureFlag), required
+- **featureFlags** ([]UIFeatureFlag)
 
   FeatureFlags reports a list of experimental features that have been enabled.
 
@@ -75,80 +75,80 @@ UISessionStatus defines the observed state of UISession
   
   As a Tilt user, you don’t need to worry about this unless something else directs you to (e.g., an experimental feature doc, or a conversation with a Tilt contributor).*
 
-  - **featureFlags.name** (string), required
+  - **featureFlags.name** (string)
 
     The name of the flag.
 
-  - **featureFlags.value** (boolean), required
+  - **featureFlags.value** (boolean)
 
     The value of the flag.
 
-- **needsAnalyticsNudge** (boolean), required
+- **needsAnalyticsNudge** (boolean)
 
   NeedsAnalyticsNudge reports whether the UI hasn't opted in or out of analytics, and the UI should nudge them to do so.
 
-- **runningTiltBuild** (TiltBuild), required
+- **runningTiltBuild** (TiltBuild)
 
   RunningTiltBuild reports the currently running version of tilt that this UI is talking to.
 
   <a name="TiltBuild"></a>
   *Information about the running tilt binary.*
 
-  - **runningTiltBuild.commitSHA** (string), required
+  - **runningTiltBuild.commitSHA** (string)
 
     The Git digest of the commit this binary was built at.
 
-  - **runningTiltBuild.date** (string), required
+  - **runningTiltBuild.date** (string)
 
     A human-readable string representing when the binary was built.
 
-  - **runningTiltBuild.dev** (boolean), required
+  - **runningTiltBuild.dev** (boolean)
 
     Indicates whether this is a development build (true) or an official release (false).
 
-  - **runningTiltBuild.version** (string), required
+  - **runningTiltBuild.version** (string)
 
     A semantic version string.
 
-- **suggestedTiltVersion** (string), required
+- **suggestedTiltVersion** (string)
 
   SuggestedTiltVersion tells the UI the recommended version for this user. If the version is different than what's running, the UI may display a prompt to upgrade.
 
-- **tiltCloudSchemeHost** (string), required
+- **tiltCloudSchemeHost** (string)
 
   TiltCloudSchemeHost reports the base URL of the Tilt Cloud instance associated with this Tilt process. Usually https://cloud.tilt.dev
 
-- **tiltCloudTeamID** (string), required
+- **tiltCloudTeamID** (string)
 
   TiltCloudTeamID reports the unique team id if the user is signed into TiltCloud and the Tiltfile declares a team.
 
-- **tiltCloudTeamName** (string), required
+- **tiltCloudTeamName** (string)
 
   TiltCloudUsername reports the human-readable team name if the user is signed into TiltCloud and the Tiltfile declares a team.
 
-- **tiltCloudUsername** (string), required
+- **tiltCloudUsername** (string)
 
   TiltCloudUsername reports the username if the user is signed into TiltCloud.
 
-- **tiltStartTime** (Time), required
+- **tiltStartTime** (Time)
 
   The time that this instance of tilt started. Clients can use this to determine if the API server has restarted and all the objects need to be refreshed.
 
   <a name="Time"></a>
   *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
 
-- **tiltfileKey** (string), required
+- **tiltfileKey** (string)
 
   An identifier for the Tiltfile that is running. Clients can use this to store data associated with a particular project in LocalStorage or other persistent storage.
 
-- **versionSettings** (VersionSettings), required
+- **versionSettings** (VersionSettings)
 
   VersionSettings indicates whether version updates have been enabled/disabled from the Tiltfile.
 
   <a name="VersionSettings"></a>
   *Information about how the Tilt binary handles updates.*
 
-  - **versionSettings.checkUpdates** (boolean), required
+  - **versionSettings.checkUpdates** (boolean)
 
     Whether version updates have been enabled/disabled from the Tiltfile.
 
@@ -252,7 +252,7 @@ GET /apis/tilt.dev/v1alpha1/uisessions
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+  [allowWatchBookmarks](../common-parameters/common-parameters#allowWatchBookmarks)
 
 
 - **continue** (*in query*): string
@@ -297,7 +297,7 @@ GET /apis/tilt.dev/v1alpha1/uisessions
 
 - **watch** (*in query*): boolean
 
-  Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+  [watch](../common-parameters/common-parameters#watch)
 
 
 

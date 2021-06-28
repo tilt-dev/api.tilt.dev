@@ -3,11 +3,11 @@ layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "FileWatch"
+  kind: "UIButton"
 content_type: "api_reference"
-description: "FileWatch."
-title: "FileWatch v1alpha1"
-weight: 2
+description: "UIButton."
+title: "UIButton v1alpha1"
+weight: 3
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -15,106 +15,73 @@ weight: 2
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## FileWatch {#FileWatch}
+## UIButton {#UIButton}
 
-FileWatch
+UIButton
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: FileWatch
+- **kind**: UIButton
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([FileWatchSpec](../core/file-watch-v1alpha1#FileWatchSpec))
+- **spec** ([UIButtonSpec](../interface/ui-button-v1alpha1#UIButtonSpec))
 
 
-- **status** ([FileWatchStatus](../core/file-watch-v1alpha1#FileWatchStatus))
-
-
-
-
-
-
-## FileWatchSpec {#FileWatchSpec}
-
-FileWatchSpec defines the desired state of FileWatch
-
-<hr>
-
-- **watchedPaths** ([]string), required
-
-  WatchedPaths are paths of directories or files to watch for changes to. It cannot be empty.
-
-- **ignores** ([]IgnoreDef)
-
-  Ignores are optional rules to filter out a subset of changes matched by WatchedPaths.
-
-  <a name="IgnoreDef"></a>
-  **
-
-  - **ignores.basePath** (string), required
-
-    BasePath is the base path for the patterns. It cannot be empty.
-    
-    If no patterns are specified, everything under it will be recursively ignored.
-
-  - **ignores.patterns** ([]string)
-
-    Patterns are dockerignore style rules. Absolute-style patterns will be rooted to the BasePath.
-    
-    See https://docs.docker.com/engine/reference/builder/#dockerignore-file.
+- **status** ([UIButtonStatus](../interface/ui-button-v1alpha1#UIButtonStatus))
 
 
 
 
 
-## FileWatchStatus {#FileWatchStatus}
 
-FileWatchStatus defines the observed state of FileWatch
+## UIButtonSpec {#UIButtonSpec}
+
+UIButtonSpec defines the desired state of UIButton
 
 <hr>
 
-- **error** (string)
+- **location** (UIComponentLocation), required
 
-  Error is set if there is a problem with the filesystem watch. If non-empty, consumers should assume that no filesystem events will be seen and that the file watcher is in a failed state.
+  Location associates the button with another component for layout.
 
-- **fileEvents** ([]FileEvent)
+  <a name="UIComponentLocation"></a>
+  *UIComponentLocation specifies where to put a UI component.*
 
-  FileEvents summarizes batches of file changes (create, modify, or delete) that have been seen in ascending chronological order. Only the most recent 20 events are included.
+  - **location.componentID** (string), required
 
-  <a name="FileEvent"></a>
-  **
-
-  - **fileEvents.seenFiles** ([]string), required
-
-    SeenFiles is a list of paths which changed (create, modify, or delete).
-
-  - **fileEvents.time** (MicroTime), required
-
-    Time is an approximate timestamp for a batch of file changes.
+    ComponentID is the identifier of the parent component to associate this component with.
     
-    This will NOT exactly match any inode attributes (e.g. ctime, mtime) at the filesystem level and is purely informational or for use as an opaque watermark.
+    For example, this is a resource name if the ComponentType is Resource.
 
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
+  - **location.componentType** (string), required
 
-- **lastEventTime** (MicroTime)
+    ComponentType is the type of the parent component.
 
-  LastEventTime is the timestamp of the most recent file event. It is zero if no events have been seen yet.
+- **text** (string), required
+
+  Text to appear on the button itself.
+
+
+
+
+
+## UIButtonStatus {#UIButtonStatus}
+
+UIButtonStatus defines the observed state of UIButton
+
+<hr>
+
+- **lastClickedAt** (MicroTime)
+
+  LastClickedAt is the timestamp of the last time the button was clicked.
   
-  If the specifics of which files changed are not important, this field can be used as a watermark without needing to inspect FileEvents.
-
-  <a name="MicroTime"></a>
-  *MicroTime is version of Time with microsecond level precision.*
-
-- **monitorStartTime** (MicroTime)
-
-  MonitorStartTime is the timestamp of when filesystem monitor was started. It is zero if the monitor has not been started yet.
+  If the button has never clicked before, this will be the zero-value/null.
 
   <a name="MicroTime"></a>
   *MicroTime is version of Time with microsecond level precision.*
@@ -123,22 +90,22 @@ FileWatchStatus defines the observed state of FileWatch
 
 
 
-## FileWatchList {#FileWatchList}
+## UIButtonList {#UIButtonList}
 
-FileWatchList
+UIButtonList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: FileWatchList
+- **kind**: UIButtonList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][FileWatch](../core/file-watch-v1alpha1#FileWatch)), required
+- **items** ([][UIButton](../interface/ui-button-v1alpha1#UIButton)), required
 
 
 
@@ -156,18 +123,18 @@ FileWatchList
 
 
 
-### `get` read the specified FileWatch
+### `get` read the specified UIButton
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches/{name}
+GET /apis/tilt.dev/v1alpha1/uibuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
 - **pretty** (*in query*): string
@@ -179,21 +146,21 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
 
-### `get` read status of the specified FileWatch
+### `get` read status of the specified UIButton
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+GET /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
 - **pretty** (*in query*): string
@@ -205,14 +172,14 @@ GET /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
 
-### `list` list or watch objects of kind FileWatch
+### `list` list or watch objects of kind UIButton
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/filewatches
+GET /apis/tilt.dev/v1alpha1/uibuttons
 
 #### Parameters
 
@@ -271,19 +238,19 @@ GET /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 ([FileWatchList](../core/file-watch-v1alpha1#FileWatchList)): OK
+200 ([UIButtonList](../interface/ui-button-v1alpha1#UIButtonList)): OK
 
 
-### `create` create a FileWatch
+### `create` create an UIButton
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/filewatches
+POST /apis/tilt.dev/v1alpha1/uibuttons
 
 #### Parameters
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [UIButton](../interface/ui-button-v1alpha1#UIButton), required
 
   
 
@@ -307,28 +274,28 @@ POST /apis/tilt.dev/v1alpha1/filewatches
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
 
-202 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Accepted
+202 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Accepted
 
 
-### `update` replace the specified FileWatch
+### `update` replace the specified UIButton
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
+PUT /apis/tilt.dev/v1alpha1/uibuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [UIButton](../interface/ui-button-v1alpha1#UIButton), required
 
   
 
@@ -352,26 +319,26 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
 
 
-### `update` replace status of the specified FileWatch
+### `update` replace status of the specified UIButton
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+PUT /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
-- **body**: [FileWatch](../core/file-watch-v1alpha1#FileWatch), required
+- **body**: [UIButton](../interface/ui-button-v1alpha1#UIButton), required
 
   
 
@@ -395,23 +362,23 @@ PUT /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
-201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
 
 
-### `patch` partially update the specified FileWatch
+### `patch` partially update the specified UIButton
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
+PATCH /apis/tilt.dev/v1alpha1/uibuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -443,21 +410,21 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
 
-### `patch` partially update status of the specified FileWatch
+### `patch` partially update status of the specified UIButton
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -489,21 +456,21 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 #### Response
 
 
-200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
 
 
-### `delete` delete a FileWatch
+### `delete` delete an UIButton
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
+DELETE /apis/tilt.dev/v1alpha1/uibuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the FileWatch
+  name of the UIButton
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -540,11 +507,11 @@ DELETE /apis/tilt.dev/v1alpha1/filewatches/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of FileWatch
+### `deletecollection` delete collection of UIButton
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/filewatches
+DELETE /apis/tilt.dev/v1alpha1/uibuttons
 
 #### Parameters
 
