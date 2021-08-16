@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "Probe describes a health check to be performed o determine whether it is alive or ready to receive traffic."
 title: "Probe"
-weight: 4
+weight: 8
 ---
 
 

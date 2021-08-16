@@ -3,11 +3,11 @@ layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "Cmd"
+  kind: "Tiltfile"
 content_type: "api_reference"
-description: "Cmd represents a process on the host machine."
-title: "Cmd v1alpha1"
-weight: 1
+description: "Tiltfile is the main way users add services to Tilt."
+title: "Tiltfile v1alpha1"
+weight: 7
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -15,70 +15,50 @@ weight: 1
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## Cmd {#Cmd}
+## Tiltfile {#Tiltfile}
 
-Cmd represents a process on the host machine.
+Tiltfile is the main way users add services to Tilt.
 
-When the process exits, we will make a best-effort attempt (within OS limitations) to kill any spawned descendant processes.
+The Tiltfile evaluator executes the Tiltfile, then adds all the objects it creates as children of the Tiltfile object.
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: Cmd
+- **kind**: Tiltfile
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([CmdSpec](../core/cmd-v1alpha1#CmdSpec))
+- **spec** ([TiltfileSpec](../core/tiltfile-v1alpha1#TiltfileSpec))
 
 
-- **status** ([CmdStatus](../core/cmd-v1alpha1#CmdStatus))
-
-
-
+- **status** ([TiltfileStatus](../core/tiltfile-v1alpha1#TiltfileStatus))
 
 
 
-## CmdSpec {#CmdSpec}
 
-CmdSpec defines how to run a local command.
+
+
+## TiltfileSpec {#TiltfileSpec}
+
+TiltfileSpec defines the desired state of Tiltfile
 
 <hr>
 
-- **args** ([]string)
+- **path** (string), required
 
-  Command-line arguments. Must have length at least 1.
+  The path to the Tiltfile on disk.
 
-- **dir** (string)
+- **labels** (map[string]string)
 
-  Process working directory.
-  
-  If the working directory is not specified, the command is run in the default Tilt working directory.
-
-- **env** ([]string)
-
-  Additional variables process environment.
-  
-  Expressed as a C-style array of strings of the form ["KEY1=VALUE1", "KEY2=VALUE2", ...].
-  
-  Environment variables are layered on top of the environment variables that Tilt runs with.
-
-- **readinessProbe** ([Probe](../core/probe#Probe))
-
-  Periodic probe of service readiness.
+  A set of labels to apply to all objects owned by this Tiltfile.
 
 - **restartOn** (RestartOnSpec)
 
-  Indicates objects that can trigger a restart of this command.
-  
-  When a restart is triggered, Tilt will try to gracefully shutdown any currently running process, waiting for it to exit before starting a new process. If the process doesn't shutdown within the allotted time, Tilt will kill the process abruptly.
-  
-  Restarts can happen even if the command is already done.
-  
-  Logs of the current process after the restart are discarded.
+  Objects that can trigger a re-execution of this Tiltfile.
 
   <a name="RestartOnSpec"></a>
   *RestartOnSpec indicates the set of objects that can trigger a restart of this object.*
@@ -87,130 +67,98 @@ CmdSpec defines how to run a local command.
 
     A list of file watches that can trigger a restart.
 
-- **startOn** (StartOnSpec)
-
-  Indicates objects that can trigger a start/restart of this command.
-  
-  Restarts behave the same as RestartOn. The key difference is that a Cmd with any StartOn triggers will not have its command run until its StartOn is satisfied.
-
-  <a name="StartOnSpec"></a>
-  *StartOnSpec indicates the set of objects that can trigger a start/restart of this object.*
-
-  - **startOn.uiButtons** ([]string), required
-
-    A list of ui buttons that can trigger a run.
-    
-    When a button triggers a run, any UIInputs on that button will be added to the cmd's env.
-
-  - **startOn.startAfter** (Time)
-
-    Any events that predate this time will be ignored.
-
-    <a name="Time"></a>
-    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
 
 
 
 
+## TiltfileStatus {#TiltfileStatus}
 
-## CmdStatus {#CmdStatus}
-
-CmdStatus defines the observed state of Cmd
-
-Based loosely on ContainerStatus in Kubernetes
+TiltfileStatus defines the observed state of Tiltfile
 
 <hr>
 
-- **ready** (boolean)
+- **running** (TiltfileStateRunning)
 
-  Specifies whether the command has passed its readiness probe.
-  
-  Terminating the command does not change its Ready state.
-  
-  Is always true when no readiness probe is defined.
+  Details about a running tiltfile.
 
-- **running** (CmdStateRunning)
+  <a name="TiltfileStateRunning"></a>
+  *TiltfileStateRunning is a running state of a tiltfile execution.*
 
-  Details about a running process.
+  - **running.reasons** ([]string)
 
-  <a name="CmdStateRunning"></a>
-  *CmdStateRunning is a running state of a local command.*
-
-  - **running.pid** (int32), required
-
-    The process id of the command.
+    The reason why this tiltfile was built. May contain more than one reason.
 
   - **running.startedAt** (MicroTime)
 
-    Time at which the command was last started.
+    Time at which previous execution of the command started.
 
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
 
-- **terminated** (CmdStateTerminated)
+- **terminated** (TiltfileStateTerminated)
 
-  Details about a terminated process.
+  Details about a terminated tiltfile.
 
-  <a name="CmdStateTerminated"></a>
-  *CmdStateTerminated is a terminated state of a local command.*
+  <a name="TiltfileStateTerminated"></a>
+  *TiltfileStateTerminated is a terminated state of a tiltfile execution.*
 
-  - **terminated.exitCode** (int32), required
+  - **terminated.error** (string)
 
-    Exit status from the last termination of the command
-
-  - **terminated.pid** (int32), required
-
-    The process id of the command.
+    Error message if this tiltfile execution failed.
 
   - **terminated.finishedAt** (MicroTime)
 
-    Time at which the command last terminated
+    Time at which the command last terminated.
 
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
 
-  - **terminated.reason** (string)
+  - **terminated.reasons** ([]string)
 
-    (brief) reason the process is terminated
+    The reasons why this tiltfile was built. May contain more than one reason.
 
   - **terminated.startedAt** (MicroTime)
 
-    Time at which previous execution of the command started
+    Time at which previous execution of the command started.
 
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
 
-- **waiting** (CmdStateWaiting)
+  - **terminated.warningCount** (int32)
 
-  Details about a waiting process.
+    Number of warnings generated by this Tiltfile. (brief) reason the process is terminated
 
-  <a name="CmdStateWaiting"></a>
-  *CmdStateWaiting is a waiting state of a local command.*
+- **waiting** (TiltfileStateWaiting)
+
+  Details about a waiting tiltfile.
+
+  <a name="TiltfileStateWaiting"></a>
+  *TiltfileStateWaiting is a waiting state of a tiltfile execution.*
 
   - **waiting.reason** (string)
 
-    (brief) reason the process is not yet running.
+    (brief) reason the tiltfile is waiting.
 
 
 
 
 
-## CmdList {#CmdList}
+## TiltfileList {#TiltfileList}
 
-CmdList
+TiltfileList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: CmdList
+- **kind**: TiltfileList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][Cmd](../core/cmd-v1alpha1#Cmd)), required
+- **items** ([][Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)), required
 
 
 
@@ -228,18 +176,18 @@ CmdList
 
 
 
-### `get` read the specified Cmd
+### `get` read the specified Tiltfile
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds/{name}
+GET /apis/tilt.dev/v1alpha1/tiltfiles/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
 - **pretty** (*in query*): string
@@ -251,21 +199,21 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
 
-### `get` read status of the specified Cmd
+### `get` read status of the specified Tiltfile
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
+GET /apis/tilt.dev/v1alpha1/tiltfiles/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
 - **pretty** (*in query*): string
@@ -277,14 +225,14 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
 
-### `list` list or watch objects of kind Cmd
+### `list` list or watch objects of kind Tiltfile
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds
+GET /apis/tilt.dev/v1alpha1/tiltfiles
 
 #### Parameters
 
@@ -343,19 +291,19 @@ GET /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 ([CmdList](../core/cmd-v1alpha1#CmdList)): OK
+200 ([TiltfileList](../core/tiltfile-v1alpha1#TiltfileList)): OK
 
 
-### `create` create a Cmd
+### `create` create a Tiltfile
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/cmds
+POST /apis/tilt.dev/v1alpha1/tiltfiles
 
 #### Parameters
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [Tiltfile](../core/tiltfile-v1alpha1#Tiltfile), required
 
   
 
@@ -379,28 +327,28 @@ POST /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): Created
 
-202 ([Cmd](../core/cmd-v1alpha1#Cmd)): Accepted
+202 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): Accepted
 
 
-### `update` replace the specified Cmd
+### `update` replace the specified Tiltfile
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/cmds/{name}
+PUT /apis/tilt.dev/v1alpha1/tiltfiles/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [Tiltfile](../core/tiltfile-v1alpha1#Tiltfile), required
 
   
 
@@ -424,26 +372,26 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): Created
 
 
-### `update` replace status of the specified Cmd
+### `update` replace status of the specified Tiltfile
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
+PUT /apis/tilt.dev/v1alpha1/tiltfiles/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [Tiltfile](../core/tiltfile-v1alpha1#Tiltfile), required
 
   
 
@@ -467,23 +415,23 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): Created
 
 
-### `patch` partially update the specified Cmd
+### `patch` partially update the specified Tiltfile
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
+PATCH /apis/tilt.dev/v1alpha1/tiltfiles/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -515,21 +463,21 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
 
-### `patch` partially update status of the specified Cmd
+### `patch` partially update status of the specified Tiltfile
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/tiltfiles/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -561,21 +509,21 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
 
-### `delete` delete a Cmd
+### `delete` delete a Tiltfile
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
+DELETE /apis/tilt.dev/v1alpha1/tiltfiles/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Tiltfile
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -612,11 +560,11 @@ DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of Cmd
+### `deletecollection` delete collection of Tiltfile
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/cmds
+DELETE /apis/tilt.dev/v1alpha1/tiltfiles
 
 #### Parameters
 

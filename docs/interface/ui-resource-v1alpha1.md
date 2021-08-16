@@ -205,6 +205,12 @@ UIResourceStatus defines the observed state of UIResource
 
     The PID of the actively running local command.
 
+- **order** (int32)
+
+  Order expresses the relative order of resources in the UI when they're not otherwise sorted. Lower integers go first. When two resources have the same order, they should be sorted by name.
+  
+  When UIResources are generated from the Tiltfile, we use the order they were added to the Tiltfile for the Order field.
+
 - **pendingBuildSince** (MicroTime)
 
   When the build was put in the pending queue.
