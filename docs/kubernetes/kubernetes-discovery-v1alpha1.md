@@ -105,6 +105,68 @@ KubernetesDiscoverySpec defines the desired state of KubernetesDiscovery
 
     matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
 
+- **podLogStreamTemplateSpec** (PodLogStreamTemplateSpec)
+
+  PodLogStreamTemplateSpec describes the data model for PodLogStreams that KubernetesDiscovery should set up.
+  
+  The KubernetesDiscovery controller will attach PodLogStream objects to all active pods it discovers.
+  
+  If no template is specified, the controller will stream all pod logs available from the apiserver.
+
+  <a name="PodLogStreamTemplateSpec"></a>
+  *PodLogStreamTemplateSpec describes common attributes for PodLogStreams that can be shared across pods.*
+
+  - **podLogStreamTemplateSpec.ignoreContainers** ([]string)
+
+    The names of containers to exclude from the stream.
+    
+    If `onlyContainers` and `ignoreContainers` are not set, will watch all containers in the pod.
+
+  - **podLogStreamTemplateSpec.onlyContainers** ([]string)
+
+    The names of containers to include in the stream.
+    
+    If `onlyContainers` and `ignoreContainers` are not set, will watch all containers in the pod.
+
+  - **podLogStreamTemplateSpec.sinceTime** (Time)
+
+    An RFC3339 timestamp from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned.
+    
+    Translates directly to the underlying PodLogOptions.
+
+    <a name="Time"></a>
+    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+
+- **portForwardTemplateSpec** (PortForwardTemplateSpec)
+
+  PortForwardTemplateSpec describes the data model for port forwards that KubernetesDiscovery should set up.
+  
+  The KubernetesDiscovery controller will choose a "best" candidate for attaching the port-forwarding. Only one PortForward will be active at a time.
+
+  <a name="PortForwardTemplateSpec"></a>
+  *PortForwardTemplateSpec describes common attributes for PortForwards that can be shared across pods.*
+
+  - **portForwardTemplateSpec.forwards** ([]Forward), required
+
+    One or more port forwards to execute on the given pod. Required.
+
+    <a name="Forward"></a>
+    *Forward defines a port forward to execute on a given pod.*
+
+  - **portForwardTemplateSpec.forwards.containerPort** (int32), required
+
+    The port on the Kubernetes pod to connect to. Required.
+
+  - **portForwardTemplateSpec.forwards.host** (string)
+
+    Optional host to bind to on the current machine (localhost by default)
+
+  - **portForwardTemplateSpec.forwards.localPort** (int32)
+
+    The port to expose on the current machine.
+    
+    If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
+
 
 
 

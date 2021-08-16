@@ -3,11 +3,11 @@ layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "Cmd"
+  kind: "Extension"
 content_type: "api_reference"
-description: "Cmd represents a process on the host machine."
-title: "Cmd v1alpha1"
-weight: 1
+description: "Extension defines an extension that's evaluated on Tilt startup."
+title: "Extension v1alpha1"
+weight: 5
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -15,202 +15,87 @@ weight: 1
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## Cmd {#Cmd}
+## Extension {#Extension}
 
-Cmd represents a process on the host machine.
-
-When the process exits, we will make a best-effort attempt (within OS limitations) to kill any spawned descendant processes.
+Extension defines an extension that's evaluated on Tilt startup.
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: Cmd
+- **kind**: Extension
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([CmdSpec](../core/cmd-v1alpha1#CmdSpec))
+- **spec** ([ExtensionSpec](../core/extension-v1alpha1#ExtensionSpec))
 
 
-- **status** ([CmdStatus](../core/cmd-v1alpha1#CmdStatus))
-
-
-
-
-
-
-## CmdSpec {#CmdSpec}
-
-CmdSpec defines how to run a local command.
-
-<hr>
-
-- **args** ([]string)
-
-  Command-line arguments. Must have length at least 1.
-
-- **dir** (string)
-
-  Process working directory.
-  
-  If the working directory is not specified, the command is run in the default Tilt working directory.
-
-- **env** ([]string)
-
-  Additional variables process environment.
-  
-  Expressed as a C-style array of strings of the form ["KEY1=VALUE1", "KEY2=VALUE2", ...].
-  
-  Environment variables are layered on top of the environment variables that Tilt runs with.
-
-- **readinessProbe** ([Probe](../core/probe#Probe))
-
-  Periodic probe of service readiness.
-
-- **restartOn** (RestartOnSpec)
-
-  Indicates objects that can trigger a restart of this command.
-  
-  When a restart is triggered, Tilt will try to gracefully shutdown any currently running process, waiting for it to exit before starting a new process. If the process doesn't shutdown within the allotted time, Tilt will kill the process abruptly.
-  
-  Restarts can happen even if the command is already done.
-  
-  Logs of the current process after the restart are discarded.
-
-  <a name="RestartOnSpec"></a>
-  *RestartOnSpec indicates the set of objects that can trigger a restart of this object.*
-
-  - **restartOn.fileWatches** ([]string), required
-
-    A list of file watches that can trigger a restart.
-
-- **startOn** (StartOnSpec)
-
-  Indicates objects that can trigger a start/restart of this command.
-  
-  Restarts behave the same as RestartOn. The key difference is that a Cmd with any StartOn triggers will not have its command run until its StartOn is satisfied.
-
-  <a name="StartOnSpec"></a>
-  *StartOnSpec indicates the set of objects that can trigger a start/restart of this object.*
-
-  - **startOn.uiButtons** ([]string), required
-
-    A list of ui buttons that can trigger a run.
-    
-    When a button triggers a run, any UIInputs on that button will be added to the cmd's env.
-
-  - **startOn.startAfter** (Time)
-
-    Any events that predate this time will be ignored.
-
-    <a name="Time"></a>
-    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+- **status** ([ExtensionStatus](../core/extension-v1alpha1#ExtensionStatus))
 
 
 
 
 
-## CmdStatus {#CmdStatus}
 
-CmdStatus defines the observed state of Cmd
+## ExtensionSpec {#ExtensionSpec}
 
-Based loosely on ContainerStatus in Kubernetes
+ExtensionSpec defines the desired state of Extension
 
 <hr>
 
-- **ready** (boolean)
+- **repoName** (string), required
 
-  Specifies whether the command has passed its readiness probe.
+  RepoName specifies the ExtensionRepo object where we should find this extension.
   
-  Terminating the command does not change its Ready state.
+  The Extension controller should watch for changes to this repo, and may update if this repo is deleted or moved.
+
+- **repoPath** (string), required
+
+  RepoPath specifies the path to the extension directory inside the repo.
   
-  Is always true when no readiness probe is defined.
-
-- **running** (CmdStateRunning)
-
-  Details about a running process.
-
-  <a name="CmdStateRunning"></a>
-  *CmdStateRunning is a running state of a local command.*
-
-  - **running.pid** (int32), required
-
-    The process id of the command.
-
-  - **running.startedAt** (MicroTime)
-
-    Time at which the command was last started.
-
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
-
-- **terminated** (CmdStateTerminated)
-
-  Details about a terminated process.
-
-  <a name="CmdStateTerminated"></a>
-  *CmdStateTerminated is a terminated state of a local command.*
-
-  - **terminated.exitCode** (int32), required
-
-    Exit status from the last termination of the command
-
-  - **terminated.pid** (int32), required
-
-    The process id of the command.
-
-  - **terminated.finishedAt** (MicroTime)
-
-    Time at which the command last terminated
-
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
-
-  - **terminated.reason** (string)
-
-    (brief) reason the process is terminated
-
-  - **terminated.startedAt** (MicroTime)
-
-    Time at which previous execution of the command started
-
-    <a name="MicroTime"></a>
-    *MicroTime is version of Time with microsecond level precision.*
-
-- **waiting** (CmdStateWaiting)
-
-  Details about a waiting process.
-
-  <a name="CmdStateWaiting"></a>
-  *CmdStateWaiting is a waiting state of a local command.*
-
-  - **waiting.reason** (string)
-
-    (brief) reason the process is not yet running.
+  Once the repo is downloaded, this path should point to a directory with a Tiltfile as the main "entrypoint" of the extension.
 
 
 
 
 
-## CmdList {#CmdList}
+## ExtensionStatus {#ExtensionStatus}
 
-CmdList
+ExtensionStatus defines the observed state of Extension
+
+<hr>
+
+- **error** (string)
+
+  Contains information about any problems loading the extension.
+
+- **path** (string)
+
+  The path to the extension on disk. This location should be shared and readable by all Tilt instances.
+
+
+
+
+
+## ExtensionList {#ExtensionList}
+
+ExtensionList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: CmdList
+- **kind**: ExtensionList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][Cmd](../core/cmd-v1alpha1#Cmd)), required
+- **items** ([][Extension](../core/extension-v1alpha1#Extension)), required
 
 
 
@@ -228,18 +113,18 @@ CmdList
 
 
 
-### `get` read the specified Cmd
+### `get` read the specified Extension
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds/{name}
+GET /apis/tilt.dev/v1alpha1/extensions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
 - **pretty** (*in query*): string
@@ -251,21 +136,21 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
 
-### `get` read status of the specified Cmd
+### `get` read status of the specified Extension
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
+GET /apis/tilt.dev/v1alpha1/extensions/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
 - **pretty** (*in query*): string
@@ -277,14 +162,14 @@ GET /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
 
-### `list` list or watch objects of kind Cmd
+### `list` list or watch objects of kind Extension
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/cmds
+GET /apis/tilt.dev/v1alpha1/extensions
 
 #### Parameters
 
@@ -343,19 +228,19 @@ GET /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 ([CmdList](../core/cmd-v1alpha1#CmdList)): OK
+200 ([ExtensionList](../core/extension-v1alpha1#ExtensionList)): OK
 
 
-### `create` create a Cmd
+### `create` create an Extension
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/cmds
+POST /apis/tilt.dev/v1alpha1/extensions
 
 #### Parameters
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [Extension](../core/extension-v1alpha1#Extension), required
 
   
 
@@ -379,28 +264,28 @@ POST /apis/tilt.dev/v1alpha1/cmds
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([Extension](../core/extension-v1alpha1#Extension)): Created
 
-202 ([Cmd](../core/cmd-v1alpha1#Cmd)): Accepted
+202 ([Extension](../core/extension-v1alpha1#Extension)): Accepted
 
 
-### `update` replace the specified Cmd
+### `update` replace the specified Extension
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/cmds/{name}
+PUT /apis/tilt.dev/v1alpha1/extensions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [Extension](../core/extension-v1alpha1#Extension), required
 
   
 
@@ -424,26 +309,26 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([Extension](../core/extension-v1alpha1#Extension)): Created
 
 
-### `update` replace status of the specified Cmd
+### `update` replace status of the specified Extension
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
+PUT /apis/tilt.dev/v1alpha1/extensions/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
-- **body**: [Cmd](../core/cmd-v1alpha1#Cmd), required
+- **body**: [Extension](../core/extension-v1alpha1#Extension), required
 
   
 
@@ -467,23 +352,23 @@ PUT /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
-201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+201 ([Extension](../core/extension-v1alpha1#Extension)): Created
 
 
-### `patch` partially update the specified Cmd
+### `patch` partially update the specified Extension
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
+PATCH /apis/tilt.dev/v1alpha1/extensions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -515,21 +400,21 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
 
-### `patch` partially update status of the specified Cmd
+### `patch` partially update status of the specified Extension
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/extensions/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -561,21 +446,21 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
 #### Response
 
 
-200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
 
-### `delete` delete a Cmd
+### `delete` delete an Extension
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
+DELETE /apis/tilt.dev/v1alpha1/extensions/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the Cmd
+  name of the Extension
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -612,11 +497,11 @@ DELETE /apis/tilt.dev/v1alpha1/cmds/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of Cmd
+### `deletecollection` delete collection of Extension
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/cmds
+DELETE /apis/tilt.dev/v1alpha1/extensions
 
 #### Parameters
 

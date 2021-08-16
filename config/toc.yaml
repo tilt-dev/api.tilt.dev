@@ -11,6 +11,19 @@ parts:
   - name: Session
     group: tilt.dev
     version: v1alpha1
+  - name: ConfigMap
+    group: tilt.dev
+    version: v1alpha1
+  - name: Extension
+    group: tilt.dev
+    version: v1alpha1
+  - name: ExtensionRepo
+    group: tilt.dev
+    version: v1alpha1
+    slugname: extension-repo
+  - name: Tiltfile
+    group: tilt.dev
+    version: v1alpha1
   - name: Probe
     key: com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Probe
     

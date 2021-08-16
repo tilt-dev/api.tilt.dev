@@ -65,7 +65,57 @@ UIButtonSpec defines the desired state of UIButton
 
 - **text** (string), required
 
-  Text to appear on the button itself.
+  Text to appear on the button itself or as hover text (depending on button location).
+
+- **disabled** (boolean)
+
+  If true, the button will be rendered, but with an effect indicating it's disabled. It will also be unclickable.
+
+- **iconName** (string)
+
+  IconName is a Material Icon to appear next to button text or on the button itself (depending on button location).
+  
+  Valid values are icon font ligature names from the Material Icons set. See https://fonts.google.com/icons for the full list of available icons.
+  
+  If both IconSVG and IconName are specified, IconSVG will take precedence.
+
+- **iconSVG** (string)
+
+  IconSVG is an SVG to use as the icon to appear next to button text or on the button itself (depending on button location).
+  
+  This should be an \<svg> element scaled for a 24x24 viewport.
+  
+  If both IconSVG and IconName are specified, IconSVG will take precedence.
+
+- **inputs** ([]UIInputSpec)
+
+  Any inputs for this button.
+
+  <a name="UIInputSpec"></a>
+  *Defines an Input to render in the UI. If UIButton is analogous to an HTML <form>, UIInput is analogous to an HTML <input>.*
+
+  - **inputs.name** (string), required
+
+    Name of this input. Must be unique within the UIButton.
+
+  - **inputs.label** (string)
+
+    A label to display next to this input in the UI.
+
+  - **inputs.text** (UITextInputSpec)
+
+    A Text input that takes a string.
+
+    <a name="UITextInputSpec"></a>
+    **
+
+  - **inputs.text.defaultValue** (string)
+
+    Initial value for this field.
+
+  - **inputs.text.placeholder** (string)
+
+    A short hint that describes the expected input of this field.
 
 
 
@@ -76,6 +126,28 @@ UIButtonSpec defines the desired state of UIButton
 UIButtonStatus defines the observed state of UIButton
 
 <hr>
+
+- **inputs** ([]UIInputStatus)
+
+  Status of any inputs on this button.
+
+  <a name="UIInputStatus"></a>
+  *The status corresponding to a UIInputSpec*
+
+  - **inputs.name** (string), required
+
+    Name of the input whose status this is. Must match the `Name` of a corresponding UIInputSpec.
+
+  - **inputs.text** (UITextInputStatus)
+
+    The status of a text input
+
+    <a name="UITextInputStatus"></a>
+    **
+
+  - **inputs.text.value** (string), required
+
+    The content of the text input.
 
 - **lastClickedAt** (MicroTime)
 

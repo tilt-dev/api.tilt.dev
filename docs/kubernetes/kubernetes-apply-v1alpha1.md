@@ -121,6 +121,111 @@ KubernetesApplySpec defines the desired state of KubernetesApply
   
   The controller will watch all the image maps, and redeploy the entire YAML if any of the maps resolve to a new image.
 
+- **kubernetesDiscoveryTemplateSpec** (KubernetesDiscoveryTemplateSpec)
+
+  KubernetesDiscoveryTemplateSpec describes how we discover pods for resources created by this Apply.
+  
+  If not specified, the KubernetesDiscovery controller will listen to all pods, and follow owner references to find the pods owned by these resources.
+
+  <a name="KubernetesDiscoveryTemplateSpec"></a>
+  **
+
+  - **kubernetesDiscoveryTemplateSpec.extraSelectors** ([]LabelSelector)
+
+    ExtraSelectors are label selectors that will force discovery of a Pod even if it does not match the AncestorUID.
+    
+    This should only be necessary in the event that a CRD creates Pods but does not set an owner reference to itself.
+
+    <a name="LabelSelector"></a>
+    *A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.*
+
+  - **kubernetesDiscoveryTemplateSpec.extraSelectors.matchExpressions** ([]LabelSelectorRequirement)
+
+    matchExpressions is a list of label selector requirements. The requirements are ANDed.
+
+    <a name="LabelSelectorRequirement"></a>
+    *A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.*
+
+  - **kubernetesDiscoveryTemplateSpec.extraSelectors.matchExpressions.key** (string), required
+
+    *Patch strategy: merge on key `key`*
+    
+    key is the label key that the selector applies to.
+
+  - **kubernetesDiscoveryTemplateSpec.extraSelectors.matchExpressions.operator** (string), required
+
+    operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+  - **kubernetesDiscoveryTemplateSpec.extraSelectors.matchExpressions.values** ([]string)
+
+    values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+  - **kubernetesDiscoveryTemplateSpec.extraSelectors.matchLabels** (map[string]string)
+
+    matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+
+- **podLogStreamTemplateSpec** (PodLogStreamTemplateSpec)
+
+  PodLogStreamTemplateSpec describes the data model for PodLogStreams that KubernetesApply should set up.
+  
+  Underneath the hood, we'll create a KubernetesDiscovery object that finds the pods and sets up the pod log streams.
+  
+  If no template is specified, the controller will stream all pod logs available from the apiserver.
+
+  <a name="PodLogStreamTemplateSpec"></a>
+  *PodLogStreamTemplateSpec describes common attributes for PodLogStreams that can be shared across pods.*
+
+  - **podLogStreamTemplateSpec.ignoreContainers** ([]string)
+
+    The names of containers to exclude from the stream.
+    
+    If `onlyContainers` and `ignoreContainers` are not set, will watch all containers in the pod.
+
+  - **podLogStreamTemplateSpec.onlyContainers** ([]string)
+
+    The names of containers to include in the stream.
+    
+    If `onlyContainers` and `ignoreContainers` are not set, will watch all containers in the pod.
+
+  - **podLogStreamTemplateSpec.sinceTime** (Time)
+
+    An RFC3339 timestamp from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned.
+    
+    Translates directly to the underlying PodLogOptions.
+
+    <a name="Time"></a>
+    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+
+- **portForwardTemplateSpec** (PortForwardTemplateSpec)
+
+  PortForwardTemplateSpec describes the data model for port forwards that KubernetesApply should set up.
+  
+  Underneath the hood, we'll create a KubernetesDiscovery object that finds the pods and sets up the port-forwarding. Only one PortForward will be active at a time.
+
+  <a name="PortForwardTemplateSpec"></a>
+  *PortForwardTemplateSpec describes common attributes for PortForwards that can be shared across pods.*
+
+  - **portForwardTemplateSpec.forwards** ([]Forward), required
+
+    One or more port forwards to execute on the given pod. Required.
+
+    <a name="Forward"></a>
+    *Forward defines a port forward to execute on a given pod.*
+
+  - **portForwardTemplateSpec.forwards.containerPort** (int32), required
+
+    The port on the Kubernetes pod to connect to. Required.
+
+  - **portForwardTemplateSpec.forwards.host** (string)
+
+    Optional host to bind to on the current machine (localhost by default)
+
+  - **portForwardTemplateSpec.forwards.localPort** (int32)
+
+    The port to expose on the current machine.
+    
+    If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
+
 - **timeout** (Duration)
 
   The timeout on the apply operation.
