@@ -478,6 +478,8 @@ PATCH /apis/tilt.dev/v1alpha1/uisessions/{name}
 
 200 ([UISession](../interface/ui-session-v1alpha1#UISession)): OK
 
+201 ([UISession](../interface/ui-session-v1alpha1#UISession)): Created
+
 
 ### `patch` partially update status of the specified UISession
 
@@ -523,6 +525,8 @@ PATCH /apis/tilt.dev/v1alpha1/uisessions/{name}/status
 
 
 200 ([UISession](../interface/ui-session-v1alpha1#UISession)): OK
+
+201 ([UISession](../interface/ui-session-v1alpha1#UISession)): Created
 
 
 ### `delete` delete an UISession

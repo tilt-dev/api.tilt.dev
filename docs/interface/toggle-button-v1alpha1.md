@@ -3,11 +3,11 @@ layout: api
 api_metadata:
   apiVersion: "tilt.dev/v1alpha1"
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
-  kind: "UIButton"
+  kind: "ToggleButton"
 content_type: "api_reference"
-description: "UIButton."
-title: "UIButton v1alpha1"
-weight: 3
+description: "ToggleButton."
+title: "ToggleButton v1alpha1"
+weight: 4
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -15,40 +15,44 @@ weight: 3
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-## UIButton {#UIButton}
+## ToggleButton {#ToggleButton}
 
-UIButton
+ToggleButton
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: UIButton
+- **kind**: ToggleButton
 
 
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([UIButtonSpec](../interface/ui-button-v1alpha1#UIButtonSpec))
+- **spec** ([ToggleButtonSpec](../interface/toggle-button-v1alpha1#ToggleButtonSpec))
 
 
-- **status** ([UIButtonStatus](../interface/ui-button-v1alpha1#UIButtonStatus))
-
-
-
+- **status** ([ToggleButtonStatus](../interface/toggle-button-v1alpha1#ToggleButtonStatus))
 
 
 
-## UIButtonSpec {#UIButtonSpec}
 
-UIButtonSpec defines the desired state of UIButton
+
+
+## ToggleButtonSpec {#ToggleButtonSpec}
+
+ToggleButtonSpec defines the desired state of ToggleButton
 
 <hr>
 
+- **defaultOn** (boolean), required
+
+  If `StateSource` does not point at a valid value, the initial button state will be "on" or "off" depending on this bool
+
 - **location** (UIComponentLocation), required
 
-  Location associates the button with another component for layout.
+  Where to display the button
 
   <a name="UIComponentLocation"></a>
   *UIComponentLocation specifies where to put a UI component.*
@@ -63,174 +67,132 @@ UIButtonSpec defines the desired state of UIButton
 
     ComponentType is the type of the parent component.
 
-- **text** (string), required
+- **off** (ToggleButtonStateSpec), required
 
-  Text to appear on the button itself or as hover text (depending on button location).
+  Config for the button when it is "off"
 
-- **disabled** (boolean)
+  <a name="ToggleButtonStateSpec"></a>
+  *Describes a state (on/off) of a ToggleButton*
 
-  If true, the button will be rendered, but with an effect indicating it's disabled. It will also be unclickable.
+  - **off.text** (string), required
 
-- **iconName** (string)
+    Text to appear on the button itself or as hover text (depending on button location).
 
-  IconName is a Material Icon to appear next to button text or on the button itself (depending on button location).
-  
-  Valid values are icon font ligature names from the Material Icons set. See https://fonts.google.com/icons for the full list of available icons.
-  
-  If both IconSVG and IconName are specified, IconSVG will take precedence.
+  - **off.iconName** (string)
 
-- **iconSVG** (string)
+    IconName is a Material Icon to appear next to button text or on the button itself (depending on button location).
+    
+    Valid values are icon font ligature names from the Material Icons set. See https://fonts.google.com/icons for the full list of available icons.
+    
+    If both IconSVG and IconName are specified, IconSVG will take precedence.
 
-  IconSVG is an SVG to use as the icon to appear next to button text or on the button itself (depending on button location).
-  
-  This should be an \<svg> element scaled for a 24x24 viewport.
-  
-  If both IconSVG and IconName are specified, IconSVG will take precedence.
+  - **off.iconSVG** (string)
 
-- **inputs** ([]UIInputSpec)
+    IconSVG is an SVG to use as the icon to appear next to button text or on the button itself (depending on button location).
+    
+    This should be an \<svg> element scaled for a 24x24 viewport.
+    
+    If both IconSVG and IconName are specified, IconSVG will take precedence.
 
-  Any inputs for this button.
+  - **off.requiresConfirmation** (boolean)
 
-  <a name="UIInputSpec"></a>
-  *Defines an Input to render in the UI. If UIButton is analogous to an HTML <form>, UIInput is analogous to an HTML <input>.*
+    If true, clicking the button in this state requires a second click to confirm.
 
-  - **inputs.name** (string), required
+- **on** (ToggleButtonStateSpec), required
 
-    Name of this input. Must be unique within the UIButton.
+  Config for the button when it is "on"
 
-  - **inputs.bool** (UIBoolInputSpec)
+  <a name="ToggleButtonStateSpec"></a>
+  *Describes a state (on/off) of a ToggleButton*
 
-    A Bool input that is true or false
+  - **on.text** (string), required
 
-    <a name="UIBoolInputSpec"></a>
-    **
+    Text to appear on the button itself or as hover text (depending on button location).
 
-  - **inputs.bool.defaultValue** (boolean)
+  - **on.iconName** (string)
 
-    Whether the input is initially true or false.
+    IconName is a Material Icon to appear next to button text or on the button itself (depending on button location).
+    
+    Valid values are icon font ligature names from the Material Icons set. See https://fonts.google.com/icons for the full list of available icons.
+    
+    If both IconSVG and IconName are specified, IconSVG will take precedence.
 
-  - **inputs.bool.falseString** (string)
+  - **on.iconSVG** (string)
 
-    If the input's value is converted to a string, use this when the value is false. If unspecified, its string value will be `"false"`
+    IconSVG is an SVG to use as the icon to appear next to button text or on the button itself (depending on button location).
+    
+    This should be an \<svg> element scaled for a 24x24 viewport.
+    
+    If both IconSVG and IconName are specified, IconSVG will take precedence.
 
-  - **inputs.bool.trueString** (string)
+  - **on.requiresConfirmation** (boolean)
 
-    If the input's value is converted to a string, use this when the value is true. If unspecified, its string value will be `"true"`
+    If true, clicking the button in this state requires a second click to confirm.
 
-  - **inputs.hidden** (UIHiddenInputSpec)
+- **stateSource** (StateSource), required
 
-    An input that has a constant value and does not display to the user
+  Where the toggle button's state is stored
 
-    <a name="UIHiddenInputSpec"></a>
-    **
+  <a name="StateSource"></a>
+  *Describes where a ToggleButton's state is stored. Exactly one type of source must be set.*
 
-  - **inputs.hidden.value** (string), required
+  - **stateSource.configMap** (ConfigMapStateSource)
 
+    State is stored in a ConfigMap.
 
-  - **inputs.label** (string)
+    <a name="ConfigMapStateSource"></a>
+    *Describes how a ToggleButton's state is stored in a ConfigMap. The ConfigMap must be created separately - the ToggleButton will not automatically create it.*
 
-    A label to display next to this input in the UI.
+  - **stateSource.configMap.key** (string), required
 
-  - **inputs.text** (UITextInputSpec)
+    Key within the ConfigMap
 
-    A Text input that takes a string.
+  - **stateSource.configMap.name** (string), required
 
-    <a name="UITextInputSpec"></a>
-    **
+    Name of the ConfigMap
 
-  - **inputs.text.defaultValue** (string)
+  - **stateSource.configMap.offValue** (string)
 
-    Initial value for this field.
+    ConfigMap value corresponding to the button's "off" state If not specified, "false" will be used.
 
-  - **inputs.text.placeholder** (string)
+  - **stateSource.configMap.onValue** (string)
 
-    A short hint that describes the expected input of this field.
-
-- **requiresConfirmation** (boolean)
-
-  If true, the UI will require the user to click the button a second time to confirm before taking action
-
-
-
+    ConfigMap value corresponding to the button's "on" state. If not specified, "true" will be used.
 
 
-## UIButtonStatus {#UIButtonStatus}
 
-UIButtonStatus defines the observed state of UIButton
+
+
+## ToggleButtonStatus {#ToggleButtonStatus}
+
+ToggleButtonStatus defines the observed state of ToggleButton
 
 <hr>
 
-- **inputs** ([]UIInputStatus)
+- **error** (string)
 
-  Status of any inputs on this button.
-
-  <a name="UIInputStatus"></a>
-  *The status corresponding to a UIInputSpec*
-
-  - **inputs.name** (string), required
-
-    Name of the input whose status this is. Must match the `Name` of a corresponding UIInputSpec.
-
-  - **inputs.bool** (UIBoolInputStatus)
-
-    The status of the input, if it's a bool
-
-    <a name="UIBoolInputStatus"></a>
-    **
-
-  - **inputs.bool.value** (boolean), required
-
-
-  - **inputs.hidden** (UIHiddenInputStatus)
-
-    The status of the input, if it's a hidden
-
-    <a name="UIHiddenInputStatus"></a>
-    **
-
-  - **inputs.hidden.value** (string), required
-
-
-  - **inputs.text** (UITextInputStatus)
-
-    The status of the input, if it's text
-
-    <a name="UITextInputStatus"></a>
-    **
-
-  - **inputs.text.value** (string), required
-
-    The content of the text input.
-
-- **lastClickedAt** (MicroTime)
-
-  LastClickedAt is the timestamp of the last time the button was clicked.
-  
-  If the button has never clicked before, this will be the zero-value/null.
-
-  <a name="MicroTime"></a>
-  *MicroTime is version of Time with microsecond level precision.*
+  If healthy, empty. If non-healthy, specifies a problem the ToggleButton encountered
 
 
 
 
 
-## UIButtonList {#UIButtonList}
+## ToggleButtonList {#ToggleButtonList}
 
-UIButtonList
+ToggleButtonList
 
 <hr>
 
 - **apiVersion**: tilt.dev/v1alpha1
 
 
-- **kind**: UIButtonList
+- **kind**: ToggleButtonList
 
 
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][UIButton](../interface/ui-button-v1alpha1#UIButton)), required
+- **items** ([][ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)), required
 
 
 
@@ -248,18 +210,18 @@ UIButtonList
 
 
 
-### `get` read the specified UIButton
+### `get` read the specified ToggleButton
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/uibuttons/{name}
+GET /apis/tilt.dev/v1alpha1/togglebuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
 - **pretty** (*in query*): string
@@ -271,21 +233,21 @@ GET /apis/tilt.dev/v1alpha1/uibuttons/{name}
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
 
-### `get` read status of the specified UIButton
+### `get` read status of the specified ToggleButton
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
+GET /apis/tilt.dev/v1alpha1/togglebuttons/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
 - **pretty** (*in query*): string
@@ -297,14 +259,14 @@ GET /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
 
-### `list` list or watch objects of kind UIButton
+### `list` list or watch objects of kind ToggleButton
 
 #### HTTP Request
 
-GET /apis/tilt.dev/v1alpha1/uibuttons
+GET /apis/tilt.dev/v1alpha1/togglebuttons
 
 #### Parameters
 
@@ -363,19 +325,19 @@ GET /apis/tilt.dev/v1alpha1/uibuttons
 #### Response
 
 
-200 ([UIButtonList](../interface/ui-button-v1alpha1#UIButtonList)): OK
+200 ([ToggleButtonList](../interface/toggle-button-v1alpha1#ToggleButtonList)): OK
 
 
-### `create` create an UIButton
+### `create` create a ToggleButton
 
 #### HTTP Request
 
-POST /apis/tilt.dev/v1alpha1/uibuttons
+POST /apis/tilt.dev/v1alpha1/togglebuttons
 
 #### Parameters
 
 
-- **body**: [UIButton](../interface/ui-button-v1alpha1#UIButton), required
+- **body**: [ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton), required
 
   
 
@@ -399,28 +361,28 @@ POST /apis/tilt.dev/v1alpha1/uibuttons
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
-201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
+201 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): Created
 
-202 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Accepted
+202 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): Accepted
 
 
-### `update` replace the specified UIButton
+### `update` replace the specified ToggleButton
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/uibuttons/{name}
+PUT /apis/tilt.dev/v1alpha1/togglebuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
-- **body**: [UIButton](../interface/ui-button-v1alpha1#UIButton), required
+- **body**: [ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton), required
 
   
 
@@ -444,26 +406,26 @@ PUT /apis/tilt.dev/v1alpha1/uibuttons/{name}
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
-201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
+201 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): Created
 
 
-### `update` replace status of the specified UIButton
+### `update` replace status of the specified ToggleButton
 
 #### HTTP Request
 
-PUT /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
+PUT /apis/tilt.dev/v1alpha1/togglebuttons/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
-- **body**: [UIButton](../interface/ui-button-v1alpha1#UIButton), required
+- **body**: [ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton), required
 
   
 
@@ -487,23 +449,23 @@ PUT /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
-201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
+201 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): Created
 
 
-### `patch` partially update the specified UIButton
+### `patch` partially update the specified ToggleButton
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/uibuttons/{name}
+PATCH /apis/tilt.dev/v1alpha1/togglebuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -535,23 +497,23 @@ PATCH /apis/tilt.dev/v1alpha1/uibuttons/{name}
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
-201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
+201 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): Created
 
 
-### `patch` partially update status of the specified UIButton
+### `patch` partially update status of the specified ToggleButton
 
 #### HTTP Request
 
-PATCH /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
+PATCH /apis/tilt.dev/v1alpha1/togglebuttons/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
 - **body**: [Patch](../meta/patch#Patch), required
@@ -583,23 +545,23 @@ PATCH /apis/tilt.dev/v1alpha1/uibuttons/{name}/status
 #### Response
 
 
-200 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): OK
+200 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): OK
 
-201 ([UIButton](../interface/ui-button-v1alpha1#UIButton)): Created
+201 ([ToggleButton](../interface/toggle-button-v1alpha1#ToggleButton)): Created
 
 
-### `delete` delete an UIButton
+### `delete` delete a ToggleButton
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/uibuttons/{name}
+DELETE /apis/tilt.dev/v1alpha1/togglebuttons/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the UIButton
+  name of the ToggleButton
 
 
 - **body**: [DeleteOptions](../meta/delete-options#DeleteOptions)
@@ -636,11 +598,11 @@ DELETE /apis/tilt.dev/v1alpha1/uibuttons/{name}
 202 ([Status](../meta/status#Status)): Accepted
 
 
-### `deletecollection` delete collection of UIButton
+### `deletecollection` delete collection of ToggleButton
 
 #### HTTP Request
 
-DELETE /apis/tilt.dev/v1alpha1/uibuttons
+DELETE /apis/tilt.dev/v1alpha1/togglebuttons
 
 #### Parameters
 

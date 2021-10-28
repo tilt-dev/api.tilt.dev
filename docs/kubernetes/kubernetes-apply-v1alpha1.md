@@ -60,6 +60,32 @@ KubernetesApplySpec defines the desired state of KubernetesApply
 
   The YAML to apply to the cluster. Required.
 
+- **disableSource** (DisableSource)
+
+  Specifies how to disable this.
+
+  <a name="DisableSource"></a>
+  *Points at a thing that can control whether something is disabled*
+
+  - **disableSource.configMap** (ConfigMapDisableSource)
+
+    This DisableSource is controlled by a ConfigMap
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableSource.configMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableSource.configMap.name** (string), required
+
+    The name of the ConfigMap
+
+- **discoveryStrategy** (string)
+
+  DiscoveryStrategy describes how we set up pod watches for the applied resources. This affects all systems that attach to pods, including PortForwards, PodLogStreams, resource readiness, and live-updates.
+
 - **imageLocators** ([]KubernetesImageLocator)
 
   Descriptors of how to find images in the YAML.
@@ -252,6 +278,28 @@ KubernetesApplyStatus defines the observed state of KubernetesApply
   A base64-encoded hash of all the inputs to the apply.
   
   We added this so that more procedural code can determine whether their updates have been applied yet or not by the reconciler. But any code using it this way should note that the reconciler may "skip" an update (e.g., if two images get updated in quick succession before the reconciler injects them into the YAML), so a particular ApplieInputHash might never appear.
+
+- **disableStatus** (DisableStatus)
+
+  Details about whether/why this is disabled.
+
+  <a name="DisableStatus"></a>
+  **
+
+  - **disableStatus.disabled** (boolean), required
+
+    Whether this is currently disabled.
+
+  - **disableStatus.lastUpdateTime** (Time), required
+
+    The last time this status was updated.
+
+    <a name="Time"></a>
+    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+
+  - **disableStatus.reason** (string), required
+
+    The reason this status was updated.
 
 - **error** (string)
 
@@ -596,6 +644,8 @@ PATCH /apis/tilt.dev/v1alpha1/kubernetesapplys/{name}
 
 200 ([KubernetesApply](../kubernetes/kubernetes-apply-v1alpha1#KubernetesApply)): OK
 
+201 ([KubernetesApply](../kubernetes/kubernetes-apply-v1alpha1#KubernetesApply)): Created
+
 
 ### `patch` partially update status of the specified KubernetesApply
 
@@ -641,6 +691,8 @@ PATCH /apis/tilt.dev/v1alpha1/kubernetesapplys/{name}/status
 
 
 200 ([KubernetesApply](../kubernetes/kubernetes-apply-v1alpha1#KubernetesApply)): OK
+
+201 ([KubernetesApply](../kubernetes/kubernetes-apply-v1alpha1#KubernetesApply)): Created
 
 
 ### `delete` delete a KubernetesApply

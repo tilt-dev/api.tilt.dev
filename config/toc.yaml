@@ -49,6 +49,10 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: image-map
+  - name: LiveUpdate
+    group: tilt.dev
+    version: v1alpha1
+    slugname: live-update
     
 - name: Interface
   chapters:
@@ -64,6 +68,10 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: ui-button
+  - name: ToggleButton
+    group: tilt.dev
+    version: v1alpha1
+    slugname: toggle-button
 
 - name: Meta
   chapters:

@@ -58,6 +58,28 @@ CmdSpec defines how to run a local command.
   
   If the working directory is not specified, the command is run in the default Tilt working directory.
 
+- **disableSource** (DisableSource)
+
+  Specifies how to disable this.
+
+  <a name="DisableSource"></a>
+  *Points at a thing that can control whether something is disabled*
+
+  - **disableSource.configMap** (ConfigMapDisableSource)
+
+    This DisableSource is controlled by a ConfigMap
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableSource.configMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableSource.configMap.name** (string), required
+
+    The name of the ConfigMap
+
 - **env** ([]string)
 
   Additional variables process environment.
@@ -83,9 +105,13 @@ CmdSpec defines how to run a local command.
   <a name="RestartOnSpec"></a>
   *RestartOnSpec indicates the set of objects that can trigger a restart of this object.*
 
-  - **restartOn.fileWatches** ([]string), required
+  - **restartOn.fileWatches** ([]string)
 
     A list of file watches that can trigger a restart.
+
+  - **restartOn.uiButtons** ([]string)
+
+    A list of ui buttons that can trigger a restart.
 
 - **startOn** (StartOnSpec)
 
@@ -120,6 +146,28 @@ CmdStatus defines the observed state of Cmd
 Based loosely on ContainerStatus in Kubernetes
 
 <hr>
+
+- **disableStatus** (DisableStatus)
+
+  Details about whether/why this is disabled.
+
+  <a name="DisableStatus"></a>
+  **
+
+  - **disableStatus.disabled** (boolean), required
+
+    Whether this is currently disabled.
+
+  - **disableStatus.lastUpdateTime** (Time), required
+
+    The last time this status was updated.
+
+    <a name="Time"></a>
+    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+
+  - **disableStatus.reason** (string), required
+
+    The reason this status was updated.
 
 - **ready** (boolean)
 
@@ -517,6 +565,8 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}
 
 200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
 
+201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
+
 
 ### `patch` partially update status of the specified Cmd
 
@@ -562,6 +612,8 @@ PATCH /apis/tilt.dev/v1alpha1/cmds/{name}/status
 
 
 200 ([Cmd](../core/cmd-v1alpha1#Cmd)): OK
+
+201 ([Cmd](../core/cmd-v1alpha1#Cmd)): Created
 
 
 ### `delete` delete a Cmd

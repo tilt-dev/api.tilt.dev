@@ -113,6 +113,43 @@ UIResourceStatus defines the observed state of UIResource
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
 
+- **disableStatus** (DisableResourceStatus)
+
+  Information about the resource's objects' disabled status.
+
+  <a name="DisableResourceStatus"></a>
+  *Aggregated disable status of objects that belong to a resource.*
+
+  - **disableStatus.disabledCount** (int32), required
+
+    How many of the resource's objects are disabled.
+
+  - **disableStatus.enabledCount** (int32), required
+
+    How many of the resource's objects are enabled.
+
+  - **disableStatus.sources** ([]DisableSource), required
+
+    All unique sources that control the resource's objects' disable status.
+
+    <a name="DisableSource"></a>
+    *Points at a thing that can control whether something is disabled*
+
+  - **disableStatus.sources.configMap** (ConfigMapDisableSource)
+
+    This DisableSource is controlled by a ConfigMap
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableStatus.sources.configMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableStatus.sources.configMap.name** (string), required
+
+    The name of the ConfigMap
+
 - **endpointLinks** ([]UIResourceLink)
 
   Links attached to this resource.
@@ -583,6 +620,8 @@ PATCH /apis/tilt.dev/v1alpha1/uiresources/{name}
 
 200 ([UIResource](../interface/ui-resource-v1alpha1#UIResource)): OK
 
+201 ([UIResource](../interface/ui-resource-v1alpha1#UIResource)): Created
+
 
 ### `patch` partially update status of the specified UIResource
 
@@ -628,6 +667,8 @@ PATCH /apis/tilt.dev/v1alpha1/uiresources/{name}/status
 
 
 200 ([UIResource](../interface/ui-resource-v1alpha1#UIResource)): OK
+
+201 ([UIResource](../interface/ui-resource-v1alpha1#UIResource)): Created
 
 
 ### `delete` delete an UIResource

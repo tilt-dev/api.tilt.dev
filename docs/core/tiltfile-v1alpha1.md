@@ -52,6 +52,12 @@ TiltfileSpec defines the desired state of Tiltfile
 
   The path to the Tiltfile on disk.
 
+- **args** ([]string)
+
+  Arguments to the Tiltfile.
+  
+  Arguments can be positional (['a', 'b', 'c']) or flag-based ('--to-edit=a'). By default, a list of arguments indicates the list of services in the tiltfile that should be enabled.
+
 - **labels** (map[string]string)
 
   A set of labels to apply to all objects owned by this Tiltfile.
@@ -63,9 +69,13 @@ TiltfileSpec defines the desired state of Tiltfile
   <a name="RestartOnSpec"></a>
   *RestartOnSpec indicates the set of objects that can trigger a restart of this object.*
 
-  - **restartOn.fileWatches** ([]string), required
+  - **restartOn.fileWatches** ([]string)
 
     A list of file watches that can trigger a restart.
+
+  - **restartOn.uiButtons** ([]string)
+
+    A list of ui buttons that can trigger a restart.
 
 
 
@@ -465,6 +475,8 @@ PATCH /apis/tilt.dev/v1alpha1/tiltfiles/{name}
 
 200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
 
+201 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): Created
+
 
 ### `patch` partially update status of the specified Tiltfile
 
@@ -510,6 +522,8 @@ PATCH /apis/tilt.dev/v1alpha1/tiltfiles/{name}/status
 
 
 200 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): OK
+
+201 ([Tiltfile](../core/tiltfile-v1alpha1#Tiltfile)): Created
 
 
 ### `delete` delete a Tiltfile

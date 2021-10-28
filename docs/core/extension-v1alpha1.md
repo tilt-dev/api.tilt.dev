@@ -58,6 +58,12 @@ ExtensionSpec defines the desired state of Extension
   
   Once the repo is downloaded, this path should point to a directory with a Tiltfile as the main "entrypoint" of the extension.
 
+- **args** ([]string)
+
+  Arguments to the Tiltfile loaded by this extension.
+  
+  Arguments can be positional (['a', 'b', 'c']) or flag-based ('--to-edit=a'). By default, a list of arguments indicates the list of services in the tiltfile that should be enabled.
+
 
 
 
@@ -402,6 +408,8 @@ PATCH /apis/tilt.dev/v1alpha1/extensions/{name}
 
 200 ([Extension](../core/extension-v1alpha1#Extension)): OK
 
+201 ([Extension](../core/extension-v1alpha1#Extension)): Created
+
 
 ### `patch` partially update status of the specified Extension
 
@@ -447,6 +455,8 @@ PATCH /apis/tilt.dev/v1alpha1/extensions/{name}/status
 
 
 200 ([Extension](../core/extension-v1alpha1#Extension)): OK
+
+201 ([Extension](../core/extension-v1alpha1#Extension)): Created
 
 
 ### `delete` delete an Extension

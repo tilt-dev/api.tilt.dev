@@ -59,17 +59,17 @@ KubernetesDiscoverySpec defines the desired state of KubernetesDiscovery
 
     Namespace is the Kubernetes namespace for discovery. Required.
 
-  - **watches.uid** (string), required
-
-    UID is a Kubernetes object UID.
-    
-    It should either be the exact object UID or the transitive owner.
-
   - **watches.name** (string)
 
     Name is the Kubernetes object name.
     
     This is not directly used in discovery; it is extra metadata.
+
+  - **watches.uid** (string)
+
+    UID is a Kubernetes object UID.
+    
+    It should either be the exact object UID or the transitive owner.
 
 - **extraSelectors** ([]LabelSelector)
 
@@ -818,6 +818,8 @@ PATCH /apis/tilt.dev/v1alpha1/kubernetesdiscoveries/{name}
 
 200 ([KubernetesDiscovery](../kubernetes/kubernetes-discovery-v1alpha1#KubernetesDiscovery)): OK
 
+201 ([KubernetesDiscovery](../kubernetes/kubernetes-discovery-v1alpha1#KubernetesDiscovery)): Created
+
 
 ### `patch` partially update status of the specified KubernetesDiscovery
 
@@ -863,6 +865,8 @@ PATCH /apis/tilt.dev/v1alpha1/kubernetesdiscoveries/{name}/status
 
 
 200 ([KubernetesDiscovery](../kubernetes/kubernetes-discovery-v1alpha1#KubernetesDiscovery)): OK
+
+201 ([KubernetesDiscovery](../kubernetes/kubernetes-discovery-v1alpha1#KubernetesDiscovery)): Created
 
 
 ### `delete` delete a KubernetesDiscovery

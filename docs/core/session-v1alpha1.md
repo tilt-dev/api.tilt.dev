@@ -501,6 +501,8 @@ PATCH /apis/tilt.dev/v1alpha1/sessions/{name}
 
 200 ([Session](../core/session-v1alpha1#Session)): OK
 
+201 ([Session](../core/session-v1alpha1#Session)): Created
+
 
 ### `patch` partially update status of the specified Session
 
@@ -546,6 +548,8 @@ PATCH /apis/tilt.dev/v1alpha1/sessions/{name}/status
 
 
 200 ([Session](../core/session-v1alpha1#Session)): OK
+
+201 ([Session](../core/session-v1alpha1#Session)): Created
 
 
 ### `delete` delete a Session

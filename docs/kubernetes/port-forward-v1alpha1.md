@@ -444,6 +444,8 @@ PATCH /apis/tilt.dev/v1alpha1/portforwards/{name}
 
 200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
 
+201 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): Created
+
 
 ### `patch` partially update status of the specified PortForward
 
@@ -489,6 +491,8 @@ PATCH /apis/tilt.dev/v1alpha1/portforwards/{name}/status
 
 
 200 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): OK
+
+201 ([PortForward](../kubernetes/port-forward-v1alpha1#PortForward)): Created
 
 
 ### `delete` delete a PortForward
