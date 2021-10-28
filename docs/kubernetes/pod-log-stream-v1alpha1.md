@@ -444,6 +444,8 @@ PATCH /apis/tilt.dev/v1alpha1/podlogstreams/{name}
 
 200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
 
+201 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): Created
+
 
 ### `patch` partially update status of the specified PodLogStream
 
@@ -489,6 +491,8 @@ PATCH /apis/tilt.dev/v1alpha1/podlogstreams/{name}/status
 
 
 200 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): OK
+
+201 ([PodLogStream](../kubernetes/pod-log-stream-v1alpha1#PodLogStream)): Created
 
 
 ### `delete` delete a PodLogStream

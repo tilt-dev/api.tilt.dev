@@ -411,6 +411,8 @@ PATCH /apis/tilt.dev/v1alpha1/extensionrepos/{name}
 
 200 ([ExtensionRepo](../core/extension-repo-v1alpha1#ExtensionRepo)): OK
 
+201 ([ExtensionRepo](../core/extension-repo-v1alpha1#ExtensionRepo)): Created
+
 
 ### `patch` partially update status of the specified ExtensionRepo
 
@@ -456,6 +458,8 @@ PATCH /apis/tilt.dev/v1alpha1/extensionrepos/{name}/status
 
 
 200 ([ExtensionRepo](../core/extension-repo-v1alpha1#ExtensionRepo)): OK
+
+201 ([ExtensionRepo](../core/extension-repo-v1alpha1#ExtensionRepo)): Created
 
 
 ### `delete` delete an ExtensionRepo

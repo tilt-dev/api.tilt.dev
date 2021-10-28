@@ -50,6 +50,28 @@ FileWatchSpec defines the desired state of FileWatch
 
   WatchedPaths are paths of directories or files to watch for changes to. It cannot be empty.
 
+- **disableSource** (DisableSource)
+
+  Specifies how to disable this.
+
+  <a name="DisableSource"></a>
+  *Points at a thing that can control whether something is disabled*
+
+  - **disableSource.configMap** (ConfigMapDisableSource)
+
+    This DisableSource is controlled by a ConfigMap
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableSource.configMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableSource.configMap.name** (string), required
+
+    The name of the ConfigMap
+
 - **ignores** ([]IgnoreDef)
 
   Ignores are optional rules to filter out a subset of changes matched by WatchedPaths.
@@ -78,6 +100,28 @@ FileWatchSpec defines the desired state of FileWatch
 FileWatchStatus defines the observed state of FileWatch
 
 <hr>
+
+- **disableStatus** (DisableStatus)
+
+  Details about whether/why this is disabled.
+
+  <a name="DisableStatus"></a>
+  **
+
+  - **disableStatus.disabled** (boolean), required
+
+    Whether this is currently disabled.
+
+  - **disableStatus.lastUpdateTime** (Time), required
+
+    The last time this status was updated.
+
+    <a name="Time"></a>
+    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
+
+  - **disableStatus.reason** (string), required
+
+    The reason this status was updated.
 
 - **error** (string)
 
@@ -445,6 +489,8 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}
 
 200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
 
+201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
+
 
 ### `patch` partially update status of the specified FileWatch
 
@@ -490,6 +536,8 @@ PATCH /apis/tilt.dev/v1alpha1/filewatches/{name}/status
 
 
 200 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): OK
+
+201 ([FileWatch](../core/file-watch-v1alpha1#FileWatch)): Created
 
 
 ### `delete` delete a FileWatch

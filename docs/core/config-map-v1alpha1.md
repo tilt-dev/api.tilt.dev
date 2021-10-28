@@ -293,6 +293,8 @@ PATCH /apis/tilt.dev/v1alpha1/configmaps/{name}
 
 200 ([ConfigMap](../core/config-map-v1alpha1#ConfigMap)): OK
 
+201 ([ConfigMap](../core/config-map-v1alpha1#ConfigMap)): Created
+
 
 ### `delete` delete a ConfigMap
 

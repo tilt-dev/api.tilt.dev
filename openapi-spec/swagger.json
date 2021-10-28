@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "tilt",
-    "version": "0.22.4"
+    "version": "0.22.14"
   },
   "paths": {
     "/apis/": {
@@ -119,7 +119,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -618,6 +618,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Cmd"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Cmd"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -797,6 +803,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Cmd"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Cmd"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -848,7 +860,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -1347,6 +1359,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMap"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMap"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -1398,7 +1416,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -1897,6 +1915,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ExtensionRepo"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ExtensionRepo"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -2076,6 +2100,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ExtensionRepo"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ExtensionRepo"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -2127,7 +2157,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -2626,6 +2656,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Extension"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Extension"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -2805,6 +2841,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Extension"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Extension"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -2856,7 +2898,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -3355,6 +3397,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.FileWatch"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.FileWatch"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -3534,6 +3582,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.FileWatch"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.FileWatch"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -3585,7 +3639,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -4084,6 +4138,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ImageMap"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ImageMap"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -4263,6 +4323,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ImageMap"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ImageMap"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -4314,7 +4380,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -4813,6 +4879,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApply"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApply"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -4992,6 +5064,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApply"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApply"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -5043,7 +5121,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -5542,6 +5620,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscovery"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscovery"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -5721,6 +5805,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscovery"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscovery"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -5735,6 +5825,747 @@
           "uniqueItems": true,
           "type": "string",
           "description": "name of the KubernetesDiscovery",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/liveupdates": {
+      "get": {
+        "description": "list or watch objects of kind LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "listTiltDevV1alpha1LiveUpdate",
+        "parameters": [
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+            "name": "allowWatchBookmarks",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+            "name": "watch",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateList"
+            }
+          }
+        },
+        "x-kubernetes-action": "list",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "post": {
+        "description": "create a LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "createTiltDevV1alpha1LiveUpdate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "post",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "delete": {
+        "description": "delete collection of LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1CollectionLiveUpdate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "deletecollection",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/liveupdates/{name}": {
+      "get": {
+        "description": "read the specified LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1LiveUpdate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "put": {
+        "description": "replace the specified LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1LiveUpdate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "delete": {
+        "description": "delete a LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1LiveUpdate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "delete",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "patch": {
+        "description": "partially update the specified LiveUpdate",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1LiveUpdate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the LiveUpdate",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/liveupdates/{name}/status": {
+      "get": {
+        "description": "read status of the specified LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1LiveUpdateStatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "put": {
+        "description": "replace status of the specified LiveUpdate",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1LiveUpdateStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "patch": {
+        "description": "partially update status of the specified LiveUpdate",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1LiveUpdateStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the LiveUpdate",
           "name": "name",
           "in": "path",
           "required": true
@@ -5772,7 +6603,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -6271,6 +7102,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PodLogStream"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PodLogStream"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -6450,6 +7287,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PodLogStream"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PodLogStream"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -6501,7 +7344,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -7000,6 +7843,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PortForward"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PortForward"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -7179,6 +8028,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PortForward"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PortForward"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -7230,7 +8085,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -7729,6 +8584,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Session"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Session"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -7908,6 +8769,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Session"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Session"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -7959,7 +8826,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -8458,6 +9325,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Tiltfile"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Tiltfile"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -8637,6 +9510,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Tiltfile"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Tiltfile"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -8651,6 +9530,747 @@
           "uniqueItems": true,
           "type": "string",
           "description": "name of the Tiltfile",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/togglebuttons": {
+      "get": {
+        "description": "list or watch objects of kind ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "listTiltDevV1alpha1ToggleButton",
+        "parameters": [
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+            "name": "allowWatchBookmarks",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+            "name": "watch",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonList"
+            }
+          }
+        },
+        "x-kubernetes-action": "list",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "post": {
+        "description": "create a ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "createTiltDevV1alpha1ToggleButton",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "post",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "delete": {
+        "description": "delete collection of ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1CollectionToggleButton",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "deletecollection",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/togglebuttons/{name}": {
+      "get": {
+        "description": "read the specified ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1ToggleButton",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "put": {
+        "description": "replace the specified ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1ToggleButton",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "delete": {
+        "description": "delete a ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1ToggleButton",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "delete",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "patch": {
+        "description": "partially update the specified ToggleButton",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1ToggleButton",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the ToggleButton",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/togglebuttons/{name}/status": {
+      "get": {
+        "description": "read status of the specified ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1ToggleButtonStatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "put": {
+        "description": "replace status of the specified ToggleButton",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1ToggleButtonStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "patch": {
+        "description": "partially update status of the specified ToggleButton",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1ToggleButtonStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the ToggleButton",
           "name": "name",
           "in": "path",
           "required": true
@@ -8688,7 +10308,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -9187,6 +10807,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIButton"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIButton"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -9366,6 +10992,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIButton"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIButton"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -9417,7 +11049,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -9916,6 +11548,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResource"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResource"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -10095,6 +11733,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResource"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResource"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -10146,7 +11790,7 @@
           {
             "uniqueItems": true,
             "type": "boolean",
-            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
             "name": "allowWatchBookmarks",
             "in": "query"
           },
@@ -10645,6 +12289,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UISession"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UISession"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -10824,6 +12474,12 @@
             "schema": {
               "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UISession"
             }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UISession"
+            }
           }
         },
         "x-kubernetes-action": "patch",
@@ -10890,7 +12546,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -10998,7 +12654,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11114,7 +12770,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11222,7 +12878,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11338,7 +12994,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11446,7 +13102,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11562,7 +13218,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11670,7 +13326,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11786,7 +13442,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -11894,7 +13550,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12010,7 +13666,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12118,7 +13774,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12234,7 +13890,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12342,7 +13998,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12458,7 +14114,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12566,7 +14222,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12602,6 +14258,230 @@
           "uniqueItems": true,
           "type": "string",
           "description": "name of the KubernetesDiscovery",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/watch/liveupdates": {
+      "get": {
+        "description": "watch individual changes to a list of LiveUpdate. deprecated: use the 'watch' parameter with a list operation instead.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1LiveUpdateList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watchlist",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/watch/liveupdates/{name}": {
+      "get": {
+        "description": "watch changes to an object of kind LiveUpdate. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1LiveUpdate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "LiveUpdate"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the LiveUpdate",
           "name": "name",
           "in": "path",
           "required": true
@@ -12682,7 +14562,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12790,7 +14670,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -12906,7 +14786,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13014,7 +14894,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13130,7 +15010,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13238,7 +15118,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13354,7 +15234,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13462,7 +15342,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13498,6 +15378,230 @@
           "uniqueItems": true,
           "type": "string",
           "description": "name of the Tiltfile",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/watch/togglebuttons": {
+      "get": {
+        "description": "watch individual changes to a list of ToggleButton. deprecated: use the 'watch' parameter with a list operation instead.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1ToggleButtonList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watchlist",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/watch/togglebuttons/{name}": {
+      "get": {
+        "description": "watch changes to an object of kind ToggleButton. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1ToggleButton",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "ToggleButton"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the ToggleButton",
           "name": "name",
           "in": "path",
           "required": true
@@ -13578,7 +15682,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13686,7 +15790,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13802,7 +15906,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -13910,7 +16014,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -14026,7 +16130,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -14134,7 +16238,7 @@
         {
           "uniqueItems": true,
           "type": "boolean",
-          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
           "name": "allowWatchBookmarks",
           "in": "query"
         },
@@ -14317,6 +16421,10 @@
           "description": "Process working directory.\n\nIf the working directory is not specified, the command is run in the default Tilt working directory.",
           "type": "string"
         },
+        "disableSource": {
+          "description": "Specifies how to disable this.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
+        },
         "env": {
           "description": "Additional variables process environment.\n\nExpressed as a C-style array of strings of the form [\"KEY1=VALUE1\", \"KEY2=VALUE2\", ...].\n\nEnvironment variables are layered on top of the environment variables that Tilt runs with.",
           "type": "array",
@@ -14402,6 +16510,10 @@
       "description": "CmdStatus defines the observed state of Cmd\n\nBased loosely on ContainerStatus in Kubernetes",
       "type": "object",
       "properties": {
+        "disableStatus": {
+          "description": "Details about whether/why this is disabled.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableStatus"
+        },
         "ready": {
           "description": "Specifies whether the command has passed its readiness probe.\n\nTerminating the command does not change its Ready state.\n\nIs always true when no readiness probe is defined.",
           "type": "boolean"
@@ -14451,6 +16563,24 @@
         }
       ]
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMapDisableSource": {
+      "description": "Specifies a ConfigMap to control a DisableSource",
+      "type": "object",
+      "required": [
+        "name",
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "description": "The key where the enable/disable state is stored.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the ConfigMap",
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMapList": {
       "description": "ConfigMapList",
       "type": "object",
@@ -14483,6 +16613,32 @@
           "version": "v1alpha1"
         }
       ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMapStateSource": {
+      "description": "Describes how a ToggleButton's state is stored in a ConfigMap. The ConfigMap must be created separately - the ToggleButton will not automatically create it.",
+      "type": "object",
+      "required": [
+        "name",
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "description": "Key within the ConfigMap",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the ConfigMap",
+          "type": "string"
+        },
+        "offValue": {
+          "description": "ConfigMap value corresponding to the button's \"off\" state If not specified, \"false\" will be used.",
+          "type": "string"
+        },
+        "onValue": {
+          "description": "ConfigMap value corresponding to the button's \"on\" state. If not specified, \"true\" will be used.",
+          "type": "string"
+        }
+      }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Container": {
       "description": "Container is an init or application container within a pod.\n\nThe Tilt API representation mirrors the Kubernetes API very closely. Irrelevant data is not included, and some fields might be simplified.\n\nThere might also be Tilt-specific status fields.",
@@ -14627,6 +16783,66 @@
       "properties": {
         "reason": {
           "description": "Reason is a (brief) reason the container is not yet running.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableResourceStatus": {
+      "description": "Aggregated disable status of objects that belong to a resource.",
+      "type": "object",
+      "required": [
+        "enabledCount",
+        "disabledCount",
+        "sources"
+      ],
+      "properties": {
+        "disabledCount": {
+          "description": "How many of the resource's objects are disabled.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "enabledCount": {
+          "description": "How many of the resource's objects are enabled.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "sources": {
+          "description": "All unique sources that control the resource's objects' disable status.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
+          }
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource": {
+      "description": "Points at a thing that can control whether something is disabled",
+      "type": "object",
+      "properties": {
+        "configMap": {
+          "description": "This DisableSource is controlled by a ConfigMap",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMapDisableSource"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableStatus": {
+      "type": "object",
+      "required": [
+        "disabled",
+        "lastUpdateTime",
+        "reason"
+      ],
+      "properties": {
+        "disabled": {
+          "description": "Whether this is currently disabled.",
+          "type": "boolean"
+        },
+        "lastUpdateTime": {
+          "description": "The last time this status was updated.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+        },
+        "reason": {
+          "description": "The reason this status was updated.",
           "type": "string"
         }
       }
@@ -14817,6 +17033,13 @@
         "repoPath"
       ],
       "properties": {
+        "args": {
+          "description": "Arguments to the Tiltfile loaded by this extension.\n\nArguments can be positional (['a', 'b', 'c']) or flag-based ('--to-edit=a'). By default, a list of arguments indicates the list of services in the tiltfile that should be enabled.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "repoName": {
           "description": "RepoName specifies the ExtensionRepo object where we should find this extension.\n\nThe Extension controller should watch for changes to this repo, and may update if this repo is deleted or moved.",
           "type": "string"
@@ -14931,6 +17154,10 @@
         "watchedPaths"
       ],
       "properties": {
+        "disableSource": {
+          "description": "Specifies how to disable this.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
+        },
         "ignores": {
           "description": "Ignores are optional rules to filter out a subset of changes matched by WatchedPaths.",
           "type": "array",
@@ -14951,6 +17178,10 @@
       "description": "FileWatchStatus defines the observed state of FileWatch",
       "type": "object",
       "properties": {
+        "disableStatus": {
+          "description": "Details about whether/why this is disabled.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableStatus"
+        },
         "error": {
           "description": "Error is set if there is a problem with the filesystem watch. If non-empty, consumers should assume that no filesystem events will be seen and that the file watcher is in a failed state.",
           "type": "string"
@@ -15202,6 +17433,10 @@
         "selector"
       ],
       "properties": {
+        "disableSource": {
+          "description": "Specifies how to disable this.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
+        },
         "matchExact": {
           "description": "If specified, then tags on both the selector and the matched reference are used for matching. The selector will only match the reference if the tags match exactly.",
           "type": "boolean"
@@ -15231,6 +17466,10 @@
         "image"
       ],
       "properties": {
+        "buildStartTime": {
+          "description": "Timestamp indicating when the image started building.\n\nIntended to be used to determine which file changes were picked up by the image build. We can assume that any file changes before this timestamp were definitely included in the image, and any file changes after this timestamp may not be included in the image.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
         "image": {
           "description": "A fully-qualified image reference, including a name and an immutable tag.\n\nThe image will not necessarily have the same repo URL as the selector. Many Kubernetes clusters let you push to a local registry for local development.",
           "type": "string"
@@ -15307,6 +17546,14 @@
         "yaml"
       ],
       "properties": {
+        "disableSource": {
+          "description": "Specifies how to disable this.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
+        },
+        "discoveryStrategy": {
+          "description": "DiscoveryStrategy describes how we set up pod watches for the applied resources. This affects all systems that attach to pods, including PortForwards, PodLogStreams, resource readiness, and live-updates.",
+          "type": "string"
+        },
         "imageLocators": {
           "description": "Descriptors of how to find images in the YAML.\n\nNeeded when injecting images into CRDs.",
           "type": "array",
@@ -15350,6 +17597,10 @@
         "appliedInputHash": {
           "description": "A base64-encoded hash of all the inputs to the apply.\n\nWe added this so that more procedural code can determine whether their updates have been applied yet or not by the reconciler. But any code using it this way should note that the reconciler may \"skip\" an update (e.g., if two images get updated in quick succession before the reconciler injects them into the YAML), so a particular ApplieInputHash might never appear.",
           "type": "string"
+        },
+        "disableStatus": {
+          "description": "Details about whether/why this is disabled.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableStatus"
         },
         "error": {
           "description": "An error applying the YAML.\n\nIf there was an error, than ResultYAML should be empty (and vice versa).",
@@ -15534,7 +17785,6 @@
       "description": "KubernetesWatchRef is similar to v1.ObjectReference from the Kubernetes API and is used to determine what objects should be reported on based on discovery.",
       "type": "object",
       "required": [
-        "uid",
         "namespace"
       ],
       "properties": {
@@ -15548,6 +17798,262 @@
         },
         "uid": {
           "description": "UID is a Kubernetes object UID.\n\nIt should either be the exact object UID or the transitive owner.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate": {
+      "description": "LiveUpdate",
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+        },
+        "spec": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSpec"
+        },
+        "status": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateStatus"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "LiveUpdate",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateContainerStatus": {
+      "description": "LiveUpdateContainerStatus defines the observed state of the live-update syncer for a particular container.",
+      "type": "object",
+      "required": [
+        "containerName",
+        "podName",
+        "namespace"
+      ],
+      "properties": {
+        "containerID": {
+          "description": "The ID of the container in the pod, in the format 'docker://\u003ccontainer_id\u003e'.",
+          "type": "string"
+        },
+        "containerName": {
+          "description": "The name of the container in the pod.",
+          "type": "string"
+        },
+        "lastExecError": {
+          "description": "Contains any error messages from the most recent sequence of Execs.\n\nEmpty if the most recent Execs completed successfully.\n\nAn ExecError is not necessarily a failure state. For example, a linter error in the container is something we'd want to surface to the user, but not an indication that the live-updater did something wrong.",
+          "type": "string"
+        },
+        "lastFileTimeSynced": {
+          "description": "The timestamp of the most recent file update successfully synced to the container.\n\nMust match the timestamp in a FileEvent, not the time the sync was performed.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
+        "namespace": {
+          "description": "The namespace of the pod this container belongs to.",
+          "type": "string"
+        },
+        "podName": {
+          "description": "The name of the pod this container belongs to.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateExec": {
+      "description": "Runs a remote command after files have been synced to the container. Commonly used for small in-container changes (like moving files around, or restart processes).",
+      "type": "object",
+      "required": [
+        "args"
+      ],
+      "properties": {
+        "args": {
+          "description": "Command-line arguments to run inside the container. Must have length at least 1.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "triggerPaths": {
+          "description": "A list of relative paths that trigger this command exec.\n\nIf not specified, all file changes seen by the LiveUpdate trigger this exec.\n\nPaths are specified relative to the the BasePath of the LiveUpdate.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateKubernetesSelector": {
+      "description": "Specifies how to select containers to live update inside K8s.",
+      "type": "object",
+      "properties": {
+        "applyName": {
+          "description": "ApplyName is the name of a KubernetesApply object for filtering discovered pods to prevent updating old deployments.\n\nIf not provided, no filtering will be applied and all discovered Pods will be eligible for update.",
+          "type": "string"
+        },
+        "discoveryName": {
+          "description": "The name of a KubernetesDiscovery object for finding pods.",
+          "type": "string"
+        },
+        "image": {
+          "description": "Image specifies the name of the image that we're copying files into. Determines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.",
+          "type": "string"
+        },
+        "imageMapName": {
+          "description": "Name of the ImageMap object to watch for which file changes are included in the container image.\n\nIf not provided, the live-updater will copy any file changes that it's aware of, even if they're already included in the container.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateList": {
+      "description": "LiveUpdateList",
+      "type": "object",
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdate"
+          }
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "LiveUpdateList",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSelector": {
+      "description": "Specifies how to select containers to live update.\n\nEvery live update must be associated with some object for finding containers. In the future, we expect there to be other types of container discovery objects (like Docker Compose container discovery).",
+      "type": "object",
+      "properties": {
+        "kubernetes": {
+          "description": "Finds containers in Kubernetes.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateKubernetesSelector"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSpec": {
+      "description": "LiveUpdateSpec defines the desired state of LiveUpdate",
+      "type": "object",
+      "required": [
+        "basePath",
+        "selector"
+      ],
+      "properties": {
+        "basePath": {
+          "description": "An absolute local path that serves as the basis for all path calculations.\n\nRelative paths in this object are calculated relative to the base path. It cannot be empty.",
+          "type": "string"
+        },
+        "execs": {
+          "description": "A list of commands to run inside the container after files are synced.\n\nNB: In some documentation, we call these 'runs'. 'exec' more clearly matches kubectl exec for remote commands.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateExec"
+          }
+        },
+        "fileWatchNames": {
+          "description": "Names of ileWatch objects to watch for a list of files that have recently been updated.\n\nEvery live update must be associated with at least one FileWatch object to trigger the update. Usually, Tilt structures it so that there's a FileWatch for each image we depend on.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restart": {
+          "description": "Specifies whether Tilt should try to natively restart the container in-place after syncs and execs.\n\nNote that native restarts are only supported by Docker and Docker Compose (and NOT docker-shim or containerd, the most common Kubernetes runtimes).\n\nTo restart on live-update in Kubernetes, see the guide for how to apply extensions to add restart behavior:\n\nhttps://docs.tilt.dev/live_update_reference.html",
+          "type": "string"
+        },
+        "selector": {
+          "description": "Specifies how this live-updater finds the containers that need live update.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSelector"
+        },
+        "stopPaths": {
+          "description": "A list of relative paths that will immediately stop the live-update for the current container.\n\nUsed to detect file changes that invalidate the entire container image, forcing a complete rebuild.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "syncs": {
+          "description": "Specify paths that can be live-updated into the container and their destinations. Any file changes observed that do not match any of these will invalidate the container image and force a complete rebuild.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSync"
+          }
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateStateFailed": {
+      "description": "If any of the containers are currently failing to process updates, the LiveUpdateStateFailed surfaces information about what's happening and what the live-updater is doing to fix the problem.",
+      "type": "object",
+      "properties": {
+        "lastTransitionTime": {
+          "description": "When the live-updater transitioned into a Failed state.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
+        "message": {
+          "description": "Human-readable description of what's wrong.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "One word camel-case reason why we've reached a failure state.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateStatus": {
+      "description": "LiveUpdateStatus defines the observed state of LiveUpdate",
+      "type": "object",
+      "properties": {
+        "containers": {
+          "description": "A list of all containers that the live-updater is currently connected to.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateContainerStatus"
+          }
+        },
+        "failed": {
+          "description": "If any of the containers are currently failing to process updates, the Failed state surfaces information about what's happening and what the live-updater is doing to fix the problem.\n\nIf all containers are updating successfully, Failed will be nil.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateStateFailed"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSync": {
+      "description": "Determines how a local path maps into a container image.",
+      "type": "object",
+      "required": [
+        "localPath",
+        "containerPath"
+      ],
+      "properties": {
+        "containerPath": {
+          "description": "An absolute path inside the container. Required.",
+          "type": "string"
+        },
+        "localPath": {
+          "description": "A relative path to local files. Required.\n\nComputed relative to the live-update BasePath.",
           "type": "string"
         }
       }
@@ -15979,12 +18485,16 @@
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.RestartOnSpec": {
       "description": "RestartOnSpec indicates the set of objects that can trigger a restart of this object.",
       "type": "object",
-      "required": [
-        "fileWatches"
-      ],
       "properties": {
         "fileWatches": {
           "description": "A list of file watches that can trigger a restart.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "uiButtons": {
+          "description": "A list of ui buttons that can trigger a restart.",
           "type": "array",
           "items": {
             "type": "string"
@@ -16126,6 +18636,16 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.StateSource": {
+      "description": "Describes where a ToggleButton's state is stored. Exactly one type of source must be set.",
+      "type": "object",
+      "properties": {
+        "configMap": {
+          "description": "State is stored in a ConfigMap.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ConfigMapStateSource"
         }
       }
     },
@@ -16341,6 +18861,13 @@
         "path"
       ],
       "properties": {
+        "args": {
+          "description": "Arguments to the Tiltfile.\n\nArguments can be positional (['a', 'b', 'c']) or flag-based ('--to-edit=a'). By default, a list of arguments indicates the list of services in the tiltfile that should be enabled.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "labels": {
           "description": "A set of labels to apply to all objects owned by this Tiltfile.",
           "type": "object",
@@ -16430,6 +18957,165 @@
         "waiting": {
           "description": "Details about a waiting tiltfile.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TiltfileStateWaiting"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton": {
+      "description": "ToggleButton",
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+        },
+        "spec": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonSpec"
+        },
+        "status": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonStatus"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "ToggleButton",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonList": {
+      "description": "ToggleButtonList",
+      "type": "object",
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButton"
+          }
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "ToggleButtonList",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonSpec": {
+      "description": "ToggleButtonSpec defines the desired state of ToggleButton",
+      "type": "object",
+      "required": [
+        "location",
+        "on",
+        "off",
+        "defaultOn",
+        "stateSource"
+      ],
+      "properties": {
+        "defaultOn": {
+          "description": "If `StateSource` does not point at a valid value, the initial button state will be \"on\" or \"off\" depending on this bool",
+          "type": "boolean"
+        },
+        "location": {
+          "description": "Where to display the button",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIComponentLocation"
+        },
+        "off": {
+          "description": "Config for the button when it is \"off\"",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonStateSpec"
+        },
+        "on": {
+          "description": "Config for the button when it is \"on\"",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonStateSpec"
+        },
+        "stateSource": {
+          "description": "Where the toggle button's state is stored",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.StateSource"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonStateSpec": {
+      "description": "Describes a state (on/off) of a ToggleButton",
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "iconName": {
+          "description": "IconName is a Material Icon to appear next to button text or on the button itself (depending on button location).\n\nValid values are icon font ligature names from the Material Icons set. See https://fonts.google.com/icons for the full list of available icons.\n\nIf both IconSVG and IconName are specified, IconSVG will take precedence.",
+          "type": "string"
+        },
+        "iconSVG": {
+          "description": "IconSVG is an SVG to use as the icon to appear next to button text or on the button itself (depending on button location).\n\nThis should be an \u003csvg\u003e element scaled for a 24x24 viewport.\n\nIf both IconSVG and IconName are specified, IconSVG will take precedence.",
+          "type": "string"
+        },
+        "requiresConfirmation": {
+          "description": "If true, clicking the button in this state requires a second click to confirm.",
+          "type": "boolean"
+        },
+        "text": {
+          "description": "Text to appear on the button itself or as hover text (depending on button location).",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ToggleButtonStatus": {
+      "description": "ToggleButtonStatus defines the observed state of ToggleButton",
+      "type": "object",
+      "properties": {
+        "error": {
+          "description": "If healthy, empty. If non-healthy, specifies a problem the ToggleButton encountered",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBoolInputSpec": {
+      "type": "object",
+      "properties": {
+        "defaultValue": {
+          "description": "Whether the input is initially true or false.",
+          "type": "boolean"
+        },
+        "falseString": {
+          "description": "If the input's value is converted to a string, use this when the value is false. If unspecified, its string value will be `\"false\"`",
+          "type": "string"
+        },
+        "trueString": {
+          "description": "If the input's value is converted to a string, use this when the value is true. If unspecified, its string value will be `\"true\"`",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBoolInputStatus": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "boolean"
         }
       }
     },
@@ -16574,6 +19260,10 @@
           "description": "Location associates the button with another component for layout.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIComponentLocation"
         },
+        "requiresConfirmation": {
+          "description": "If true, the UI will require the user to click the button a second time to confirm before taking action",
+          "type": "boolean"
+        },
         "text": {
           "description": "Text to appear on the button itself or as hover text (depending on button location).",
           "type": "string"
@@ -16629,6 +19319,28 @@
         }
       }
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIHiddenInputSpec": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIHiddenInputStatus": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIInputSpec": {
       "description": "Defines an Input to render in the UI. If UIButton is analogous to an HTML \u003cform\u003e, UIInput is analogous to an HTML \u003cinput\u003e.",
       "type": "object",
@@ -16636,6 +19348,14 @@
         "name"
       ],
       "properties": {
+        "bool": {
+          "description": "A Bool input that is true or false",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBoolInputSpec"
+        },
+        "hidden": {
+          "description": "An input that has a constant value and does not display to the user",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIHiddenInputSpec"
+        },
         "label": {
           "description": "A label to display next to this input in the UI.",
           "type": "string"
@@ -16657,12 +19377,20 @@
         "name"
       ],
       "properties": {
+        "bool": {
+          "description": "The status of the input, if it's a bool",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBoolInputStatus"
+        },
+        "hidden": {
+          "description": "The status of the input, if it's a hidden",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIHiddenInputStatus"
+        },
         "name": {
           "description": "Name of the input whose status this is. Must match the `Name` of a corresponding UIInputSpec.",
           "type": "string"
         },
         "text": {
-          "description": "The status of a text input",
+          "description": "The status of the input, if it's text",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UITextInputStatus"
         }
       }
@@ -16823,6 +19551,10 @@
         "currentBuild": {
           "description": "The currently running build, if any.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBuildRunning"
+        },
+        "disableStatus": {
+          "description": "Information about the resource's objects' disabled status.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableResourceStatus"
         },
         "endpointLinks": {
           "description": "Links attached to this resource.",
@@ -17406,6 +20138,10 @@
           "description": "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
           "type": "string"
         },
+        "subresource": {
+          "description": "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+          "type": "string"
+        },
         "time": {
           "description": "Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
@@ -17541,7 +20277,8 @@
           "description": "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
           "type": "string"
         }
-      }
+      },
+      "x-kubernetes-map-type": "atomic"
     },
     "io.k8s.apimachinery.pkg.apis.meta.v1.Patch": {
       "description": "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.",

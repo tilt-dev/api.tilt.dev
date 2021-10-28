@@ -62,6 +62,28 @@ ImageMapSpec defines the desired state of ImageMap
   
   By default, this selector will match an image if the names match (tags on both the selector and the matched reference are ignored).
 
+- **disableSource** (DisableSource)
+
+  Specifies how to disable this.
+
+  <a name="DisableSource"></a>
+  *Points at a thing that can control whether something is disabled*
+
+  - **disableSource.configMap** (ConfigMapDisableSource)
+
+    This DisableSource is controlled by a ConfigMap
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableSource.configMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableSource.configMap.name** (string), required
+
+    The name of the ConfigMap
+
 - **matchExact** (boolean)
 
   If specified, then tags on both the selector and the matched reference are used for matching. The selector will only match the reference if the tags match exactly.
@@ -111,6 +133,15 @@ ImageMapStatus defines the observed state of ImageMap
   A fully-qualified image reference, including a name and an immutable tag.
   
   The image will not necessarily have the same repo URL as the selector. Many Kubernetes clusters let you push to a local registry for local development.
+
+- **buildStartTime** (MicroTime)
+
+  Timestamp indicating when the image started building.
+  
+  Intended to be used to determine which file changes were picked up by the image build. We can assume that any file changes before this timestamp were definitely included in the image, and any file changes after this timestamp may not be included in the image.
+
+  <a name="MicroTime"></a>
+  *MicroTime is version of Time with microsecond level precision.*
 
 
 
@@ -438,6 +469,8 @@ PATCH /apis/tilt.dev/v1alpha1/imagemaps/{name}
 
 200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
 
+201 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): Created
+
 
 ### `patch` partially update status of the specified ImageMap
 
@@ -483,6 +516,8 @@ PATCH /apis/tilt.dev/v1alpha1/imagemaps/{name}/status
 
 
 200 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): OK
+
+201 ([ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)): Created
 
 
 ### `delete` delete an ImageMap
