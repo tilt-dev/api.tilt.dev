@@ -107,11 +107,11 @@ CmdSpec defines how to run a local command.
 
   - **restartOn.fileWatches** ([]string)
 
-    A list of file watches that can trigger a restart.
+    FileWatches that can trigger a restart.
 
   - **restartOn.uiButtons** ([]string)
 
-    A list of ui buttons that can trigger a restart.
+    UIButtons that can trigger a restart.
 
 - **startOn** (StartOnSpec)
 
@@ -124,13 +124,11 @@ CmdSpec defines how to run a local command.
 
   - **startOn.uiButtons** ([]string), required
 
-    A list of ui buttons that can trigger a run.
-    
-    When a button triggers a run, any UIInputs on that button will be added to the cmd's env.
+    UIButtons that can trigger a start/restart.
 
   - **startOn.startAfter** (Time)
 
-    Any events that predate this time will be ignored.
+    StartAfter indicates that events before this time should be ignored.
 
     <a name="Time"></a>
     *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*

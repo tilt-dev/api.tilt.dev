@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "tilt",
-    "version": "0.22.14"
+    "version": "0.22.15"
   },
   "paths": {
     "/apis/": {
@@ -16788,7 +16788,7 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableResourceStatus": {
-      "description": "Aggregated disable status of objects that belong to a resource.",
+      "description": "Aggregated disable status of DisableSources that belong to a resource.",
       "type": "object",
       "required": [
         "enabledCount",
@@ -16797,12 +16797,12 @@
       ],
       "properties": {
         "disabledCount": {
-          "description": "How many of the resource's objects are disabled.",
+          "description": "How many of the resource's sources are disabled.",
           "type": "integer",
           "format": "int32"
         },
         "enabledCount": {
-          "description": "How many of the resource's objects are enabled.",
+          "description": "How many of the resource's sources are enabled.",
           "type": "integer",
           "format": "int32"
         },
@@ -17313,6 +17313,7 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.IgnoreDef": {
+      "description": "Describes sets of file paths that the FileWatch should ignore.",
       "type": "object",
       "required": [
         "basePath"
@@ -17506,6 +17507,32 @@
         }
       ]
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApplyCmd": {
+      "type": "object",
+      "required": [
+        "args"
+      ],
+      "properties": {
+        "args": {
+          "description": "Args are the command-line arguments for the apply command. Must have length \u003e= 1.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dir": {
+          "description": "Process working directory.\n\nIf not specified, will default to Tilt working directory.",
+          "type": "string"
+        },
+        "env": {
+          "description": "Env are additional variables for the process environment.\n\nEnvironment variables are layered on top of the environment variables that Tilt runs with.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApplyList": {
       "description": "KubernetesApplyList",
       "type": "object",
@@ -17542,10 +17569,11 @@
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApplySpec": {
       "description": "KubernetesApplySpec defines the desired state of KubernetesApply",
       "type": "object",
-      "required": [
-        "yaml"
-      ],
       "properties": {
+        "cmd": {
+          "description": "Cmd is a custom command to generate the YAML to apply.\n\nThe Cmd MUST return valid Kubernetes YAML for the entities it applied to the cluster.\n\nExactly one of YAML OR Cmd MUST be provided.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApplyCmd"
+        },
         "disableSource": {
           "description": "Specifies how to disable this.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
@@ -17580,12 +17608,16 @@
           "description": "PortForwardTemplateSpec describes the data model for port forwards that KubernetesApply should set up.\n\nUnderneath the hood, we'll create a KubernetesDiscovery object that finds the pods and sets up the port-forwarding. Only one PortForward will be active at a time.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PortForwardTemplateSpec"
         },
+        "restartOn": {
+          "description": "RestartOn determines external triggers that will result in an apply.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.RestartOnSpec"
+        },
         "timeout": {
           "description": "The timeout on the apply operation.\n\nWe've had problems with both: 1) CRD apiservers that take an arbitrarily long time to apply, and 2) Infinite loops in the apimachinery So we offer the ability to set a timeout on Kubernetes apply operations.\n\nThe default timeout is 30s.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Duration"
         },
         "yaml": {
-          "description": "The YAML to apply to the cluster. Required.",
+          "description": "YAML to apply to the cluster.\n\nExactly one of YAML OR Cmd MUST be provided.",
           "type": "string"
         }
       }
@@ -17832,6 +17864,19 @@
         }
       ]
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateContainerStateWaiting": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "Human-readable description of what's blocking.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "One word camel-case reason why we're in a waiting state.",
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateContainerStatus": {
       "description": "LiveUpdateContainerStatus defines the observed state of the live-update syncer for a particular container.",
       "type": "object",
@@ -17864,6 +17909,10 @@
         "podName": {
           "description": "The name of the pod this container belongs to.",
           "type": "string"
+        },
+        "waiting": {
+          "description": "Details about a waiting live update.\n\nA live update is waiting when the reconciler is aware of file changes that need to be synced to the container, but has decided not to sync them yet.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateContainerStateWaiting"
         }
       }
     },
@@ -17904,10 +17953,6 @@
         },
         "image": {
           "description": "Image specifies the name of the image that we're copying files into. Determines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.",
-          "type": "string"
-        },
-        "imageMapName": {
-          "description": "Name of the ImageMap object to watch for which file changes are included in the container image.\n\nIf not provided, the live-updater will copy any file changes that it's aware of, even if they're already included in the container.",
           "type": "string"
         }
       }
@@ -17955,6 +18000,20 @@
         }
       }
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSource": {
+      "description": "Specifies how to pull in files.",
+      "type": "object",
+      "properties": {
+        "fileWatch": {
+          "description": "The name of a FileWatch to use as a file source.",
+          "type": "string"
+        },
+        "imageMap": {
+          "description": "Name of the ImageMap object to watch for which file changes from this source are included in the container image.\n\nIf not provided, the live-updater will copy any file changes that it's aware of, even if they're already included in the container.",
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSpec": {
       "description": "LiveUpdateSpec defines the desired state of LiveUpdate",
       "type": "object",
@@ -17974,13 +18033,6 @@
             "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateExec"
           }
         },
-        "fileWatchNames": {
-          "description": "Names of ileWatch objects to watch for a list of files that have recently been updated.\n\nEvery live update must be associated with at least one FileWatch object to trigger the update. Usually, Tilt structures it so that there's a FileWatch for each image we depend on.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "restart": {
           "description": "Specifies whether Tilt should try to natively restart the container in-place after syncs and execs.\n\nNote that native restarts are only supported by Docker and Docker Compose (and NOT docker-shim or containerd, the most common Kubernetes runtimes).\n\nTo restart on live-update in Kubernetes, see the guide for how to apply extensions to add restart behavior:\n\nhttps://docs.tilt.dev/live_update_reference.html",
           "type": "string"
@@ -17988,6 +18040,13 @@
         "selector": {
           "description": "Specifies how this live-updater finds the containers that need live update.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSelector"
+        },
+        "sources": {
+          "description": "Sources of files to sync.\n\nEvery live update must be associated with at least one Source object to trigger the update. Usually, Tilt structures it so that there's a Source for each image we depend on.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateSource"
+          }
         },
         "stopPaths": {
           "description": "A list of relative paths that will immediately stop the live-update for the current container.\n\nUsed to detect file changes that invalidate the entire container image, forcing a complete rebuild.",
@@ -18440,7 +18499,7 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Probe": {
-      "description": "Probe describes a health check to be performed o determine whether it is alive or ready to receive traffic.",
+      "description": "Probe describes a health check to be performed to determine whether it is alive or ready to receive traffic.",
       "type": "object",
       "properties": {
         "exec": {
@@ -18487,14 +18546,14 @@
       "type": "object",
       "properties": {
         "fileWatches": {
-          "description": "A list of file watches that can trigger a restart.",
+          "description": "FileWatches that can trigger a restart.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "uiButtons": {
-          "description": "A list of ui buttons that can trigger a restart.",
+          "description": "UIButtons that can trigger a restart.",
           "type": "array",
           "items": {
             "type": "string"
@@ -18627,11 +18686,11 @@
       ],
       "properties": {
         "startAfter": {
-          "description": "Any events that predate this time will be ignored.",
+          "description": "StartAfter indicates that events before this time should be ignored.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
         },
         "uiButtons": {
-          "description": "A list of ui buttons that can trigger a run.\n\nWhen a button triggers a run, any UIInputs on that button will be added to the cmd's env.",
+          "description": "UIButtons that can trigger a start/restart.",
           "type": "array",
           "items": {
             "type": "string"
@@ -19092,6 +19151,7 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBoolInputSpec": {
+      "description": "Describes a boolean checkbox input field attached to a button.",
       "type": "object",
       "properties": {
         "defaultValue": {
@@ -19320,6 +19380,7 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIHiddenInputSpec": {
+      "description": "Describes a hidden input field attached to a button, with a value to pass on any submit.",
       "type": "object",
       "required": [
         "value"
@@ -19537,6 +19598,52 @@
       "description": "UIResourceSpec is an empty struct. UIResource is a kludge for making Tilt's internal status readable, not for specifying behavior.",
       "type": "object"
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceStateWaiting": {
+      "type": "object",
+      "required": [
+        "reason"
+      ],
+      "properties": {
+        "on": {
+          "description": "HoldingOn is the set of objects blocking this resource from updating.\n\nThese objects might NOT be explicit dependencies of the current resource. For example, if an un-parallelizable resource is updating, all other resources with queued updates will be holding on it with a reason of `waiting-for-local`.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceStateWaitingOnRef"
+          }
+        },
+        "reason": {
+          "description": "Reason is a unique, one-word reason for why the UIResource update is pending.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceStateWaitingOnRef": {
+      "type": "object",
+      "required": [
+        "group",
+        "apiVersion",
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion for the object type being waited on.",
+          "type": "string"
+        },
+        "group": {
+          "description": "Group for the object type being waited on.",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kind of the object type being waited on.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the object being waiting on.",
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceStatus": {
       "description": "UIResourceStatus defines the observed state of UIResource",
       "type": "object",
@@ -19611,6 +19718,10 @@
         "updateStatus": {
           "description": "The UpdateStatus is a simple, high-level summary of any update tasks to bring the resource up-to-date.\n\nIf the resource runs a server, this may include both build tasks and live-update syncing.",
           "type": "string"
+        },
+        "waiting": {
+          "description": "Waiting provides detail on why the resource is currently blocked from updating.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceStateWaiting"
         }
       }
     },
@@ -19757,6 +19868,7 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UITextInputSpec": {
+      "description": "Describes a text input field attached to a button.",
       "type": "object",
       "properties": {
         "defaultValue": {

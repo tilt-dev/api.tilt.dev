@@ -82,12 +82,6 @@ LiveUpdateSpec defines the desired state of LiveUpdate
 
     Image specifies the name of the image that we're copying files into. Determines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.
 
-  - **selector.kubernetes.imageMapName** (string)
-
-    Name of the ImageMap object to watch for which file changes are included in the container image.
-    
-    If not provided, the live-updater will copy any file changes that it's aware of, even if they're already included in the container.
-
 - **execs** ([]LiveUpdateExec)
 
   A list of commands to run inside the container after files are synced.
@@ -109,12 +103,6 @@ LiveUpdateSpec defines the desired state of LiveUpdate
     
     Paths are specified relative to the the BasePath of the LiveUpdate.
 
-- **fileWatchNames** ([]string)
-
-  Names of ileWatch objects to watch for a list of files that have recently been updated.
-  
-  Every live update must be associated with at least one FileWatch object to trigger the update. Usually, Tilt structures it so that there's a FileWatch for each image we depend on.
-
 - **restart** (string)
 
   Specifies whether Tilt should try to natively restart the container in-place after syncs and execs.
@@ -124,6 +112,25 @@ LiveUpdateSpec defines the desired state of LiveUpdate
   To restart on live-update in Kubernetes, see the guide for how to apply extensions to add restart behavior:
   
   https://docs.tilt.dev/live_update_reference.html
+
+- **sources** ([]LiveUpdateSource)
+
+  Sources of files to sync.
+  
+  Every live update must be associated with at least one Source object to trigger the update. Usually, Tilt structures it so that there's a Source for each image we depend on.
+
+  <a name="LiveUpdateSource"></a>
+  *Specifies how to pull in files.*
+
+  - **sources.fileWatch** (string)
+
+    The name of a FileWatch to use as a file source.
+
+  - **sources.imageMap** (string)
+
+    Name of the ImageMap object to watch for which file changes from this source are included in the container image.
+    
+    If not provided, the live-updater will copy any file changes that it's aware of, even if they're already included in the container.
 
 - **stopPaths** ([]string)
 
@@ -197,6 +204,23 @@ LiveUpdateStatus defines the observed state of LiveUpdate
 
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
+
+  - **containers.waiting** (LiveUpdateContainerStateWaiting)
+
+    Details about a waiting live update.
+    
+    A live update is waiting when the reconciler is aware of file changes that need to be synced to the container, but has decided not to sync them yet.
+
+    <a name="LiveUpdateContainerStateWaiting"></a>
+    **
+
+  - **containers.waiting.message** (string)
+
+    Human-readable description of what's blocking.
+
+  - **containers.waiting.reason** (string)
+
+    One word camel-case reason why we're in a waiting state.
 
 - **failed** (LiveUpdateStateFailed)
 

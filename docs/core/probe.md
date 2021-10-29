@@ -5,7 +5,7 @@ api_metadata:
   import: "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"
   kind: "Probe"
 content_type: "api_reference"
-description: "Probe describes a health check to be performed o determine whether it is alive or ready to receive traffic."
+description: "Probe describes a health check to be performed to determine whether it is alive or ready to receive traffic."
 title: "Probe"
 weight: 8
 ---
@@ -15,7 +15,7 @@ weight: 8
 `import "github.com/tilt-dev/tilt/pkg/apis/core/v1alpha1"`
 
 
-Probe describes a health check to be performed o determine whether it is alive or ready to receive traffic.
+Probe describes a health check to be performed to determine whether it is alive or ready to receive traffic.
 
 <hr>
 

@@ -71,11 +71,11 @@ TiltfileSpec defines the desired state of Tiltfile
 
   - **restartOn.fileWatches** ([]string)
 
-    A list of file watches that can trigger a restart.
+    FileWatches that can trigger a restart.
 
   - **restartOn.uiButtons** ([]string)
 
-    A list of ui buttons that can trigger a restart.
+    UIButtons that can trigger a restart.
 
 
 

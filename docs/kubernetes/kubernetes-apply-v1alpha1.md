@@ -56,9 +56,32 @@ KubernetesApplySpec defines the desired state of KubernetesApply
 
 <hr>
 
-- **yaml** (string), required
+- **cmd** (KubernetesApplyCmd)
 
-  The YAML to apply to the cluster. Required.
+  Cmd is a custom command to generate the YAML to apply.
+  
+  The Cmd MUST return valid Kubernetes YAML for the entities it applied to the cluster.
+  
+  Exactly one of YAML OR Cmd MUST be provided.
+
+  <a name="KubernetesApplyCmd"></a>
+  **
+
+  - **cmd.args** ([]string), required
+
+    Args are the command-line arguments for the apply command. Must have length >= 1.
+
+  - **cmd.dir** (string)
+
+    Process working directory.
+    
+    If not specified, will default to Tilt working directory.
+
+  - **cmd.env** ([]string)
+
+    Env are additional variables for the process environment.
+    
+    Environment variables are layered on top of the environment variables that Tilt runs with.
 
 - **disableSource** (DisableSource)
 
@@ -252,6 +275,21 @@ KubernetesApplySpec defines the desired state of KubernetesApply
     
     If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
 
+- **restartOn** (RestartOnSpec)
+
+  RestartOn determines external triggers that will result in an apply.
+
+  <a name="RestartOnSpec"></a>
+  *RestartOnSpec indicates the set of objects that can trigger a restart of this object.*
+
+  - **restartOn.fileWatches** ([]string)
+
+    FileWatches that can trigger a restart.
+
+  - **restartOn.uiButtons** ([]string)
+
+    UIButtons that can trigger a restart.
+
 - **timeout** (Duration)
 
   The timeout on the apply operation.
@@ -262,6 +300,12 @@ KubernetesApplySpec defines the desired state of KubernetesApply
 
   <a name="Duration"></a>
   *Duration is a wrapper around time.Duration which supports correct marshaling to YAML and JSON. In particular, it marshals into strings, which can be used as map keys in json.*
+
+- **yaml** (string)
+
+  YAML to apply to the cluster.
+  
+  Exactly one of YAML OR Cmd MUST be provided.
 
 
 
