@@ -118,15 +118,15 @@ UIResourceStatus defines the observed state of UIResource
   Information about the resource's objects' disabled status.
 
   <a name="DisableResourceStatus"></a>
-  *Aggregated disable status of objects that belong to a resource.*
+  *Aggregated disable status of DisableSources that belong to a resource.*
 
   - **disableStatus.disabledCount** (int32), required
 
-    How many of the resource's objects are disabled.
+    How many of the resource's sources are disabled.
 
   - **disableStatus.enabledCount** (int32), required
 
-    How many of the resource's objects are enabled.
+    How many of the resource's sources are enabled.
 
   - **disableStatus.sources** ([]DisableSource), required
 
@@ -293,6 +293,42 @@ UIResourceStatus defines the observed state of UIResource
   The UpdateStatus is a simple, high-level summary of any update tasks to bring the resource up-to-date.
   
   If the resource runs a server, this may include both build tasks and live-update syncing.
+
+- **waiting** (UIResourceStateWaiting)
+
+  Waiting provides detail on why the resource is currently blocked from updating.
+
+  <a name="UIResourceStateWaiting"></a>
+  **
+
+  - **waiting.reason** (string), required
+
+    Reason is a unique, one-word reason for why the UIResource update is pending.
+
+  - **waiting.on** ([]UIResourceStateWaitingOnRef)
+
+    HoldingOn is the set of objects blocking this resource from updating.
+    
+    These objects might NOT be explicit dependencies of the current resource. For example, if an un-parallelizable resource is updating, all other resources with queued updates will be holding on it with a reason of `waiting-for-local`.
+
+    <a name="UIResourceStateWaitingOnRef"></a>
+    **
+
+  - **waiting.on.apiVersion** (string), required
+
+    APIVersion for the object type being waited on.
+
+  - **waiting.on.group** (string), required
+
+    Group for the object type being waited on.
+
+  - **waiting.on.kind** (string), required
+
+    Kind of the object type being waited on.
+
+  - **waiting.on.name** (string), required
+
+    Name of the object being waiting on.
 
 
 

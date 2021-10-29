@@ -103,7 +103,7 @@ UIButtonSpec defines the desired state of UIButton
     A Bool input that is true or false
 
     <a name="UIBoolInputSpec"></a>
-    **
+    *Describes a boolean checkbox input field attached to a button.*
 
   - **inputs.bool.defaultValue** (boolean)
 
@@ -122,7 +122,7 @@ UIButtonSpec defines the desired state of UIButton
     An input that has a constant value and does not display to the user
 
     <a name="UIHiddenInputSpec"></a>
-    **
+    *Describes a hidden input field attached to a button, with a value to pass on any submit.*
 
   - **inputs.hidden.value** (string), required
 
@@ -136,7 +136,7 @@ UIButtonSpec defines the desired state of UIButton
     A Text input that takes a string.
 
     <a name="UITextInputSpec"></a>
-    **
+    *Describes a text input field attached to a button.*
 
   - **inputs.text.defaultValue** (string)
 

@@ -77,7 +77,7 @@ FileWatchSpec defines the desired state of FileWatch
   Ignores are optional rules to filter out a subset of changes matched by WatchedPaths.
 
   <a name="IgnoreDef"></a>
-  **
+  *Describes sets of file paths that the FileWatch should ignore.*
 
   - **ignores.basePath** (string), required
 
