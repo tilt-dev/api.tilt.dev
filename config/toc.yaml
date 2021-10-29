@@ -14,6 +14,7 @@ parts:
   - name: ConfigMap
     group: tilt.dev
     version: v1alpha1
+    slugname: config-map
   - name: Extension
     group: tilt.dev
     version: v1alpha1
