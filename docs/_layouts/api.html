@@ -1,56 +1,86 @@
 ---
-layout: default
+layout: api-header
 ---
-<div class="wrapper wrapper--docs u-marginBottom1_5">
-  <nav class="sidebar">
-    <h2><a href="/">API Reference</a></h2>
-
-    <form action="/search" method="GET">
-      <div class="formItem">
-        <input type="text" name="q" id="q" placeholder="Search" />
-      </div>
-    </form>
-
-    <button class="sidebar-opener u-showOnlyOnDocsMobile"
-         onclick="document.querySelector('.sidebar').classList.toggle('is-open')">
-      Contents
-
-      {% svg assets/svg/carrot-down.svg %}
-    </button>
-
-    <div class="sidebar-contents">
-
-      {% for part in site.data.toc.parts %}
-      {% if part.name %}
-      <h3 class="sidebar-sectionTitle">{{ part.name | escape }}</h3>
-      {% endif %}
-
-      <ul class="sidebar-sectionList">
-        {% for chapter in part.chapters %}
-          {% assign chapterName = chapter.name %}
-          {% if chapter.slugname %}
-            {% assign chapterName = chapter.slugname %}
-          {% endif %}
-        
-          {% assign baseName = chapterName | append: ".html" %}
-          {% if chapter.version %}
-            {% assign baseName = chapterName | append: "-" | append: chapter.version | append: ".html" %}
-          {% endif %}
-          <li><a class="sidebar-link" href="/{{part.name | downcase}}/{{baseName | downcase}}">{{chapter.name | escape}}</a>
+{% assign page_href = page.url | slice: 1, page.url.size %}
+<div class="Docs-wrapper">
+  <header class="Docs-header">
+    <nav class="Docs-nav">
+      <ul class="Docs-nav-list">
+        {% for link in site.data.docs.top %}
+          {% assign href = link.href %}
+          {% assign hrefMobile = link.hrefMobile %}
+          {% if href != "https://api.tilt.dev" %}
+            {% assign href = link.href | prepend: site.docsurl %}
+            {% assign hrefMobile = link.hrefMobile | prepend: site.docsurl %}
+          {% endif %}  
+          <li class="Docs-nav-list-item">
+            <a class="Docs-nav-link Docs-nav-link--desktop{% if page.sidebar == link.active %} is-active{% endif %}" href="{{href | escape}}">
+              {{link.title | escape}} 
+            </a>
+            <!-- On mobile, top-level nav goes to a separate page with subnav links -->
+            <a class="Docs-nav-link Docs-nav-link--mobile{% if page.sidebar == link.active %} is-active{% endif %}" href="{{hrefMobile | escape}}">
+              {{link.title | escape}}
+            </a>
+            {% if link.flair %}
+              <div class="Docs-nav-link-flair">{{link.flair | escape}}</div>
+            {% endif %}
+          </li>
         {% endfor %}
       </ul>
+    </nav>
+    <form class="Docs-search js-only" action="/search" method="GET">
+      <input class="Docs-search-input" type="search" name="q" id="q" placeholder="Search Docs…" />
+    </form>
+  </header>
 
-    {% endfor %}
+  <div class="Docs-body">
+    <aside class="Docs-sidebar  Docs-sidebar--defaultLayout">
+      <nav class="Docs-subnav">
+        <dl class="js-accordion Docs-subnav-list" data-accordion-prefix-classes="Docs-subnav">
+          {% for part in site.data.toc.parts %}
 
-    </div>  
+          {% if part.name %}
+            <dt class="js-accordion__header Docs-subnav-title" data-accordion-opened="true">
+                {{ part.name | escape }}
+                {% svg assets/svg/carrot-down.svg %}
+            </dt>
+          {% endif %}
 
-  </nav>
-  <article class="docsContent">
+          <dd class="js-accordion__panel Docs-subnav-section">
+            <ul class="Docs-subnav-section-list">
+              {% for chapter in part.chapters %}
+                {% assign chapterName = chapter.name %}
+                {% if chapter.slugname %}
+                  {% assign chapterName = chapter.slugname %}
+                {% endif %}
+        
+                {% assign baseName = chapterName | append: ".html" %}
+                {% if chapter.version %}
+                  {% assign baseName = chapterName | append: "-" | append: chapter.version | append: ".html" %}
+                {% endif %}
+                <li class="Docs-subnav-section-list-item">
+                  <a class="Docs-subnav-link{% if page_href == page.href %} is-active{% endif %}"
+                     href="/{{part.name | downcase}}/{{baseName | downcase}}">
+                    {{chapter.name | escape}}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </dd>
+          {% endfor %}
+        </dl>  
+      </nav>
+    </aside>
+  
+    <article class="Docs-content">
+      <h1>{{ page.title | escape }}</h1>
     
-    <h1>{{ page.title | escape }}</h1>
-    
-    {{ content }}
-    
-  </article>
+      {{ content }}
+    </article>
+  </div>
+
   <script src="/assets/js/links.js" async></script>
+  <script src="{{ '/assets/js/van11y-accessible-accordion-aria.min.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/clipboard.min.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/copy-code.js' | relative_url }}" defer></script>
 </div>
