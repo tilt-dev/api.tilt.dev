@@ -14,7 +14,10 @@ weight: {{.Metadata.Weight}}
 {{if .Import}}`import "{{.Import}}"`{{end}}
 
 {{range .Sections}}
+
+{{ if ne .Name "Operations" }}
 ## {{.Name}} {#{{"-" | regexReplaceAll "[^a-zA-Z0-9]+" .Name }}}{{/* explicitly set fragment to keep capitalization */}}
+{{ end }}
 
 {{.Description | replace "<" "\\<" }}
 
@@ -31,6 +34,7 @@ weight: {{.Metadata.Weight}}
 {{- end}}{{/* range .Fields */}}
 
 {{range .FieldCategories}}
+
 ### {{.Name}}
 
 {{range .Fields}}
@@ -46,28 +50,4 @@ weight: {{.Metadata.Weight}}
 
 {{- end}}{{/* range .FieldCategories */}}
 
-{{range .Operations}}
-
-### `{{.Verb}}` {{.Title}}
-
-#### HTTP Request
-
-{{.RequestMethod}} {{.RequestPath}}
-
-#### Parameters
-
-{{range .Parameters}}
-- {{.Title}}
-
-{{.Description | indent 2}}
-
-{{end}}{{/* range .Parameters */}}
-
-#### Response
-
-{{range .Responses}}
-{{.Code}}{{if .Type}} ({{.Type}}){{end}}: {{.Description}}
-{{end}}{{/* range .Responses */}}
-
-{{- end}}{{/* range .Operations */}}
 {{- end}}{{/* range .Sections */}}
