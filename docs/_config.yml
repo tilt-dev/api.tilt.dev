@@ -7,8 +7,10 @@ url: "https://api.tilt.dev"
 docsurl: "https://docs.tilt.dev"
 landingurl: "https://tilt.dev"
 blogurl: "https://blog.tilt.dev"
+apiurl: "https://api.tilt.dev"
 twitter_username: tilt_dev
 github_username:  tilt-dev
+google_analytics: UA-129150759-6
 
 # Build settings
 markdown: kramdown
