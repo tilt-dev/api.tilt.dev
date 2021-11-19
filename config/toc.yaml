@@ -30,6 +30,26 @@ parts:
     
 - name: Kubernetes
   chapters:
+  - name: DockerImage
+    group: tilt.dev
+    version: v1alpha1
+    slugname: docker-image
+  - name: LiveUpdate
+    group: tilt.dev
+    version: v1alpha1
+    slugname: live-update
+  - name: ImageMap
+    group: tilt.dev
+    version: v1alpha1
+    slugname: image-map
+  - name: KubernetesApply
+    group: tilt.dev
+    version: v1alpha1
+    slugname: kubernetes-apply
+  - name: KubernetesDiscovery
+    group: tilt.dev
+    version: v1alpha1
+    slugname: kubernetes-discovery
   - name: PodLogStream
     group: tilt.dev
     version: v1alpha1
@@ -38,22 +58,6 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: port-forward
-  - name: KubernetesDiscovery
-    group: tilt.dev
-    version: v1alpha1
-    slugname: kubernetes-discovery
-  - name: KubernetesApply
-    group: tilt.dev
-    version: v1alpha1
-    slugname: kubernetes-apply
-  - name: ImageMap
-    group: tilt.dev
-    version: v1alpha1
-    slugname: image-map
-  - name: LiveUpdate
-    group: tilt.dev
-    version: v1alpha1
-    slugname: live-update
     
 - name: Interface
   chapters:

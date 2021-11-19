@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "KubernetesDiscovery."
 title: "KubernetesDiscovery v1alpha1"
-weight: 3
+weight: 5
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -170,6 +170,14 @@ KubernetesDiscoverySpec defines the desired state of KubernetesDiscovery
     The port to expose on the current machine.
     
     If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
+
+  - **portForwardTemplateSpec.forwards.name** (string)
+
+    Name to identify this port forward.
+
+  - **portForwardTemplateSpec.forwards.path** (string)
+
+    Path to include as part of generated links for port forward.
 
 
 
@@ -481,6 +489,34 @@ KubernetesDiscoveryStatus defines the observed state of KubernetesDiscovery
   - **pods.initContainers.state.waiting.reason** (string), required
 
     Reason is a (brief) reason the container is not yet running.
+
+  - **pods.owner** (PodOwner)
+
+    Direct owner of this pod, if available.
+
+    <a name="PodOwner"></a>
+    *PodOwner contains information of the direct owner of the pod, if available.
+    
+    Tools that need to select a most relevant pod or set of pods can use this info to group pods by owner.*
+
+  - **pods.owner.apiVersion** (string), required
+
+    API version of the owner.
+
+  - **pods.owner.kind** (string), required
+
+    Kind of the owner More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+  - **pods.owner.name** (string), required
+
+    The name of the owner.
+
+  - **pods.owner.creationTimestamp** (Time)
+
+    The creation timestamp of the owner.
+
+    <a name="Time"></a>
+    *Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.*
 
   - **pods.podTemplateSpecHash** (string)
 

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "tilt",
-    "version": "0.22.15"
+    "version": "0.23.1"
   },
   "paths": {
     "/apis/": {
@@ -1379,6 +1379,747 @@
           "uniqueItems": true,
           "type": "string",
           "description": "name of the ConfigMap",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/dockerimages": {
+      "get": {
+        "description": "list or watch objects of kind DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "listTiltDevV1alpha1DockerImage",
+        "parameters": [
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+            "name": "allowWatchBookmarks",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+            "name": "watch",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageList"
+            }
+          }
+        },
+        "x-kubernetes-action": "list",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "post": {
+        "description": "create a DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "createTiltDevV1alpha1DockerImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "post",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "delete": {
+        "description": "delete collection of DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1CollectionDockerImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "deletecollection",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/dockerimages/{name}": {
+      "get": {
+        "description": "read the specified DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1DockerImage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "put": {
+        "description": "replace the specified DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1DockerImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "delete": {
+        "description": "delete a DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1DockerImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "delete",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "patch": {
+        "description": "partially update the specified DockerImage",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1DockerImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the DockerImage",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/dockerimages/{name}/status": {
+      "get": {
+        "description": "read status of the specified DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1DockerImageStatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "put": {
+        "description": "replace status of the specified DockerImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1DockerImageStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "patch": {
+        "description": "partially update status of the specified DockerImage",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1DockerImageStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the DockerImage",
           "name": "name",
           "in": "path",
           "required": true
@@ -12955,6 +13696,230 @@
         }
       ]
     },
+    "/apis/tilt.dev/v1alpha1/watch/dockerimages": {
+      "get": {
+        "description": "watch individual changes to a list of DockerImage. deprecated: use the 'watch' parameter with a list operation instead.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1DockerImageList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watchlist",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/watch/dockerimages/{name}": {
+      "get": {
+        "description": "watch changes to an object of kind DockerImage. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1DockerImage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "DockerImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the DockerImage",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
     "/apis/tilt.dev/v1alpha1/watch/extensionrepos": {
       "get": {
         "description": "watch individual changes to a list of ExtensionRepo. deprecated: use the 'watch' parameter with a list operation instead.",
@@ -16847,6 +17812,245 @@
         }
       }
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage": {
+      "description": "DockerImage describes an image to build with Docker.",
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+        },
+        "spec": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageSpec"
+        },
+        "status": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStatus"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "DockerImage",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageList": {
+      "description": "DockerImageList",
+      "type": "object",
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImage"
+          }
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "DockerImageList",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageSpec": {
+      "description": "DockerImageSpec describes how to build a Docker image with `docker_build`.\n\nMost fields of this spec directly correspond to the Docker CLI.",
+      "type": "object",
+      "required": [
+        "ref"
+      ],
+      "properties": {
+        "args": {
+          "description": "Args specifies the build arguments to the Dockerfile.\n\nEquivalent to `--build-arg` in the docker CLI.\n\nEach item should take the form \"KEY\" or \"KEY=VALUE\".",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cacheFrom": {
+          "description": "Images to use as cache sources.\n\nEquivalent to `--cache-from` in the Docker CLI.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "context": {
+          "description": "Context specifies the Docker build context.\n\nMust be an absolute path on the local filesystem.",
+          "type": "string"
+        },
+        "dockerfileContents": {
+          "description": "Dockerfile contains the complete contents of the Dockerfile.",
+          "type": "string"
+        },
+        "extraTags": {
+          "description": "By default, Tilt creates a new temporary image reference for each build. The user can also specify their own reference, to integrate with other tooling (like build IDs for Jenkins build pipelines)\n\nEquivalent to the docker build --tag flag.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "network": {
+          "description": "Set the networking mode for the RUN instructions in the docker build.\n\nEquivalent to `--network` in the Docker CLI.",
+          "type": "string"
+        },
+        "platform": {
+          "description": "Platform specifies architecture information for target image.\n\nhttps://docs.docker.com/desktop/multi-arch/\n\nEquivalent to `--platform` in the Docker CLI.",
+          "type": "string"
+        },
+        "pull": {
+          "description": "Always attempt to pull a new version of the base image.\n\nEquivalent to `--pull` in the Docker CLI.",
+          "type": "boolean"
+        },
+        "ref": {
+          "description": "The named reference of the image.",
+          "type": "string"
+        },
+        "secrets": {
+          "description": "Pass secrets to docker.\n\nhttps://docs.docker.com/develop/develop-images/build_enhancements/#new-docker-build-secret-information\n\nEquivalent to `--secret` in the Docker CLI.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sshAgentConfigs": {
+          "description": "Pass SSH secrets to docker so it can clone private repos.\n\nhttps://docs.docker.com/develop/develop-images/build_enhancements/#using-ssh-to-access-private-data-in-builds\n\nEquivalent to `--ssh` in the docker CLI.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target": {
+          "description": "Target specifies the name of the stage in the Dockerfile to build.\n\nEquivalent to `--target` in the docker CLI.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStageStatus": {
+      "description": "DockerImageStageStatus gives detailed report of each stage of the most recent image build.\n\nMost stages are derived from Buildkit's StatusResponse https://github.com/moby/buildkit/blob/35fcb28a009d6454b2915a5c8084b25ad851cf38/api/services/control/control.proto#L108 but Tilt may synthesize its own stages for the steps it owns.\n\nStages may be executed in parallel.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "cached": {
+          "description": "Whether Buildkit was able to cache the stage based on inputs.",
+          "type": "boolean"
+        },
+        "error": {
+          "description": "Error message if the stage failed. If empty, the stage succeeded.",
+          "type": "string"
+        },
+        "finishedAt": {
+          "description": "The timetsamp when we completed the work on the stage.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
+        "name": {
+          "description": "A human-readable name of the stage.",
+          "type": "string"
+        },
+        "startedAt": {
+          "description": "The timestamp when we started working on the stage.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStateBuilding": {
+      "description": "DockerImageStateBuilding expresses that an image build is in-progress.",
+      "type": "object",
+      "properties": {
+        "reason": {
+          "description": "The reason why the image is building.",
+          "type": "string"
+        },
+        "startedAt": {
+          "description": "Time when the build started.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStateCompleted": {
+      "description": "DockerImageStateCompleted expresses when the image build is finished and no new images need to be built.",
+      "type": "object",
+      "properties": {
+        "error": {
+          "description": "Error message if the build failed.",
+          "type": "string"
+        },
+        "finishedAt": {
+          "description": "Time when we finished building an image",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
+        "reason": {
+          "description": "The reason why the image was built.",
+          "type": "string"
+        },
+        "startedAt": {
+          "description": "Time when we started building an image.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStateWaiting": {
+      "description": "DockerImageStateWaiting expresses what we're waiting on to build an image.",
+      "type": "object",
+      "properties": {
+        "reason": {
+          "description": "(brief) reason the image build is waiting.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStatus": {
+      "description": "DockerImageStatus defines the observed state of DockerImage",
+      "type": "object",
+      "properties": {
+        "building": {
+          "description": "Details about a building image.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStateBuilding"
+        },
+        "completed": {
+          "description": "Details about a finished image build.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStateCompleted"
+        },
+        "ref": {
+          "description": "A fully-qualified image reference of a built image, as seen from the local network.\n\nUsually includes a name and an immutable tag.\n\nNB: If we're building to a particular registry, this may have a different hostname from the Spec `Ref` field.",
+          "type": "string"
+        },
+        "stageStatuses": {
+          "description": "Status information about each individual build stage of the most recent image build.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStageStatus"
+          }
+        },
+        "waiting": {
+          "description": "Details about a waiting image build.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DockerImageStateWaiting"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ExecAction": {
       "description": "ExecAction describes a \"run in container\" action.",
       "type": "object",
@@ -17223,6 +18427,14 @@
           "description": "The port to expose on the current machine.\n\nIf not specified (or 0), a random free port will be chosen and can be discovered via the status once established.",
           "type": "integer",
           "format": "int32"
+        },
+        "name": {
+          "description": "Name to identify this port forward.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Path to include as part of generated links for port forward.",
+          "type": "string"
         }
       }
     },
@@ -17472,7 +18684,7 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
         },
         "image": {
-          "description": "A fully-qualified image reference, including a name and an immutable tag.\n\nThe image will not necessarily have the same repo URL as the selector. Many Kubernetes clusters let you push to a local registry for local development.",
+          "description": "A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime that we're mapping this image to.\n\nNB: Container images often need to be referenced from different networks, including:\n\n1) The cluster container runtime 2) The local network 3) The cluster network\n\nAnd each of these cases may have distinct URLs.\n\nFor more details on image references in different networks, see: https://github.com/kubernetes/enhancements/tree/master/keps/sig-cluster-lifecycle/generic/1755-communicating-a-local-registry#specification-for-localregistryhosting-v1",
           "type": "string"
         }
       }
@@ -17570,8 +18782,12 @@
       "description": "KubernetesApplySpec defines the desired state of KubernetesApply",
       "type": "object",
       "properties": {
-        "cmd": {
-          "description": "Cmd is a custom command to generate the YAML to apply.\n\nThe Cmd MUST return valid Kubernetes YAML for the entities it applied to the cluster.\n\nExactly one of YAML OR Cmd MUST be provided.",
+        "applyCmd": {
+          "description": "ApplyCmd is a custom command to execute to deploy entities to the Kubernetes cluster.\n\nThe command must be idempotent, e.g. it must not fail if some or all entities already exist.\n\nThe ApplyCmd MUST return valid Kubernetes YAML for the entities it applied to the cluster.\n\nExactly one of YAML OR ApplyCmd MUST be provided.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApplyCmd"
+        },
+        "deleteCmd": {
+          "description": "DeleteCmd is a custom command to execute to delete entities created by ApplyCmd and clean up any additional state.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesApplyCmd"
         },
         "disableSource": {
@@ -17617,7 +18833,7 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Duration"
         },
         "yaml": {
-          "description": "YAML to apply to the cluster.\n\nExactly one of YAML OR Cmd MUST be provided.",
+          "description": "YAML to apply to the cluster.\n\nExactly one of YAML OR ApplyCmd MUST be provided.",
           "type": "string"
         }
       }
@@ -17638,8 +18854,12 @@
           "description": "An error applying the YAML.\n\nIf there was an error, than ResultYAML should be empty (and vice versa).",
           "type": "string"
         },
+        "lastApplyStartTime": {
+          "description": "Timestamp of when we last started applying this YAML to the cluster.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
         "lastApplyTime": {
-          "description": "The last time the controller tried to apply YAML.",
+          "description": "Timestamp of we last finished applying this YAML to the cluster.\n\nWhen populated, must be equal or after the LastApplyStartTime field.\n\nis more consistent with how we name this in other API objects.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
         },
         "resultYAML": {
@@ -18202,6 +19422,10 @@
           "description": "Namespace is the Pod namespace within the K8s cluster.",
           "type": "string"
         },
+        "owner": {
+          "description": "Direct owner of this pod, if available.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PodOwner"
+        },
         "phase": {
           "description": "Phase is where the Pod is at in its current lifecycle.\n\nValid values for this are v1.PodPhase values from the Kubernetes API.",
           "type": "string"
@@ -18379,6 +19603,33 @@
         "sinceTime": {
           "description": "An RFC3339 timestamp from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned.\n\nTranslates directly to the underlying PodLogOptions.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.PodOwner": {
+      "description": "PodOwner contains information of the direct owner of the pod, if available.\n\nTools that need to select a most relevant pod or set of pods can use this info to group pods by owner.",
+      "type": "object",
+      "required": [
+        "name",
+        "apiVersion",
+        "kind"
+      ],
+      "properties": {
+        "apiVersion": {
+          "description": "API version of the owner.",
+          "type": "string"
+        },
+        "creationTimestamp": {
+          "description": "The creation timestamp of the owner.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+        },
+        "kind": {
+          "description": "Kind of the owner More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the owner.",
+          "type": "string"
         }
       }
     },

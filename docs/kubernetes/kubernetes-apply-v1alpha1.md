@@ -60,28 +60,53 @@ KubernetesApplySpec defines the desired state of KubernetesApply
 
 <hr>
 
-- **cmd** (KubernetesApplyCmd)
+- **applyCmd** (KubernetesApplyCmd)
 
-  Cmd is a custom command to generate the YAML to apply.
+  ApplyCmd is a custom command to execute to deploy entities to the Kubernetes cluster.
   
-  The Cmd MUST return valid Kubernetes YAML for the entities it applied to the cluster.
+  The command must be idempotent, e.g. it must not fail if some or all entities already exist.
   
-  Exactly one of YAML OR Cmd MUST be provided.
+  The ApplyCmd MUST return valid Kubernetes YAML for the entities it applied to the cluster.
+  
+  Exactly one of YAML OR ApplyCmd MUST be provided.
 
   <a name="KubernetesApplyCmd"></a>
   **
 
-  - **cmd.args** ([]string), required
+  - **applyCmd.args** ([]string), required
 
     Args are the command-line arguments for the apply command. Must have length >= 1.
 
-  - **cmd.dir** (string)
+  - **applyCmd.dir** (string)
 
     Process working directory.
     
     If not specified, will default to Tilt working directory.
 
-  - **cmd.env** ([]string)
+  - **applyCmd.env** ([]string)
+
+    Env are additional variables for the process environment.
+    
+    Environment variables are layered on top of the environment variables that Tilt runs with.
+
+- **deleteCmd** (KubernetesApplyCmd)
+
+  DeleteCmd is a custom command to execute to delete entities created by ApplyCmd and clean up any additional state.
+
+  <a name="KubernetesApplyCmd"></a>
+  **
+
+  - **deleteCmd.args** ([]string), required
+
+    Args are the command-line arguments for the apply command. Must have length >= 1.
+
+  - **deleteCmd.dir** (string)
+
+    Process working directory.
+    
+    If not specified, will default to Tilt working directory.
+
+  - **deleteCmd.env** ([]string)
 
     Env are additional variables for the process environment.
     
@@ -279,6 +304,14 @@ KubernetesApplySpec defines the desired state of KubernetesApply
     
     If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
 
+  - **portForwardTemplateSpec.forwards.name** (string)
+
+    Name to identify this port forward.
+
+  - **portForwardTemplateSpec.forwards.path** (string)
+
+    Path to include as part of generated links for port forward.
+
 - **restartOn** (RestartOnSpec)
 
   RestartOn determines external triggers that will result in an apply.
@@ -309,7 +342,7 @@ KubernetesApplySpec defines the desired state of KubernetesApply
 
   YAML to apply to the cluster.
   
-  Exactly one of YAML OR Cmd MUST be provided.
+  Exactly one of YAML OR ApplyCmd MUST be provided.
 
 
 
@@ -356,9 +389,20 @@ KubernetesApplyStatus defines the observed state of KubernetesApply
   
   If there was an error, than ResultYAML should be empty (and vice versa).
 
+- **lastApplyStartTime** (MicroTime)
+
+  Timestamp of when we last started applying this YAML to the cluster.
+
+  <a name="MicroTime"></a>
+  *MicroTime is version of Time with microsecond level precision.*
+
 - **lastApplyTime** (MicroTime)
 
-  The last time the controller tried to apply YAML.
+  Timestamp of we last finished applying this YAML to the cluster.
+  
+  When populated, must be equal or after the LastApplyStartTime field.
+  
+  is more consistent with how we name this in other API objects.
 
   <a name="MicroTime"></a>
   *MicroTime is version of Time with microsecond level precision.*
