@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "PortForward."
 title: "PortForward v1alpha1"
-weight: 2
+weight: 7
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -70,6 +70,14 @@ PortForwardSpec defines the desired state of PortForward
     The port to expose on the current machine.
     
     If not specified (or 0), a random free port will be chosen and can be discovered via the status once established.
+
+  - **forwards.name** (string)
+
+    Name to identify this port forward.
+
+  - **forwards.path** (string)
+
+    Path to include as part of generated links for port forward.
 
 - **podName** (string), required
 
