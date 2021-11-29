@@ -3,7 +3,25 @@ title: Tilt API Server Reference
 layout: api
 ---
 
-## Who This Guide is NOT For
+The Tilt Server API allows you to drill down into the depths of Tilt, to get at
+exactly what you need without all the window-dressing.  Consume the API to
+automate setup, scrape metrics and much more.
+
+## Who This Guide Is For
+
+This reference site is for dev environment maintainers who have already set up Tilt.
+
+Here are some things that this guide might help with:
+
+- trying to diagnose why Tilt isn't behaving like you expect, or
+
+- writing new templates for dev environments to share across teams, or
+
+- scraping metrics about your dev environment to track internally, or
+
+- contributing to Tilt itself (!)
+
+## Who This Guide Is NOT For
 
 If you're trying to set up Tilt for the first time, you're in the wrong place!
 But we'll help you find where you should be.
@@ -20,20 +38,6 @@ or one of the example projects.
 For detailed help writing a Tiltfile, you want the [Tiltfile
 Reference](https://docs.tilt.dev/api.html).
 
-## Who This Guide IS For
-
-This reference site is for dev environment maintainers who have already set up Tilt.
-
-Here are some things that this guide might help with:
-
-- trying to diagnose why Tilt isn't behaving like you expect, or
-
-- writing new templates for dev environments to share across teams, or
-
-- scraping metrics about your dev environment to track internally, or
-
-- contributing to Tilt itself (!)
-
 ## How to Explore the API Server on Your Own
 
 First, start up a Tilt environment:
@@ -48,10 +52,7 @@ Then, in a separate terminal, run:
 tilt api-resources
 ```
 
-This will print out all the objects that your current environment supports. If
-you're familiar with `kubectl`, this may look familiar!  The Tilt CLI supports many of
-the same verbs and flags as `kubectl`. But it manipulates types of objects specific
-to your dev environment instead of Kubernetes objects like Pods and Nodes.
+This will print out all the objects that your current environment supports.
 
 ```
 $ tilt api-resources
@@ -61,6 +62,15 @@ configmaps              cm             tilt.dev/v1alpha1   false        ConfigMa
 dockerimages                           tilt.dev/v1alpha1   false        DockerImage
 ...
 ```
+
+Common objects in your dev environment might include:
+
+- `Cmd` (local processes)
+- `DockerImage` (Docker image builds)
+- `KubernetesApply` (Resources to apply to your Kubernetes cluster, if you're using one)
+
+The Tilt CLI supports many of the same subcommands and flags as `kubectl` for reading,
+formatting, and applying objects.
 
 To read the documentation about an object, use `tilt explain`:
 
@@ -85,7 +95,7 @@ NAME             CREATED AT
 gendocs:update   2021-11-23T16:23:34Z
 ```
 
-To read detailed information about an object, use `tilt describe`:
+For detailed human-readable information about an object, use `tilt describe`:
 
 ```
 $ tilt describe cmd gendocs:update
@@ -96,6 +106,13 @@ $ tilt describe cmd gendocs:update
     Finished At:  2021-11-23T16:23:35.791652Z
     Pid:          116111
     Started At:   2021-11-23T16:23:34.648143Z
+```
+
+For detailed machine-readable information about an object, use `tilt get [name] -o [format]`
+
+```
+$ tilt get cmd gendocs:update -o jsonpath --template "{.metadata.name} {.status.ready}{'\n'}"
+gendocs:update true
 ```
 
 ## Browsing the API
