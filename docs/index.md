@@ -50,7 +50,7 @@ tilt api-resources
 
 This will print out all the objects that your current environment supports. If
 you're familiar with `kubectl`, this may look familiar!  The Tilt CLI supports many of
-the same verbs and flags as `kubectl`. But it manipulatestypes of objects specific
+the same verbs and flags as `kubectl`. But it manipulates types of objects specific
 to your dev environment instead of Kubernetes objects like Pods and Nodes.
 
 ```
