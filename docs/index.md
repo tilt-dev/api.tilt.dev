@@ -3,10 +3,10 @@ title: Tilt API Server Reference
 layout: api
 ---
 
+## Who This Guide is NOT For
+
 If you're trying to set up Tilt for the first time, you're in the wrong place!
 But we'll help you find where you should be.
-
-## For First-Time Tilt Users
 
 For new users, you want the [Tutorial](https://docs.tilt.dev/tutorial/index.html)
 or one of the example projects.
@@ -20,9 +20,11 @@ or one of the example projects.
 For detailed help writing a Tiltfile, you want the [Tiltfile
 Reference](https://docs.tilt.dev/api.html).
 
-## For Dev Environment Maintainers
+## Who This Guide IS For
 
-This reference site is for users who have already set up Tilt, and are:
+This reference site is for dev environment maintainers who have already set up Tilt.
+
+Here are some things that this guide might help with:
 
 - trying to diagnose why Tilt isn't behaving like you expect, or
 
@@ -47,9 +49,9 @@ tilt api-resources
 ```
 
 This will print out all the objects that your current environment supports. If
-you're familiar with `kubectl`, this may look familiar!  The Tilt CLI is a thin
-wrapper around `kubectl` for querying the Tilt API Server. It supports many of
-the same verbs and flags.
+you're familiar with `kubectl`, this may look familiar!  The Tilt CLI supports many of
+the same verbs and flags as `kubectl`. But it manipulatestypes of objects specific
+to your dev environment instead of Kubernetes objects like Pods and Nodes.
 
 ```
 $ tilt api-resources
