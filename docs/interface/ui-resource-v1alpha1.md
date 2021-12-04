@@ -100,6 +100,38 @@ UIResourceStatus defines the observed state of UIResource
 
     A list of warnings encountered while running the build. These warnings will also be printed to the build's log.
 
+- **conditions** ([]UIResourceCondition)
+
+  Represents the latest available observations of a UIResource's current state.
+  
+  Designed for compatibility with 'wait' and cross-resource status reporting. https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#typical-status-properties
+
+  <a name="UIResourceCondition"></a>
+  **
+
+  - **conditions.status** (string), required
+
+    Status of the condition, one of True, False, Unknown.
+
+  - **conditions.type** (string), required
+
+    Type of UI Resource condition.
+
+  - **conditions.lastTransitionTime** (MicroTime)
+
+    Last time the condition transitioned from one status to another.
+
+    <a name="MicroTime"></a>
+    *MicroTime is version of Time with microsecond level precision.*
+
+  - **conditions.message** (string)
+
+    A human readable message indicating details about the transition.
+
+  - **conditions.reason** (string)
+
+    The reason for the condition's last transition.
+
 - **currentBuild** (UIBuildRunning)
 
   The currently running build, if any.

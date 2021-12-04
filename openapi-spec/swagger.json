@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "tilt",
-    "version": "0.23.1"
+    "version": "0.23.2"
   },
   "paths": {
     "/apis/": {
@@ -19162,9 +19162,16 @@
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.LiveUpdateKubernetesSelector": {
       "description": "Specifies how to select containers to live update inside K8s.",
       "type": "object",
+      "required": [
+        "discoveryName"
+      ],
       "properties": {
         "applyName": {
           "description": "ApplyName is the name of a KubernetesApply object for filtering discovered pods to prevent updating old deployments.\n\nIf not provided, no filtering will be applied and all discovered Pods will be eligible for update.",
+          "type": "string"
+        },
+        "containerName": {
+          "description": "ContainerName specifies the name of the container that we're copying files into.\n\nExactly one of Image or ContainerName MUST be specified.",
           "type": "string"
         },
         "discoveryName": {
@@ -19172,7 +19179,7 @@
           "type": "string"
         },
         "image": {
-          "description": "Image specifies the name of the image that we're copying files into. Determines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.",
+          "description": "Image specifies the name of the image that we're copying files into.\n\nDetermines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.\n\nExactly one of Image or ContainerName MUST be specified.",
           "type": "string"
         }
       }
@@ -20737,6 +20744,35 @@
         }
       ]
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceCondition": {
+      "type": "object",
+      "required": [
+        "type",
+        "status"
+      ],
+      "properties": {
+        "lastTransitionTime": {
+          "description": "Last time the condition transitioned from one status to another.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
+        "message": {
+          "description": "A human readable message indicating details about the transition.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "The reason for the condition's last transition.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the condition, one of True, False, Unknown.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of UI Resource condition.",
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceKubernetes": {
       "description": "UIResourceKubernetes contains status information specific to Kubernetes.",
       "type": "object",
@@ -20904,6 +20940,13 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIBuildTerminated"
+          }
+        },
+        "conditions": {
+          "description": "Represents the latest available observations of a UIResource's current state.\n\nDesigned for compatibility with 'wait' and cross-resource status reporting. https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#typical-status-properties",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.UIResourceCondition"
           }
         },
         "currentBuild": {
