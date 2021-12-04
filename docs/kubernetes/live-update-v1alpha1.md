@@ -72,19 +72,29 @@ LiveUpdateSpec defines the desired state of LiveUpdate
     <a name="LiveUpdateKubernetesSelector"></a>
     *Specifies how to select containers to live update inside K8s.*
 
+  - **selector.kubernetes.discoveryName** (string), required
+
+    The name of a KubernetesDiscovery object for finding pods.
+
   - **selector.kubernetes.applyName** (string)
 
     ApplyName is the name of a KubernetesApply object for filtering discovered pods to prevent updating old deployments.
     
     If not provided, no filtering will be applied and all discovered Pods will be eligible for update.
 
-  - **selector.kubernetes.discoveryName** (string)
+  - **selector.kubernetes.containerName** (string)
 
-    The name of a KubernetesDiscovery object for finding pods.
+    ContainerName specifies the name of the container that we're copying files into.
+    
+    Exactly one of Image or ContainerName MUST be specified.
 
   - **selector.kubernetes.image** (string)
 
-    Image specifies the name of the image that we're copying files into. Determines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.
+    Image specifies the name of the image that we're copying files into.
+    
+    Determines which containers in a pod to live-update. Matches images by name unless tag is explicitly specified.
+    
+    Exactly one of Image or ContainerName MUST be specified.
 
 - **execs** ([]LiveUpdateExec)
 
