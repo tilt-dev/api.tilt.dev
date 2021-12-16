@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "DockerImage describes an image to build with Docker."
 title: "DockerImage v1alpha1"
-weight: 1
+weight: 2
 ---
 
 `apiVersion: tilt.dev/v1alpha1`

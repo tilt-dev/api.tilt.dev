@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "ImageMap expresses the mapping from an image reference to a real, pushed image in an image registry that a container runtime can access."
 title: "ImageMap v1alpha1"
-weight: 3
+weight: 4
 ---
 
 `apiVersion: tilt.dev/v1alpha1`

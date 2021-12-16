@@ -27,9 +27,13 @@ parts:
     version: v1alpha1
   - name: Probe
     key: com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Probe
-    
+
 - name: Kubernetes
   chapters:
+  - name: Cluster
+    group: tilt.dev
+    version: v1alpha1
+    slugname: cluster
   - name: DockerImage
     group: tilt.dev
     version: v1alpha1
@@ -58,7 +62,7 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: port-forward
-    
+
 - name: Interface
   chapters:
   - name: UISession
