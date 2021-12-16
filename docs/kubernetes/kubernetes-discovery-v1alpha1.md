@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "KubernetesDiscovery."
 title: "KubernetesDiscovery v1alpha1"
-weight: 5
+weight: 6
 ---
 
 `apiVersion: tilt.dev/v1alpha1`

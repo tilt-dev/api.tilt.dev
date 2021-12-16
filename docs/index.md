@@ -31,7 +31,7 @@ or one of the example projects.
 
 <ul>
   {% for page in site.data.examples %}
-     <li><a href="https://docs.tilt.dev/{{page.href \| escape}}">{{page.title \| escape}}</a></li>
+     <li><a href="https://docs.tilt.dev/{{page.href \\\\\\\| escape}}">{{page.title \\\\\\\| escape}}</a></li>
   {% endfor %}
 </ul>
 

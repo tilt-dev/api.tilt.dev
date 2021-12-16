@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "LiveUpdate."
 title: "LiveUpdate v1alpha1"
-weight: 2
+weight: 3
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
