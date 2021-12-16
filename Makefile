@@ -11,7 +11,7 @@ gendocs:
 	go run ./cmd/gendocs -f openapi-spec/swagger.json kwebsite --config-dir=config --output-dir=docs --templates=./templates
 	find docs -name "*.md" | xargs sed -i.bak 's|<a href="... ref "\([^"]*\)" ...">\([^<]*\)</a>|[\2](\1)|g'
 	find docs -name "*.md" | xargs sed -i.bak 's|^api_metadata|layout: api\napi_metadata|g'
-	find docs -name "*.md" | xargs sed -i.bak "s/[|]/\\\|/g"
+	find docs -name "*.md" | xargs sed -i.bak "s/\([^\]\)[|]/\1\\\|/g"
 	find docs -name "*.md.bak" -delete
 
 dump-api:
