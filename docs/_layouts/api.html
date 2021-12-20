@@ -49,6 +49,7 @@ layout: api-header
           <dd class="js-accordion__panel Docs-subnav-section">
             <ul class="Docs-subnav-section-list">
               {% for chapter in part.chapters %}
+                
                 {% assign chapterName = chapter.name %}
                 {% if chapter.slugname %}
                   {% assign chapterName = chapter.slugname %}
@@ -58,9 +59,12 @@ layout: api-header
                 {% if chapter.version %}
                   {% assign baseName = chapterName | append: "-" | append: chapter.version | append: ".html" %}
                 {% endif %}
+
+                {% assign chapterHref = "/" | append: part.name | append: "/" | append: baseName | downcase %}
+              
                 <li class="Docs-subnav-section-list-item">
-                  <a class="Docs-subnav-link{% if page_href == page.href %} is-active{% endif %}"
-                     href="/{{part.name | downcase}}/{{baseName | downcase}}">
+                  <a class="Docs-subnav-link{% if page.url == chapterHref %} is-active{% endif %}"
+                     href="{{chapterHref}}">
                     {{chapter.name | escape}}
                   </a>
                 </li>
