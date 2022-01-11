@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "DockerImage describes an image to build with Docker."
 title: "DockerImage v1alpha1"
-weight: 2
+weight: 3
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -85,6 +85,12 @@ Most fields of this spec directly correspond to the Docker CLI.
   By default, Tilt creates a new temporary image reference for each build. The user can also specify their own reference, to integrate with other tooling (like build IDs for Jenkins build pipelines)
   
   Equivalent to the docker build --tag flag.
+
+- **imageMaps** ([]string)
+
+  Names of image maps that this build depends on.
+  
+  The controller will watch all the image maps, rebuild the image if any of the maps resolve to a new image, and inject them into the dockerfile.
 
 - **network** (string)
 

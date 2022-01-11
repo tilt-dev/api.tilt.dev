@@ -274,6 +274,8 @@ UIResourceStatus defines the observed state of UIResource
   - **localResourceInfo.isTest** (boolean)
 
     Whether this represents a test job.
+    
+    Deprecated: Users should use labels for marking services as tests.
 
   - **localResourceInfo.pid** (int64)
 

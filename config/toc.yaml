@@ -34,6 +34,10 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: cluster
+  - name: CmdImage
+    group: tilt.dev
+    version: v1alpha1
+    slugname: cmd-image
   - name: DockerImage
     group: tilt.dev
     version: v1alpha1

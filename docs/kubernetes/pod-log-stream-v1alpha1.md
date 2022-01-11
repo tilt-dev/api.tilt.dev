@@ -9,7 +9,7 @@ description: "PodLogStream
 
 Streams logs from a pod on Kubernetes into the core Tilt engine."
 title: "PodLogStream v1alpha1"
-weight: 7
+weight: 8
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -57,6 +57,12 @@ Translated into a PodLog query to the current Kubernetes cluster: https://pkg.go
 which Kubernetes context to use?
 
 <hr>
+
+- **cluster** (string)
+
+  Cluster the Pod belongs to.
+  
+  If not provided, "default" will be used.
 
 - **ignoreContainers** ([]string)
 

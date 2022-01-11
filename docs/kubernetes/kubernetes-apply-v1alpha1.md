@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "KubernetesApply specifies a blob of YAML to apply, and a set of ImageMaps that the YAML depends on."
 title: "KubernetesApply v1alpha1"
-weight: 5
+weight: 6
 ---
 
 `apiVersion: tilt.dev/v1alpha1`

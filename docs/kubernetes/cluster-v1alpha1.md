@@ -112,6 +112,15 @@ ClusterStatus defines the observed state of Cluster
   
   Note that many clusters support multiple chipsets. This field doesn't intend that this is the only architecture a cluster supports, only that it's one of the architectures.
 
+- **connectedAt** (MicroTime)
+
+  ConnectedAt indicates the time at which the cluster connection was established.
+  
+  Consumers can use this to detect when the underlying config has changed and refresh their client/connection accordingly.
+
+  <a name="MicroTime"></a>
+  *MicroTime is version of Time with microsecond level precision.*
+
 - **error** (string)
 
   An unrecoverable error connecting to the cluster.

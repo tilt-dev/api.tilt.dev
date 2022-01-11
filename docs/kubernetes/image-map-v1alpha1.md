@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "ImageMap expresses the mapping from an image reference to a real, pushed image in an image registry that a container runtime can access."
 title: "ImageMap v1alpha1"
-weight: 4
+weight: 5
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -133,18 +133,6 @@ ImageMapStatus defines the observed state of ImageMap
 
 <hr>
 
-- **image** (string), required
-
-  A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime that we're mapping this image to.
-  
-  NB: Container images often need to be referenced from different networks, including:
-  
-  1) The cluster container runtime 2) The local network 3) The cluster network
-  
-  And each of these cases may have distinct URLs.
-  
-  For more details on image references in different networks, see: https://github.com/kubernetes/enhancements/tree/master/keps/sig-cluster-lifecycle/generic/1755-communicating-a-local-registry#specification-for-localregistryhosting-v1
-
 - **buildStartTime** (MicroTime)
 
   Timestamp indicating when the image started building.
@@ -153,6 +141,26 @@ ImageMapStatus defines the observed state of ImageMap
 
   <a name="MicroTime"></a>
   *MicroTime is version of Time with microsecond level precision.*
+
+- **image** (string)
+
+  A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime that we're mapping this image to.
+  
+  NB: Container images often need to be referenced from different networks, including:
+  
+  1) The cluster container runtime 2) The local network 3) The cluster network
+  
+  And each of these cases may have distinct URLs. We might deprecate this field and only use fields of the form `ImageFromX`.
+  
+  For more details on image references in different networks, see: https://github.com/kubernetes/enhancements/tree/master/keps/sig-cluster-lifecycle/generic/1755-communicating-a-local-registry#specification-for-localregistryhosting-v1
+
+- **imageFromCluster** (string)
+
+  A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime.
+
+- **imageFromLocal** (string)
+
+  A fully-qualified image reference, including a name and an immutable tag, as seen from the local network.
 
 
 
