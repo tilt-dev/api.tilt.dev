@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "KubernetesDiscovery."
 title: "KubernetesDiscovery v1alpha1"
-weight: 6
+weight: 7
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -74,6 +74,12 @@ KubernetesDiscoverySpec defines the desired state of KubernetesDiscovery
     UID is a Kubernetes object UID.
     
     It should either be the exact object UID or the transitive owner.
+
+- **cluster** (string)
+
+  Cluster name to determine the Kubernetes cluster.
+  
+  If not provided, "default" will be used.
 
 - **extraSelectors** ([]LabelSelector)
 
@@ -532,6 +538,31 @@ KubernetesDiscoveryStatus defines the observed state of KubernetesDiscovery
 
   <a name="MicroTime"></a>
   *MicroTime is version of Time with microsecond level precision.*
+
+- **running** (KubernetesDiscoveryStateRunning)
+
+  Running contains information about the currently running monitor.
+
+  <a name="KubernetesDiscoveryStateRunning"></a>
+  **
+
+  - **running.startTime** (MicroTime), required
+
+    StartTime is when Kubernetes resource discovery began.
+
+    <a name="MicroTime"></a>
+    *MicroTime is version of Time with microsecond level precision.*
+
+- **waiting** (KubernetesDiscoveryStateWaiting)
+
+  Waiting contains information about why the monitor has not started.
+
+  <a name="KubernetesDiscoveryStateWaiting"></a>
+  **
+
+  - **waiting.reason** (string), required
+
+    Reason the monitor has not yet been started.
 
 
 

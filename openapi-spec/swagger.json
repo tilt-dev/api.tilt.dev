@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "tilt",
-    "version": "0.23.3"
+    "version": "0.23.5"
   },
   "paths": {
     "/apis/": {
@@ -823,6 +823,747 @@
           "uniqueItems": true,
           "type": "string",
           "description": "name of the Cluster",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/cmdimages": {
+      "get": {
+        "description": "list or watch objects of kind CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "listTiltDevV1alpha1CmdImage",
+        "parameters": [
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+            "name": "allowWatchBookmarks",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+            "name": "watch",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageList"
+            }
+          }
+        },
+        "x-kubernetes-action": "list",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "post": {
+        "description": "create a CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "createTiltDevV1alpha1CmdImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "post",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "delete": {
+        "description": "delete collection of CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1CollectionCmdImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+            "name": "continue",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+            "name": "fieldSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+            "name": "labelSelector",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersion",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+            "name": "resourceVersionMatch",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+            "name": "timeoutSeconds",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "deletecollection",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/cmdimages/{name}": {
+      "get": {
+        "description": "read the specified CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1CmdImage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "put": {
+        "description": "replace the specified CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1CmdImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "delete": {
+        "description": "delete a CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "deleteTiltDevV1alpha1CmdImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "integer",
+            "description": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.",
+            "name": "gracePeriodSeconds",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.",
+            "name": "orphanDependents",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.",
+            "name": "propagationPolicy",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+            }
+          }
+        },
+        "x-kubernetes-action": "delete",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "patch": {
+        "description": "partially update the specified CmdImage",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1CmdImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the CmdImage",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/cmdimages/{name}/status": {
+      "get": {
+        "description": "read status of the specified CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "readTiltDevV1alpha1CmdImageStatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "get",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "put": {
+        "description": "replace status of the specified CmdImage",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "replaceTiltDevV1alpha1CmdImageStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.",
+            "name": "fieldManager",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "put",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "patch": {
+        "description": "partially update status of the specified CmdImage",
+        "consumes": [
+          "application/json-patch+json",
+          "application/merge-patch+json",
+          "application/strategic-merge-patch+json",
+          "application/apply-patch+yaml"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "patchTiltDevV1alpha1CmdImageStatus",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Patch"
+            }
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed",
+            "name": "dryRun",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "string",
+            "description": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).",
+            "name": "fieldManager",
+            "in": "query"
+          },
+          {
+            "uniqueItems": true,
+            "type": "boolean",
+            "description": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.",
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+            }
+          }
+        },
+        "x-kubernetes-action": "patch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the CmdImage",
           "name": "name",
           "in": "path",
           "required": true
@@ -14213,6 +14954,230 @@
         }
       ]
     },
+    "/apis/tilt.dev/v1alpha1/watch/cmdimages": {
+      "get": {
+        "description": "watch individual changes to a list of CmdImage. deprecated: use the 'watch' parameter with a list operation instead.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1CmdImageList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watchlist",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
+    "/apis/tilt.dev/v1alpha1/watch/cmdimages/{name}": {
+      "get": {
+        "description": "watch changes to an object of kind CmdImage. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json",
+          "application/yaml",
+          "application/vnd.kubernetes.protobuf",
+          "application/json;stream=watch",
+          "application/vnd.kubernetes.protobuf;stream=watch"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          "tiltDev_v1alpha1"
+        ],
+        "operationId": "watchTiltDevV1alpha1CmdImage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.WatchEvent"
+            }
+          }
+        },
+        "x-kubernetes-action": "watch",
+        "x-kubernetes-group-version-kind": {
+          "group": "tilt.dev",
+          "version": "v1alpha1",
+          "kind": "CmdImage"
+        }
+      },
+      "parameters": [
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.",
+          "name": "allowWatchBookmarks",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.",
+          "name": "continue",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their fields. Defaults to everything.",
+          "name": "fieldSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "A selector to restrict the list of returned objects by their labels. Defaults to everything.",
+          "name": "labelSelector",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.",
+          "name": "limit",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "name of the CmdImage",
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "If 'true', then the output is pretty printed.",
+          "name": "pretty",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersion",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "string",
+          "description": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset",
+          "name": "resourceVersionMatch",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "integer",
+          "description": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.",
+          "name": "timeoutSeconds",
+          "in": "query"
+        },
+        {
+          "uniqueItems": true,
+          "type": "boolean",
+          "description": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.",
+          "name": "watch",
+          "in": "query"
+        }
+      ]
+    },
     "/apis/tilt.dev/v1alpha1/watch/cmds": {
       "get": {
         "description": "watch individual changes to a list of Cmd. deprecated: use the 'watch' parameter with a list operation instead.",
@@ -18368,6 +19333,10 @@
           "description": "The preferred chip architecture of the cluster.\n\nOn Kubernetes, this will correspond to the kubernetes.io/arch annotation on a node.\n\nOn Docker, this will be the Architecture of the Docker daemon.\n\nNote that many clusters support multiple chipsets. This field doesn't intend that this is the only architecture a cluster supports, only that it's one of the architectures.",
           "type": "string"
         },
+        "connectedAt": {
+          "description": "ConnectedAt indicates the time at which the cluster connection was established.\n\nConsumers can use this to detect when the underlying config has changed and refresh their client/connection accordingly.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
         "error": {
           "description": "An unrecoverable error connecting to the cluster.",
           "type": "string"
@@ -18403,6 +19372,180 @@
           "version": "v1alpha1"
         }
       ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage": {
+      "description": "CmdImage describes an image to build with an arbitrary shell command.",
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+        },
+        "spec": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageSpec"
+        },
+        "status": {
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStatus"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "CmdImage",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageList": {
+      "description": "CmdImageList",
+      "type": "object",
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "apiVersion": {
+          "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImage"
+          }
+        },
+        "kind": {
+          "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
+        }
+      },
+      "x-kubernetes-group-version-kind": [
+        {
+          "group": "tilt.dev",
+          "kind": "CmdImageList",
+          "version": "v1alpha1"
+        }
+      ]
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageSpec": {
+      "description": "CmdImageSpec describes how the custom script builds images and where it puts them.",
+      "type": "object",
+      "required": [
+        "ref"
+      ],
+      "properties": {
+        "args": {
+          "description": "Command-line arguments. Must have length at least 1.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dir": {
+          "description": "Process working directory.\n\nIf the working directory is not specified, the command is run in the default Tilt working directory.",
+          "type": "string"
+        },
+        "imageMaps": {
+          "description": "Names of image maps that this build depends on.\n\nThe controller will watch all the image maps, and rebuild the image if any of the maps resolve to a new image.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputMode": {
+          "description": "Specifies where the image is built. If not specified, we assume the image was built to the local Docker image store.",
+          "type": "string"
+        },
+        "outputTag": {
+          "description": "Tag we expect the image to be built with (we use this to check that the expected image+tag has been created).\n\nIf empty, we create an expected tag at the beginning of CustomBuild (and export $EXPECTED_REF=name:expected_tag )",
+          "type": "string"
+        },
+        "outputsImageRefTo": {
+          "description": "Specifies a filepath where the cmd script prints the result image ref.\n\nTilt will read it out when we're done to find the image.",
+          "type": "string"
+        },
+        "ref": {
+          "description": "The named reference of the image.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStateBuilding": {
+      "description": "CmdImageStateBuilding expresses that an image build is in-progress.",
+      "type": "object",
+      "properties": {
+        "reason": {
+          "description": "The reason why the image is building.",
+          "type": "string"
+        },
+        "startedAt": {
+          "description": "Time when the build started.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStateCompleted": {
+      "description": "CmdImageStateCompleted expresses when the image build is finished and no new images need to be built.",
+      "type": "object",
+      "properties": {
+        "error": {
+          "description": "Error message if the build failed.",
+          "type": "string"
+        },
+        "finishedAt": {
+          "description": "Time when we finished building an image",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        },
+        "reason": {
+          "description": "The reason why the image was built.",
+          "type": "string"
+        },
+        "startedAt": {
+          "description": "Time when we started building an image.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStateWaiting": {
+      "description": "CmdImageStateWaiting expresses what we're waiting on to build an image.",
+      "type": "object",
+      "properties": {
+        "reason": {
+          "description": "(brief) reason the image build is waiting.",
+          "type": "string"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStatus": {
+      "description": "CmdImageStatus describes the result of the image build.",
+      "type": "object",
+      "properties": {
+        "building": {
+          "description": "Details about a building image.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStateBuilding"
+        },
+        "completed": {
+          "description": "Details about a finished image build.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStateCompleted"
+        },
+        "ref": {
+          "description": "A fully-qualified image reference of a built image, as seen from the local network.\n\nUsually includes a name and an immutable tag.\n\nNB: If we're building to a particular registry, this may have a different hostname from the Spec `Ref` field.",
+          "type": "string"
+        },
+        "waiting": {
+          "description": "Details about a waiting image build.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdImageStateWaiting"
+        }
+      }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.CmdList": {
       "description": "CmdList",
@@ -18981,6 +20124,13 @@
         },
         "extraTags": {
           "description": "By default, Tilt creates a new temporary image reference for each build. The user can also specify their own reference, to integrate with other tooling (like build IDs for Jenkins build pipelines)\n\nEquivalent to the docker build --tag flag.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imageMaps": {
+          "description": "Names of image maps that this build depends on.\n\nThe controller will watch all the image maps, rebuild the image if any of the maps resolve to a new image, and inject them into the dockerfile.",
           "type": "array",
           "items": {
             "type": "string"
@@ -19750,16 +20900,21 @@
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ImageMapStatus": {
       "description": "ImageMapStatus defines the observed state of ImageMap",
       "type": "object",
-      "required": [
-        "image"
-      ],
       "properties": {
         "buildStartTime": {
           "description": "Timestamp indicating when the image started building.\n\nIntended to be used to determine which file changes were picked up by the image build. We can assume that any file changes before this timestamp were definitely included in the image, and any file changes after this timestamp may not be included in the image.",
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
         },
         "image": {
-          "description": "A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime that we're mapping this image to.\n\nNB: Container images often need to be referenced from different networks, including:\n\n1) The cluster container runtime 2) The local network 3) The cluster network\n\nAnd each of these cases may have distinct URLs.\n\nFor more details on image references in different networks, see: https://github.com/kubernetes/enhancements/tree/master/keps/sig-cluster-lifecycle/generic/1755-communicating-a-local-registry#specification-for-localregistryhosting-v1",
+          "description": "A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime that we're mapping this image to.\n\nNB: Container images often need to be referenced from different networks, including:\n\n1) The cluster container runtime 2) The local network 3) The cluster network\n\nAnd each of these cases may have distinct URLs. We might deprecate this field and only use fields of the form `ImageFromX`.\n\nFor more details on image references in different networks, see: https://github.com/kubernetes/enhancements/tree/master/keps/sig-cluster-lifecycle/generic/1755-communicating-a-local-registry#specification-for-localregistryhosting-v1",
+          "type": "string"
+        },
+        "imageFromCluster": {
+          "description": "A fully-qualified image reference, including a name and an immutable tag, as seen from the cluster container runtime.",
+          "type": "string"
+        },
+        "imageFromLocal": {
+          "description": "A fully-qualified image reference, including a name and an immutable tag, as seen from the local network.",
           "type": "string"
         }
       }
@@ -20026,6 +21181,10 @@
         "watches"
       ],
       "properties": {
+        "cluster": {
+          "description": "Cluster name to determine the Kubernetes cluster.\n\nIf not provided, \"default\" will be used.",
+          "type": "string"
+        },
         "extraSelectors": {
           "description": "ExtraSelectors are label selectors that will force discovery of a Pod even if it does not match the AncestorUID.\n\nThis should only be necessary in the event that a CRD creates Pods but does not set an owner reference to itself.",
           "type": "array",
@@ -20050,6 +21209,30 @@
         }
       }
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscoveryStateRunning": {
+      "type": "object",
+      "required": [
+        "startTime"
+      ],
+      "properties": {
+        "startTime": {
+          "description": "StartTime is when Kubernetes resource discovery began.",
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+        }
+      }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscoveryStateWaiting": {
+      "type": "object",
+      "required": [
+        "reason"
+      ],
+      "properties": {
+        "reason": {
+          "description": "Reason the monitor has not yet been started.",
+          "type": "string"
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscoveryStatus": {
       "description": "KubernetesDiscoveryStatus defines the observed state of KubernetesDiscovery",
       "type": "object",
@@ -20067,6 +21250,14 @@
           "items": {
             "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.Pod"
           }
+        },
+        "running": {
+          "description": "Running contains information about the currently running monitor.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscoveryStateRunning"
+        },
+        "waiting": {
+          "description": "Waiting contains information about why the monitor has not started.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.KubernetesDiscoveryStateWaiting"
         }
       }
     },
@@ -20636,6 +21827,10 @@
       "description": "PodLogStreamSpec defines the desired state of PodLogStream\n\nTranslated into a PodLog query to the current Kubernetes cluster: https://pkg.go.dev/k8s.io/api/core/v1#PodLogOptions\n\nwhich Kubernetes context to use?",
       "type": "object",
       "properties": {
+        "cluster": {
+          "description": "Cluster the Pod belongs to.\n\nIf not provided, \"default\" will be used.",
+          "type": "string"
+        },
         "ignoreContainers": {
           "description": "The names of containers to exclude from the stream.\n\nIf `onlyContainers` and `ignoreContainers` are not set, will watch all containers in the pod.",
           "type": "array",
@@ -21959,7 +23154,7 @@
       "type": "object",
       "properties": {
         "isTest": {
-          "description": "Whether this represents a test job.",
+          "description": "Whether this represents a test job.\n\nDeprecated: Users should use labels for marking services as tests.",
           "type": "boolean"
         },
         "pid": {
