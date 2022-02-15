@@ -187,6 +187,10 @@ UIResourceStatus defines the observed state of UIResource
 
     The name of the ConfigMap
 
+  - **disableStatus.state** (string), required
+
+    Whether this is currently disabled (if known)
+
 - **endpointLinks** ([]UIResourceLink)
 
   Links attached to this resource.

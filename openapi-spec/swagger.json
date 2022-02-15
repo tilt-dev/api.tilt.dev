@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "tilt",
-    "version": "0.23.5"
+    "version": "0.25.0"
   },
   "paths": {
     "/apis/": {
@@ -19967,6 +19967,7 @@
       "required": [
         "enabledCount",
         "disabledCount",
+        "state",
         "sources"
       ],
       "properties": {
@@ -19986,6 +19987,10 @@
           "items": {
             "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.DisableSource"
           }
+        },
+        "state": {
+          "description": "Whether this is currently disabled (if known)",
+          "type": "string"
         }
       }
     },
@@ -20004,11 +20009,12 @@
       "required": [
         "disabled",
         "lastUpdateTime",
-        "reason"
+        "reason",
+        "state"
       ],
       "properties": {
         "disabled": {
-          "description": "Whether this is currently disabled.",
+          "description": "Whether this is currently disabled. Deprecated in favor of `State`.",
           "type": "boolean"
         },
         "lastUpdateTime": {
@@ -20017,6 +20023,10 @@
         },
         "reason": {
           "description": "The reason this status was updated.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Whether this is currently disabled (if known)",
           "type": "string"
         }
       }
@@ -21869,6 +21879,10 @@
           "items": {
             "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.ContainerLogStreamStatus"
           }
+        },
+        "error": {
+          "description": "Error message encountered while setting up the stream.",
+          "type": "string"
         }
       }
     },
@@ -22249,6 +22263,21 @@
         }
       }
     },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.StopOnSpec": {
+      "type": "object",
+      "required": [
+        "uiButtons"
+      ],
+      "properties": {
+        "uiButtons": {
+          "description": "UIButtons that can trigger a stop.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TCPSocketAction": {
       "description": "TCPSocketAction describes an action based on opening a socket",
       "type": "object",
@@ -22299,12 +22328,16 @@
       }
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TargetState": {
-      "description": "TargetState describes the current execution status for a target.\n\nEither EXACTLY one of Waiting, Active, or Terminated will be populated or NONE of them will be. In the event that all states are null, the target is currently inactive or disabled and should not be expected to execute.",
+      "description": "TargetState describes the current execution status for a target.\n\nEither EXACTLY one of Waiting, Active, Disabled, or Terminated will be populated or NONE of them will be. In the event that all states are null, the target is currently inactive or disabled and should not be expected to execute.",
       "type": "object",
       "properties": {
         "active": {
           "description": "Active being non-nil indicates that the target is currently executing.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TargetStateActive"
+        },
+        "disabled": {
+          "description": "Disabled being non-nil indicates that the target is disabled.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TargetStateDisabled"
         },
         "terminated": {
           "description": "Terminated being non-nil indicates that the target finished execution either normally or due to failure.",
@@ -22333,6 +22366,10 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
         }
       }
+    },
+    "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TargetStateDisabled": {
+      "description": "TargetStateDisabled is a target that has been disabled.",
+      "type": "object"
     },
     "com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.TargetStateTerminated": {
       "description": "TargetStateTerminated is a target that finished running, either because it completed successfully or encountered an error.",
@@ -22482,6 +22519,10 @@
         "restartOn": {
           "description": "Objects that can trigger a re-execution of this Tiltfile.",
           "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.RestartOnSpec"
+        },
+        "stopOn": {
+          "description": "Objects that can stop execution of this Tiltfile.",
+          "$ref": "#/definitions/com.github.tilt-dev.tilt.pkg.apis.core.v1alpha1.StopOnSpec"
         }
       }
     },

@@ -159,7 +159,7 @@ Based loosely on ContainerStatus in Kubernetes
 
   - **disableStatus.disabled** (boolean), required
 
-    Whether this is currently disabled.
+    Whether this is currently disabled. Deprecated in favor of `State`.
 
   - **disableStatus.lastUpdateTime** (Time), required
 
@@ -171,6 +171,10 @@ Based loosely on ContainerStatus in Kubernetes
   - **disableStatus.reason** (string), required
 
     The reason this status was updated.
+
+  - **disableStatus.state** (string), required
+
+    Whether this is currently disabled (if known)
 
 - **ready** (boolean)
 

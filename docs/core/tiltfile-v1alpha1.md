@@ -81,6 +81,17 @@ TiltfileSpec defines the desired state of Tiltfile
 
     UIButtons that can trigger a restart.
 
+- **stopOn** (StopOnSpec)
+
+  Objects that can stop execution of this Tiltfile.
+
+  <a name="StopOnSpec"></a>
+  **
+
+  - **stopOn.uiButtons** ([]string), required
+
+    UIButtons that can trigger a stop.
+
 
 
 

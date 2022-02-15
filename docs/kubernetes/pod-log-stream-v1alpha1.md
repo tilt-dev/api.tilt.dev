@@ -129,6 +129,10 @@ PodLogStreamStatus defines the observed state of PodLogStream
 
     True when the logs are done stream and the container is terminated.
 
+- **error** (string)
+
+  Error message encountered while setting up the stream.
+
 
 
 
