@@ -115,7 +115,7 @@ FileWatchStatus defines the observed state of FileWatch
 
   - **disableStatus.disabled** (boolean), required
 
-    Whether this is currently disabled.
+    Whether this is currently disabled. Deprecated in favor of `State`.
 
   - **disableStatus.lastUpdateTime** (Time), required
 
@@ -127,6 +127,10 @@ FileWatchStatus defines the observed state of FileWatch
   - **disableStatus.reason** (string), required
 
     The reason this status was updated.
+
+  - **disableStatus.state** (string), required
+
+    Whether this is currently disabled (if known)
 
 - **error** (string)
 

@@ -108,7 +108,7 @@ SessionStatus defines the observed state of Session
     <a name="TargetState"></a>
     *TargetState describes the current execution status for a target.
     
-    Either EXACTLY one of Waiting, Active, or Terminated will be populated or NONE of them will be. In the event that all states are null, the target is currently inactive or disabled and should not be expected to execute.*
+    Either EXACTLY one of Waiting, Active, Disabled, or Terminated will be populated or NONE of them will be. In the event that all states are null, the target is currently inactive or disabled and should not be expected to execute.*
 
   - **targets.state.active** (TargetStateActive)
 
@@ -129,6 +129,13 @@ SessionStatus defines the observed state of Session
 
     <a name="MicroTime"></a>
     *MicroTime is version of Time with microsecond level precision.*
+
+  - **targets.state.disabled** (TargetStateDisabled)
+
+    Disabled being non-nil indicates that the target is disabled.
+
+    <a name="TargetStateDisabled"></a>
+    *TargetStateDisabled is a target that has been disabled.*
 
   - **targets.state.terminated** (TargetStateTerminated)
 
