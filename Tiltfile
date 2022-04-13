@@ -9,7 +9,7 @@ local_resource(
 local_resource(
   name='gendocs',
   cmd='make gendocs',
-  deps=['Makefile', './config', './openapi-spec'])
+  deps=['Makefile', 'go.mod', 'go.sum', './cmd/gendocs', './config', './openapi-spec'])
 
 docker_build(
   'api-site-base',

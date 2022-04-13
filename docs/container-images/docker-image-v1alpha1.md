@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "DockerImage describes an image to build with Docker."
 title: "DockerImage v1alpha1"
-weight: 3
+weight: 2
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -33,10 +33,10 @@ DockerImage describes an image to build with Docker.
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([DockerImageSpec](../kubernetes/docker-image-v1alpha1#DockerImageSpec))
+- **spec** ([DockerImageSpec](../container-images/docker-image-v1alpha1#DockerImageSpec))
 
 
-- **status** ([DockerImageStatus](../kubernetes/docker-image-v1alpha1#DockerImageStatus))
+- **status** ([DockerImageStatus](../container-images/docker-image-v1alpha1#DockerImageStatus))
 
 
 
@@ -69,6 +69,20 @@ Most fields of this spec directly correspond to the Docker CLI.
   Images to use as cache sources.
   
   Equivalent to `--cache-from` in the Docker CLI.
+
+- **cluster** (string)
+
+  The name of the cluster we're building for.
+  
+  We'll use the cluster to determine the architecture of the image to build, and the registry to build it for.
+  
+  If no cluster is specified, assumes the default cluster.
+
+- **clusterNeeds** (string)
+
+  Whether the cluster needs access to the image.
+  
+  If not specified, assumes we have to push up to the cluster.
 
 - **context** (string)
 
@@ -268,7 +282,7 @@ DockerImageList
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][DockerImage](../kubernetes/docker-image-v1alpha1#DockerImage)), required
+- **items** ([][DockerImage](../container-images/docker-image-v1alpha1#DockerImage)), required
 
 
 

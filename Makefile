@@ -4,6 +4,8 @@ gendocs:
 	rm -fR docs/core
 	rm -fR docs/interface
 	rm -fR docs/kubernetes
+	rm -fR docs/container-images
+	rm -fR docs/docker-compose
 	rm -fR docs/meta
 	rm -fR docs/other-resources
 	rm -fR docs/common-parameters

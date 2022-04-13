@@ -12,10 +12,10 @@ layout: api-header
           {% if href != "https://api.tilt.dev" %}
             {% assign href = link.href | prepend: site.docsurl %}
             {% assign hrefMobile = link.hrefMobile | prepend: site.docsurl %}
-          {% endif %}  
+          {% endif %}
           <li class="Docs-nav-list-item">
             <a class="Docs-nav-link Docs-nav-link--desktop{% if page.sidebar == link.active %} is-active{% endif %}" href="{{href | escape}}">
-              {{link.title | escape}} 
+              {{link.title | escape}}
             </a>
             <!-- On mobile, top-level nav goes to a separate page with subnav links -->
             <a class="Docs-nav-link Docs-nav-link--mobile{% if page.sidebar == link.active %} is-active{% endif %}" href="{{hrefMobile | escape}}">
@@ -49,19 +49,19 @@ layout: api-header
           <dd class="js-accordion__panel Docs-subnav-section">
             <ul class="Docs-subnav-section-list">
               {% for chapter in part.chapters %}
-                
+
                 {% assign chapterName = chapter.name %}
                 {% if chapter.slugname %}
                   {% assign chapterName = chapter.slugname %}
                 {% endif %}
-        
+
                 {% assign baseName = chapterName | append: ".html" %}
                 {% if chapter.version %}
                   {% assign baseName = chapterName | append: "-" | append: chapter.version | append: ".html" %}
                 {% endif %}
 
-                {% assign chapterHref = "/" | append: part.name | append: "/" | append: baseName | downcase %}
-              
+                {% assign chapterHref = "/" | append: part.name | replace: " ", "-" | append: "/" | append: baseName | downcase %}
+
                 <li class="Docs-subnav-section-list-item">
                   <a class="Docs-subnav-link{% if page.url == chapterHref %} is-active{% endif %}"
                      href="{{chapterHref}}">
@@ -72,13 +72,13 @@ layout: api-header
             </ul>
           </dd>
           {% endfor %}
-        </dl>  
+        </dl>
       </nav>
     </aside>
-  
+
     <article class="Docs-content">
       <h1>{{ page.title | escape }}</h1>
-    
+
       {{ content }}
     </article>
   </div>

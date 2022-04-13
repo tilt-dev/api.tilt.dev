@@ -174,7 +174,7 @@ UIResourceStatus defines the observed state of UIResource
 
   - **disableStatus.sources.configMap** (ConfigMapDisableSource)
 
-    This DisableSource is controlled by a ConfigMap
+    Disabled by single ConfigMap value.
 
     <a name="ConfigMapDisableSource"></a>
     *Specifies a ConfigMap to control a DisableSource*
@@ -184,6 +184,21 @@ UIResourceStatus defines the observed state of UIResource
     The key where the enable/disable state is stored.
 
   - **disableStatus.sources.configMap.name** (string), required
+
+    The name of the ConfigMap
+
+  - **disableStatus.sources.everyConfigMap** ([]ConfigMapDisableSource)
+
+    Disabled by multiple ConfigMap values, which must all be set to disabled to disable the object.
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableStatus.sources.everyConfigMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableStatus.sources.everyConfigMap.name** (string), required
 
     The name of the ConfigMap
 

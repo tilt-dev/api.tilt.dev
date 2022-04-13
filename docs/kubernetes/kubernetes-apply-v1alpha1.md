@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "KubernetesApply specifies a blob of YAML to apply, and a set of ImageMaps that the YAML depends on."
 title: "KubernetesApply v1alpha1"
-weight: 6
+weight: 2
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -121,7 +121,7 @@ KubernetesApplySpec defines the desired state of KubernetesApply
 
   - **disableSource.configMap** (ConfigMapDisableSource)
 
-    This DisableSource is controlled by a ConfigMap
+    Disabled by single ConfigMap value.
 
     <a name="ConfigMapDisableSource"></a>
     *Specifies a ConfigMap to control a DisableSource*
@@ -131,6 +131,21 @@ KubernetesApplySpec defines the desired state of KubernetesApply
     The key where the enable/disable state is stored.
 
   - **disableSource.configMap.name** (string), required
+
+    The name of the ConfigMap
+
+  - **disableSource.everyConfigMap** ([]ConfigMapDisableSource)
+
+    Disabled by multiple ConfigMap values, which must all be set to disabled to disable the object.
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableSource.everyConfigMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableSource.everyConfigMap.name** (string), required
 
     The name of the ConfigMap
 

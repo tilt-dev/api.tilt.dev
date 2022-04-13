@@ -63,7 +63,7 @@ FileWatchSpec defines the desired state of FileWatch
 
   - **disableSource.configMap** (ConfigMapDisableSource)
 
-    This DisableSource is controlled by a ConfigMap
+    Disabled by single ConfigMap value.
 
     <a name="ConfigMapDisableSource"></a>
     *Specifies a ConfigMap to control a DisableSource*
@@ -73,6 +73,21 @@ FileWatchSpec defines the desired state of FileWatch
     The key where the enable/disable state is stored.
 
   - **disableSource.configMap.name** (string), required
+
+    The name of the ConfigMap
+
+  - **disableSource.everyConfigMap** ([]ConfigMapDisableSource)
+
+    Disabled by multiple ConfigMap values, which must all be set to disabled to disable the object.
+
+    <a name="ConfigMapDisableSource"></a>
+    *Specifies a ConfigMap to control a DisableSource*
+
+  - **disableSource.everyConfigMap.key** (string), required
+
+    The key where the enable/disable state is stored.
+
+  - **disableSource.everyConfigMap.name** (string), required
 
     The name of the ConfigMap
 

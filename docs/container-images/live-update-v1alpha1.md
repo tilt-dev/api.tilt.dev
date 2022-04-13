@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "LiveUpdate."
 title: "LiveUpdate v1alpha1"
-weight: 4
+weight: 3
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -33,10 +33,10 @@ LiveUpdate
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([LiveUpdateSpec](../kubernetes/live-update-v1alpha1#LiveUpdateSpec))
+- **spec** ([LiveUpdateSpec](../container-images/live-update-v1alpha1#LiveUpdateSpec))
 
 
-- **status** ([LiveUpdateStatus](../kubernetes/live-update-v1alpha1#LiveUpdateStatus))
+- **status** ([LiveUpdateStatus](../container-images/live-update-v1alpha1#LiveUpdateStatus))
 
 
 
@@ -64,6 +64,19 @@ LiveUpdateSpec defines the desired state of LiveUpdate
   *Specifies how to select containers to live update.
   
   Every live update must be associated with some object for finding containers. In the future, we expect there to be other types of container discovery objects (like Docker Compose container discovery).*
+
+  - **selector.dockerCompose** (LiveUpdateDockerComposeSelector)
+
+    Finds containers in Docker Compose.
+
+    <a name="LiveUpdateDockerComposeSelector"></a>
+    *Specifies how to select containers to live update inside Docker Compose.*
+
+  - **selector.dockerCompose.service** (string), required
+
+    The name of a DockerComposeService object.
+    
+    For simple projects, this is usually the same as the service name in the docker-compose.yml file. (But it doesn't necessarily have to be.)
 
   - **selector.kubernetes** (LiveUpdateKubernetesSelector)
 
@@ -281,7 +294,7 @@ LiveUpdateList
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][LiveUpdate](../kubernetes/live-update-v1alpha1#LiveUpdate)), required
+- **items** ([][LiveUpdate](../container-images/live-update-v1alpha1#LiveUpdate)), required
 
 
 

@@ -34,22 +34,6 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: cluster
-  - name: CmdImage
-    group: tilt.dev
-    version: v1alpha1
-    slugname: cmd-image
-  - name: DockerImage
-    group: tilt.dev
-    version: v1alpha1
-    slugname: docker-image
-  - name: LiveUpdate
-    group: tilt.dev
-    version: v1alpha1
-    slugname: live-update
-  - name: ImageMap
-    group: tilt.dev
-    version: v1alpha1
-    slugname: image-map
   - name: KubernetesApply
     group: tilt.dev
     version: v1alpha1
@@ -85,6 +69,32 @@ parts:
     group: tilt.dev
     version: v1alpha1
     slugname: toggle-button
+
+- name: Container Images
+  chapters:
+  - name: CmdImage
+    group: tilt.dev
+    version: v1alpha1
+    slugname: cmd-image
+  - name: DockerImage
+    group: tilt.dev
+    version: v1alpha1
+    slugname: docker-image
+  - name: LiveUpdate
+    group: tilt.dev
+    version: v1alpha1
+    slugname: live-update
+  - name: ImageMap
+    group: tilt.dev
+    version: v1alpha1
+    slugname: image-map
+
+- name: Docker Compose
+  chapters:
+  - name: DockerComposeService
+    group: tilt.dev
+    version: v1alpha1
+    slugname: docker-compose-service
 
 - name: Meta
   chapters:

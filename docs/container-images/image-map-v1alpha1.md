@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "ImageMap expresses the mapping from an image reference to a real, pushed image in an image registry that a container runtime can access."
 title: "ImageMap v1alpha1"
-weight: 5
+weight: 4
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -41,10 +41,10 @@ ImageMap doesn't follow the usual Kubernetes-style API semantics (where the Stat
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([ImageMapSpec](../kubernetes/image-map-v1alpha1#ImageMapSpec))
+- **spec** ([ImageMapSpec](../container-images/image-map-v1alpha1#ImageMapSpec))
 
 
-- **status** ([ImageMapStatus](../kubernetes/image-map-v1alpha1#ImageMapStatus))
+- **status** ([ImageMapStatus](../container-images/image-map-v1alpha1#ImageMapStatus))
 
 
 
@@ -65,28 +65,6 @@ ImageMapSpec defines the desired state of ImageMap
   Deployment tools expect this image reference to match an image in the YAML being deployed, and will replace that image reference.
   
   By default, this selector will match an image if the names match (tags on both the selector and the matched reference are ignored).
-
-- **disableSource** (DisableSource)
-
-  Specifies how to disable this.
-
-  <a name="DisableSource"></a>
-  *Points at a thing that can control whether something is disabled*
-
-  - **disableSource.configMap** (ConfigMapDisableSource)
-
-    This DisableSource is controlled by a ConfigMap
-
-    <a name="ConfigMapDisableSource"></a>
-    *Specifies a ConfigMap to control a DisableSource*
-
-  - **disableSource.configMap.key** (string), required
-
-    The key where the enable/disable state is stored.
-
-  - **disableSource.configMap.name** (string), required
-
-    The name of the ConfigMap
 
 - **matchExact** (boolean)
 
@@ -182,7 +160,7 @@ ImageMapList
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][ImageMap](../kubernetes/image-map-v1alpha1#ImageMap)), required
+- **items** ([][ImageMap](../container-images/image-map-v1alpha1#ImageMap)), required
 
 
 
