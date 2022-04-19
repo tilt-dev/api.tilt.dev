@@ -7,7 +7,7 @@ api_metadata:
 content_type: "api_reference"
 description: "CmdImage describes an image to build with an arbitrary shell command."
 title: "CmdImage v1alpha1"
-weight: 2
+weight: 1
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
@@ -33,10 +33,10 @@ CmdImage describes an image to build with an arbitrary shell command.
 - **metadata** ([ObjectMeta](../meta/object-meta#ObjectMeta))
 
 
-- **spec** ([CmdImageSpec](../kubernetes/cmd-image-v1alpha1#CmdImageSpec))
+- **spec** ([CmdImageSpec](../container-images/cmd-image-v1alpha1#CmdImageSpec))
 
 
-- **status** ([CmdImageStatus](../kubernetes/cmd-image-v1alpha1#CmdImageStatus))
+- **status** ([CmdImageStatus](../container-images/cmd-image-v1alpha1#CmdImageStatus))
 
 
 
@@ -57,6 +57,20 @@ CmdImageSpec describes how the custom script builds images and where it puts the
 - **args** ([]string)
 
   Command-line arguments. Must have length at least 1.
+
+- **cluster** (string)
+
+  The name of the cluster we're building for.
+  
+  We'll use the cluster to determine the architecture of the image to build, and the registry to build it for.
+  
+  If no cluster is specified, assumes the default cluster.
+
+- **clusterNeeds** (string)
+
+  Whether the cluster needs access to the image.
+  
+  If not specified, assumes we have to push up to the cluster.
 
 - **dir** (string)
 
@@ -183,7 +197,7 @@ CmdImageList
 - **metadata** ([ListMeta](../meta/list-meta#ListMeta))
 
 
-- **items** ([][CmdImage](../kubernetes/cmd-image-v1alpha1#CmdImage)), required
+- **items** ([][CmdImage](../container-images/cmd-image-v1alpha1#CmdImage)), required
 
 
 

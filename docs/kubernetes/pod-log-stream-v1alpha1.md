@@ -9,7 +9,7 @@ description: "PodLogStream
 
 Streams logs from a pod on Kubernetes into the core Tilt engine."
 title: "PodLogStream v1alpha1"
-weight: 8
+weight: 4
 ---
 
 `apiVersion: tilt.dev/v1alpha1`
