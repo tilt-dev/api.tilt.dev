@@ -5,7 +5,7 @@ go 1.18
 require github.com/kubernetes-sigs/reference-docs/gen-resourcesdocs v0.0.0-20210407021040-9f1f247469b2
 
 require (
-	github.com/Masterminds/goutils v1.1.0 // indirect
+	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
