@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'tilt-dev'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          git submodule init
+          git submodule update
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.0
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          bundle install
+        working-directory: docs
+
+      # Deploy api.tilt.dev
+      - name: Configure AWS credentials to access api.tilt.dev
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::710015040892:role/prod-collaboration-api.tilt.dev-20250228142654966700000001
+          aws-region: us-east-1
+      - name: Create website api.tilt.dev
+        run: |
+          JEKYLL_ENV=production bundle exec jekyll build -d _site
+        working-directory: docs
+
+      - name: Deploy website api.tilt.dev
+        run: |
+          aws s3 sync docs/_site s3://prod-collaboration-api.tilt.dev/ --region us-east-1 --delete
+      - name: Invalidate CloudFront cache for api.tilt.dev
+        run: |
+          aws cloudfront create-invalidation --distribution-id E2ZQJPGT02CCGI --paths "/*"
