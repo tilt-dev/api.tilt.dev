@@ -25,3 +25,8 @@ base:
 
 update-base:
 	cd ./base && git fetch && git merge --ff-only origin/master
+
+build-docs:
+	rm -fR build/docs
+	docker build -t api-site-base -f deploy/base.dockerfile .
+	docker buildx build --target static --output type=local,dest=build/docs -f deploy/Dockerfile .

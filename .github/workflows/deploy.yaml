@@ -41,12 +41,12 @@ jobs:
           aws-region: us-east-1
       - name: Create website api.tilt.dev
         run: |
-          JEKYLL_ENV=production bundle exec jekyll build -d _site
+          make build-docs
         working-directory: docs
 
       - name: Deploy website api.tilt.dev
         run: |
-          aws s3 sync docs/_site s3://prod-collaboration-api.tilt.dev/ --region us-east-1 --delete
+          aws s3 sync build/docs s3://prod-collaboration-api.tilt.dev/ --region us-east-1 --delete
       - name: Invalidate CloudFront cache for api.tilt.dev
         run: |
           aws cloudfront create-invalidation --distribution-id E2ZQJPGT02CCGI --paths "/*"
