@@ -2,17 +2,32 @@
 title: Search
 description: "Search the Tilt documentation"
 layout: api
+hasSearch: true
 ---
 
+<div id="pagefind-search"></div>
 <script>
- (function() {
-     var cx = '017353557192452135467:flbjzvynczi';
-     var gcse = document.createElement('script');
-     gcse.type = 'text/javascript';
-     gcse.async = true;
-     gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-     var s = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(gcse, s);
- })();
+  window.addEventListener('DOMContentLoaded', (event) => {
+      const searchEl = document.getElementById('q');
+      let searchVal = '';
+      if (searchEl) {
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          searchVal = urlParams.get('q');  
+          searchEl.value = urlParams.get('q');
+        } catch {
+          // just ignore, search box won't be pre-populated but it's ok
+        }
+      }
+      let ui = new PagefindUI({
+          element: "#pagefind-search",
+          showSubResults: false,
+          showImages: false,
+      });
+      ui.triggerSearch(searchVal);
+  });
 </script>
-<gcse:searchresults-only></gcse:searchresults-only>
+
+<noscript>
+JavaScript is required for search functionality.
+</noscript>
