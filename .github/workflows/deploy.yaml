@@ -23,26 +23,16 @@ jobs:
           git submodule init
           git submodule update
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.0
-          bundler-cache: true
-      - name: Install dependencies
-        run: |
-          bundle install
-        working-directory: docs
-
       # Deploy api.tilt.dev
       - name: Configure AWS credentials to access api.tilt.dev
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::710015040892:role/prod-collaboration-api.tilt.dev-20250228142654966700000001
           aws-region: us-east-1
+
       - name: Create website api.tilt.dev
         run: |
           make build-docs
-        working-directory: docs
 
       - name: Deploy website api.tilt.dev
         run: |
